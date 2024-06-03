@@ -10,9 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_03_120716) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_03_124350) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "meme_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meme_id"], name: "index_favorites_on_meme_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "meme_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meme_id"], name: "index_likes_on_meme_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "meme_tags", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "meme_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meme_id"], name: "index_meme_tags_on_meme_id"
+    t.index ["tag_id"], name: "index_meme_tags_on_tag_id"
+  end
+
+  create_table "memes", force: :cascade do |t|
+    t.string "title"
+    t.boolean "public", default: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_memes_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +64,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_120716) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favorites", "memes"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "likes", "memes"
+  add_foreign_key "likes", "users"
+  add_foreign_key "meme_tags", "memes"
+  add_foreign_key "meme_tags", "tags"
+  add_foreign_key "memes", "users"
 end
