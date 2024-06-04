@@ -8,6 +8,10 @@ class Meme < ApplicationRecord
   has_many :meme_tags
   has_many :tags, through: :meme_tags
 
+  def public_checked?
+    public? ? "checked" : ""
+  end
+
   #after_save :save_tags
 
   private

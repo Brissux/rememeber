@@ -1,10 +1,10 @@
 <h2><%= @meme.title %></h2>
 
-<p>Rendu public : <%= @meme.public ? 'Oui' : 'Non' %></p>
+<%= render "form", meme: @meme %>
 
-<div>
-  <%= image_tag @meme.image.url %>
-</div>
+<%# <div>
+  <%= cl_image_tag(@meme.image, width: 400, height: 300, crop: :fill) %>
+<%# </div> %>
 
 <ul>
   <% if @tags.any? %>
@@ -14,4 +14,4 @@
   <% end %>
 </ul>
 
-<%= link_to 'Retour', root_path %>
+<%# <%= link_to 'Retour', root_path %>

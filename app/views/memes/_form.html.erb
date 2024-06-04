@@ -1,0 +1,9 @@
+<div class="form-check form-switch" data-controller="public">
+  <%= simple_form_for meme,
+    data: {
+      public_target: "form",
+      action: "change->public#makePublic"
+    } do |f| %>
+      <%= f.input :public, as: :boolean, input_html: { class: 'form-check-input', data: { public_target: "input"} } %>
+  <% end %>
+</div>
