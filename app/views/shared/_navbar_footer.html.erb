@@ -1,9 +1,21 @@
-<div class="nav_bar">
+<div class="navbar-footer">
 
-<div class="home-icon" style="background: url(assets/images/home-icon.svg)" ></div>
-<div class="add-icon" style="background: url(assets/images/add-icon.svg)"></div>
-<div class="library-icon" style="background: url(assets/images/library-icon.svg)"></div>
-<div class="profile-icon"></div>
+    <div class="navbar-home">
+        <%= link_to root_path do %>
+          <%= image_tag("home-icon.svg", class:"home-icon")  %>
+        <% end %>
+    </div>
 
+    <div class="navbar-add">
+        <%= link_to root_path do %>
+          <%= image_tag("add-icon.svg", class:"add-icon")  %>
+        <% end %>
+    </div>
+
+    <div class="navbar-library">
+        <%= link_to root_path do %>
+          <%= image_tag("library-icon.svg", class:"library-icon")  %>
+        <% end %>
+    </div>
 
 </div>

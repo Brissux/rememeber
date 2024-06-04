@@ -1,4 +1,4 @@
-.nav_bar{
+.navbar-footer{
   width: 360px;
   height: 60px;
   flex-shrink: 0;
@@ -11,16 +11,16 @@
   padding: 10px;
   }
 
-  .home-icon,.add-icon, .library-icon{
+  .navbar-home,.navbar-add,.navbar-library {
   flex-shrink: 0;
   }
 
 
-  .profile-icon{
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: 40px;
-  border: 1px solid #000;
-  background:lightgray 50%;
-  }
+  // .profile-icon{
+  // width: 40px;
+  // height: 40px;
+  // flex-shrink: 0;
+  // border-radius: 40px;
+  // border: 1px solid #000;
+  // background:lightgray 50%;
+  // }
