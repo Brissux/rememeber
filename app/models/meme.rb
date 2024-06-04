@@ -10,8 +10,6 @@ class Meme < ApplicationRecord
 
   #after_save :save_tags
 
-  private
-
   #def save_tags
     #self.tags = self.tag_ids.split(',').map do |name|
       #Tag.find_or_create_by(name: name.strip.downcase)
