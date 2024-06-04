@@ -1,0 +1,12 @@
+<h1>Mes Favoris</h1>
+
+<% if @favorites.any? %>
+  <% @favorites.each do |favorite| %>
+    <div class="d-flex flex-column">
+      <%= cl_image_tag favorite.meme.image.key, alt: favorite.meme.title, width: 180 %>
+      <h2><%= favorite.meme.title %></h2>
+    </div>
+  <% end %>
+<% else %>
+  <p>Vous n'avez aucun favori pour le moment.</p>
+<% end %>
