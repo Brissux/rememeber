@@ -12,6 +12,8 @@ class MemesController < ApplicationController
 
   def create
     @meme = current_user.memes.build(meme_params)
+    process_meme_tags(@meme)
+
     if @meme.save
       redirect_to root_path, notice: 'Mème créé avec succès !'
       current_user.favorites.create(meme: @meme)
@@ -20,15 +22,19 @@ class MemesController < ApplicationController
     end
   end
 
-  def show
-    # @meme = Meme.find(params[:id])
-    # @like = current_user.likes.find_by(meme: @meme)
-    # @favorite = current_user.favorites.find_by(meme: @meme)
-  end
-
   private
 
   def meme_params
     params.require(:meme).permit(:title, :public, :image, meme_tags_attributes: [tag_attributes: [:name]])
+  end
+
+  def process_meme_tags(meme)
+    meme.meme_tags.each do |meme_tag|
+      tag_names = meme_tag.tag.name.split(",").map(&:strip)
+      tag_names.each do |tag_name|
+        tag = Tag.find_or_create_by(name: tag_name)
+        meme_tag.tag = tag
+      end
+    end
   end
 end

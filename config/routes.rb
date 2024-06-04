@@ -13,10 +13,4 @@ Rails.application.routes.draw do
   end
   resources :tags, only: [:create]
   resources :favorites, only: [:index]
-
-  resources :tags, only: [] do
-    collection do
-      get :json
-    end
-  end
 end
