@@ -1,0 +1,17 @@
+<!-- app/views/memes/show.html.erb -->
+<h1><%= @meme.title %></h1>
+
+<div>
+  <%= image_tag @meme.image.url %>
+</div>
+
+<p>Rendu public : <%= @meme.public ? 'Oui' : 'Non' %></p>
+
+<h2>Tags :</h2>
+<ul>
+  <% @meme.tags.each do |tag| %>
+    <li><%= tag.name %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Retour', root_path %>
