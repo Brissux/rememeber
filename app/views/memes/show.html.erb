@@ -1,0 +1,11 @@
+<h2><%= @meme.title %></h2>
+
+<%# Ajout image %>
+
+<ul>
+  <% if @tags.any? %>
+    <% @meme.tags.each do |tag| %>
+      <li><%= tag.name %></li>
+    <% end %>
+  <% end %>
+</ul>

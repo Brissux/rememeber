@@ -5,5 +5,6 @@ class Meme < ApplicationRecord
 
   has_many :likes
   has_many :favorites
+  has_many :meme_tags
   has_many :tags, through: :meme_tags
 end
