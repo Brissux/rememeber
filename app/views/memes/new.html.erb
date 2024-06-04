@@ -1,0 +1,14 @@
+<%= simple_form_for @meme, html: { multipart: true } do |f| %>
+  <%= f.input :title, label: "Titre du mème" %>
+  <%= f.input :public, label: "Rendre le mème public ?", as: :boolean %>
+  <%= f.input :image, label: "Image du mème" %>
+
+  <%= f.fields_for :meme_tags do |mt| %>
+    <%= mt.fields_for :tag do |t| %>
+      <%= t.input :name, label: "Nom du tag" %>
+    <% end %>
+  <% end %>
+
+
+  <%= f.button :submit, "Créer le mème" %>
+<% end %>

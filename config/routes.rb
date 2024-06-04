@@ -10,7 +10,16 @@ Rails.application.routes.draw do
   resources :memes, only: %i[show new create update] do
     resources :favorites, only: %i[create destroy]
     resources :likes, only: %i[create destroy]
+    member do
+      patch "update"
+    end
   end
   resources :tags, only: [:create]
   resources :favorites, only: [:index]
+
+  resources :tags, only: [] do
+    collection do
+      get :json
+    end
+  end
 end

@@ -1,0 +1,17 @@
+<h2><%= @meme.title %></h2>
+
+<%= render "form", meme: @meme %>
+
+<%# <div>
+  <%= cl_image_tag(@meme.image, width: 400, height: 300, crop: :fill) %>
+<%# </div> %>
+
+<ul>
+  <% if @tags.any? %>
+    <% @meme.tags.each do |tag| %>
+      <li><%= tag.name %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%# <%= link_to 'Retour', root_path %>
