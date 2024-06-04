@@ -1,11 +1,11 @@
 <h1>Mes Favoris</h1>
-
 <% if @favorites.any? %>
+<div class="d-flex justify-content-evenly flex-wrap row-gap-2">
+
   <% @favorites.each do |favorite| %>
-    <div class="d-flex flex-column">
-      <%= cl_image_tag favorite.meme.image.key, alt: favorite.meme.title, width: 180 %>
-    </div>
+    <%= render partial: "shared/card1", locals: { meme: favorite.meme } %>
   <% end %>
+  </div>
 <% else %>
   <p>Vous n'avez aucun favori pour le moment.</p>
 <% end %>
