@@ -21,9 +21,20 @@ class MemesController < ApplicationController
   end
 
   def show
-    # @meme = Meme.find(params[:id])
+    @meme = Meme.find(params[:id])
+    @tags = @meme.tags
     # @like = current_user.likes.find_by(meme: @meme)
     # @favorite = current_user.favorites.find_by(meme: @meme)
+  end
+
+  def update
+    @meme = Meme.find(params[:id])
+    @meme = Meme.update(meme_params)
+
+    respond_to do |format|
+      format.html { redirect_to meme_path }
+      format.text { render partial: "memes/form", locals: {meme: @meme}, formats: [:html] }
+    end
   end
 
   private

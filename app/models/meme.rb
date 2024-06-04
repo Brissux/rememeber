@@ -10,11 +10,8 @@ class Meme < ApplicationRecord
   has_many :tags, through: :meme_tags
 
   accepts_nested_attributes_for :meme_tags
-  #after_save :save_tags
-
-  #def save_tags
-    #self.tags = self.tag_ids.split(',').map do |name|
-      #Tag.find_or_create_by(name: name.strip.downcase)
-    #end
-  #end
+  
+  def public_checked?
+    public? ? "checked" : ""
+  end
 end

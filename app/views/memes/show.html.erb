@@ -1,15 +1,17 @@
-<!-- app/views/memes/show.html.erb -->
-<h1><%= @meme.title %></h1>
+<h2><%= @meme.title %></h2>
 
-<div>
-  <%= image_tag @meme.image.url %>
-</div>
+<%= render "form", meme: @meme %>
 
-<h2>Tags :</h2>
+<%# <div>
+  <%= cl_image_tag(@meme.image, width: 400, height: 300, crop: :fill) %>
+<%# </div> %>
+
 <ul>
-  <% @meme.tags.each do |tag| %>
-    <li><%= tag.name %></li>
+  <% if @tags.any? %>
+    <% @meme.tags.each do |tag| %>
+      <li><%= tag.name %></li>
+    <% end %>
   <% end %>
 </ul>
 
-<%= link_to 'Retour', root_path %>
+<%# <%= link_to 'Retour', root_path %>
