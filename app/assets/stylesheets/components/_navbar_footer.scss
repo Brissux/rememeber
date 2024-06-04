@@ -1,0 +1,26 @@
+.nav_bar{
+  width: 360px;
+  height: 60px;
+  flex-shrink: 0;
+  border-top: 3px black solid;
+  background: white;
+  position:sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  }
+
+  .home-icon,.add-icon, .library-icon{
+  flex-shrink: 0;
+  }
+
+
+  .profile-icon{
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  border: 1px solid #000;
+  background:lightgray 50%;
+  }
