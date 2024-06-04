@@ -1,6 +1,10 @@
 <h2><%= @meme.title %></h2>
 
-<%# Ajout image %>
+<p>Rendu public : <%= @meme.public ? 'Oui' : 'Non' %></p>
+
+<div>
+  <%= image_tag @meme.image.url %>
+</div>
 
 <ul>
   <% if @tags.any? %>
@@ -9,3 +13,5 @@
     <% end %>
   <% end %>
 </ul>
+
+<%= link_to 'Retour', root_path %>

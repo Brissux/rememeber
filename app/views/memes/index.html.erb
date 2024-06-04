@@ -1,0 +1,20 @@
+<h1>Tous les mèmes</h1>
+
+<% @memes.each do |meme| %>
+  <div class="meme">
+    <% if meme.image.attached? %>
+      <%= image_tag meme.image, alt: meme.title %>
+    <% end %>
+    <h2><%= meme.title %></h2>
+    <p>
+      <%= link_to "Voir le mème", meme_path(meme), class: "btn btn-primary" %>
+      <% if meme.user == current_user %>
+        <%= link_to "Supprimer", meme_path(meme), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce mème ?" }, class: "btn btn-danger" %>
+      <% end %>
+    </p>
+  </div>
+<% end %>
+
+<p>
+  <%= link_to "Créer un nouveau mème", new_meme_path, class: "btn btn-primary" %>
+</p>
