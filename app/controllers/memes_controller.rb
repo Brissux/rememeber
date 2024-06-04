@@ -7,13 +7,14 @@ class MemesController < ApplicationController
 
   def new
     @meme = Meme.new
+    @meme_tag = @meme.meme_tags.new(tag: Tag.new)
   end
 
   def create
     @meme = current_user.memes.build(meme_params)
     if @meme.save
-      redirect_to "/index", notice: 'Mème créé avec succès !'
-      current_user.favorites.create(meme: @meme) if @meme.public
+      redirect_to root_path, notice: 'Mème créé avec succès !'
+      current_user.favorites.create(meme: @meme)
     else
       render :new, status: :unprocessable_entity
     end
@@ -39,6 +40,6 @@ class MemesController < ApplicationController
   private
 
   def meme_params
-    params.require(:meme).permit(:title, :public, :image, tag_names: [])
+    params.require(:meme).permit(:title, :public, :image, meme_tags_attributes: [tag_attributes: [:name]])
   end
 end

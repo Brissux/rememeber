@@ -1,13 +1,5 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-# Clear existing data
+require "open-uri"
+
 Favorite.destroy_all
 MemeTag.destroy_all
 Tag.destroy_all
@@ -20,30 +12,43 @@ julien = User.create!(email: "julien@gmail.com", nickname: "Julien", password: "
 anais = User.create!(email: "anais@gmail.com", nickname: "Anaïs", password: "password")
 amin = User.create!(email: "amin@gmail.com", nickname: "Amin", password: "password")
 
-# Create memes
-meme1 = Meme.create!(title: "my first meme", public: true, user: antoine)
-meme2 = Meme.create!(title: "funny cat", public: true, user: julien)
-meme3 = Meme.create!(title: "coding meme", public: false, user: anais)
-meme4 = Meme.create!(title: "weekend vibes", public: true, user: amin)
+# Create memes with images
+meme1 = Meme.create!(title: "Alien Theory explication", public: true, user: antoine)
+meme1.image.attach(io: URI.open("https://i.imgflip.com/26am.jpg"), filename: 'alien_theory.jpg')
+
+meme2 = Meme.create!(title: "Bouton stress", public: true, user: julien)
+meme2.image.attach(io: URI.open("https://i.imgflip.com/1g8my4.jpg"), filename: 'bouton_stress.jpg')
+
+meme3 = Meme.create!(title: "Cerveau Explosion", public: false, user: anais)
+meme3.image.attach(io: URI.open("https://i.imgflip.com/1jwhww.jpg"), filename: 'cerveau_explos.jpg')
+
+meme4 = Meme.create!(title: "Drake Dance", public: true, user: amin)
+meme4.image.attach(io: URI.open("https://i.imgflip.com/30b1gx.jpg"), filename: 'drake_dance.jpg')
 
 # Create tags
-tag_fun = Tag.create!(name: "fun")
-tag_cat = Tag.create!(name: "cat")
-tag_coding = Tag.create!(name: "coding")
-tag_weekend = Tag.create!(name: "weekend")
+tag_alien_theory = Tag.create!(name: "alien theory")
+tag_bouton = Tag.create!(name: "bouton")
+tag_cerveau = Tag.create!(name: "cerveau")
+tag_drake = Tag.create!(name: "drake")
+tag_funny = Tag.create!(name: "funny") # Common tag
+tag_reaction = Tag.create!(name: "reaction") # Common tag
 
 # Create meme_tags
-MemeTag.create!(meme: meme1, tag: tag_fun) # my first meme - fun
-MemeTag.create!(meme: meme2, tag: tag_cat) # funny cat - cat
-MemeTag.create!(meme: meme3, tag: tag_coding) # coding meme - coding
-MemeTag.create!(meme: meme4, tag: tag_weekend) # weekend vibes - weekend
-MemeTag.create!(meme: meme1, tag: tag_cat) # my first meme - cat (additional tag)
-MemeTag.create!(meme: meme2, tag: tag_fun) # funny cat - fun (additional tag)
+MemeTag.create!(meme: meme1, tag: tag_alien_theory) # Alien Theory explication - alien theory
+MemeTag.create!(meme: meme2, tag: tag_bouton) # Bouton stress - bouton
+MemeTag.create!(meme: meme3, tag: tag_cerveau) # Cerveau Explosion - cerveau
+MemeTag.create!(meme: meme4, tag: tag_drake) # Drake Dance - drake
+
+# Associate common tags with memes
+MemeTag.create!(meme: meme1, tag: tag_funny) # Alien Theory explication - funny (common tag)
+MemeTag.create!(meme: meme2, tag: tag_reaction) # Bouton stress - reaction (common tag)
+MemeTag.create!(meme: meme3, tag: tag_funny) # Cerveau Explosion - funny (common tag)
+MemeTag.create!(meme: meme4, tag: tag_reaction) # Drake Dance - reaction (common tag)
 
 # Create favorites
-Favorite.create!(user: antoine, meme: meme2) # Antoine likes funny cat
-Favorite.create!(user: julien, meme: meme1) # Julien likes my first meme
-Favorite.create!(user: anais, meme: meme4) # Anaïs likes weekend vibes
-Favorite.create!(user: amin, meme: meme3) # Amin likes coding meme
+Favorite.create!(user: antoine, meme: meme2) # Antoine likes Bouton stress
+Favorite.create!(user: julien, meme: meme1) # Julien likes Alien Theory explication
+Favorite.create!(user: anais, meme: meme4) # Anaïs likes Drake Dance
+Favorite.create!(user: amin, meme: meme3) # Amin likes Cerveau Explosion
 
 puts "Seeding completed!"
