@@ -13,16 +13,16 @@ class MemesController < ApplicationController
     @meme = current_user.memes.build(meme_params)
     if @meme.save
       redirect_to "/index", notice: 'Mème créé avec succès !'
-      current_user.favorites.create(meme: @meme) if @meme.public
+      current_user.favorites.create(meme: @meme)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def show
-    @meme = Meme.find(params[:id])
-    @like = current_user.likes.find_by(meme: @meme)
-    @favorite = current_user.favorites.find_by(meme: @meme)
+    # @meme = Meme.find(params[:id])
+    # @like = current_user.likes.find_by(meme: @meme)
+    # @favorite = current_user.favorites.find_by(meme: @meme)
   end
 
   private

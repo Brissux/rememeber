@@ -1,9 +1,9 @@
 <h1>Tous les mèmes</h1>
 
 <% @memes.each do |meme| %>
-  <div class="meme">
+  <div class="meme d-flex flex-column">
     <% if meme.image.attached? %>
-      <%= image_tag meme.image, alt: meme.title %>
+      <%= image_tag meme.image, alt: meme.title, width: 180 %>
     <% end %>
     <h2><%= meme.title %></h2>
     <p>
