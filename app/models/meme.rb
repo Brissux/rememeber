@@ -10,7 +10,7 @@ class Meme < ApplicationRecord
   has_many :tags, through: :meme_tags
 
   accepts_nested_attributes_for :meme_tags
-  
+
   def public_checked?
     public? ? "checked" : ""
   end
