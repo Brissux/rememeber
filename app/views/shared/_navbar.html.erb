@@ -1,17 +1,16 @@
-<nav class="navbar">
-    <!-- Logo -->
-    <div class="navbar-brand align-items-center m-0 mb-1">
-      <%= link_to root_path do %>
-        <%= image_tag("logo.svg", class: "logo", alt: "Logo") %>
-      <% end %>
-    </div>
-
-    <!-- Recherche -->
-    <%= simple_form_for :search, url: root_path, method: :get, html: { class: "search-form" } do |f| %>
-      <div class="search-form-control input-group">
-        <i class="fas fa-search search-icon"></i>
-        <%= f.input :query, input_html: { class: 'string required', id: 'search_query', placeholder: 'Rechercher un mème' }, label: false %>
-      </div>
+<nav class="navbar sticky-navbar">
+  <!-- Logo -->
+  <div class="navbar-brand align-items-center m-0 mb-1">
+    <%= link_to root_path do %>
+      <%= image_tag("logo.svg", class: "logo", alt: "Logo") %>
     <% end %>
-</nav>
+  </div>
 
+  <!-- Recherche -->
+  <%= form_tag memes_path, method: :get, class: "search-form" do %>
+    <div class="search-form-control input-group">
+      <i class="fas fa-search search-icon"></i>
+      <%= text_field_tag :search, params[:search], placeholder: 'Rechercher un mème', class: 'form-control' %>
+    </div>
+  <% end %>
+</nav>
