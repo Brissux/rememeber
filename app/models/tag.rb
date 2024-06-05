@@ -1,4 +1,5 @@
 class Tag < ApplicationRecord
+  has_many :meme_tags
   has_many :memes, through: :meme_tags
   has_many :meme_tags
 
