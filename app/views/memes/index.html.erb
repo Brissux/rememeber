@@ -1,10 +1,13 @@
-
 <h1>Tous les mèmes</h1>
 
-<div class="d-flex justify-content-evenly flex-wrap row-gap-2">
-  <% @memes.each do |meme| %>
-    <%= render partial: "shared/card1", locals: { meme: meme } %>
-  <% end %>
-</div>
+<% if @memes.any? %>
+  <div class="d-flex justify-content-evenly flex-wrap row-gap-2">
+    <% @memes.each do |meme| %>
+      <%= render partial: "shared/card1", locals: { meme: meme } %>
+    <% end %>
+  </div>
+<% else %>
+  <p>Aucun résultat</p>
+<% end %>
 
-<p> <%= link_to "Créer un nouveau mème", new_meme_path, class: "btn btn-primary" %> </p>
+<p><%= link_to "Créer un nouveau mème", new_meme_path, class: "btn btn-primary" %></p>
