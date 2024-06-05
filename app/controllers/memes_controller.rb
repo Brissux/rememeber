@@ -30,7 +30,7 @@ class MemesController < ApplicationController
 
   def process_meme_tags(meme)
     meme.meme_tags.each do |meme_tag|
-      tag_names = meme_tag.tag.name.split(",").map(&:strip)
+      tag_names = meme_tag.tag.name.split(",").map { |tag_name| tag_name.strip }
       tag_names.each do |tag_name|
         tag = Tag.find_or_create_by(name: tag_name)
         meme_tag.tag = tag
