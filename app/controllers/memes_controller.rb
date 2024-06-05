@@ -31,7 +31,7 @@ class MemesController < ApplicationController
 
   def update
     @meme = Meme.find(params[:id])
-    @meme = Meme.update(meme_params)
+    @meme.update(meme_params)
 
     respond_to do |format|
       format.html { redirect_to meme_path }

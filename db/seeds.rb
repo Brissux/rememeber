@@ -12,6 +12,7 @@ julien = User.create!(email: "julien@gmail.com", nickname: "Julien", password: "
 anais = User.create!(email: "anais@gmail.com", nickname: "Anaïs", password: "password")
 amin = User.create!(email: "amin@gmail.com", nickname: "Amin", password: "password")
 
+<<<<<<< Updated upstream
 # Create memes without images
 meme1 = Meme.new(title: "Alien Theory explication", public: true, user: antoine)
 meme2 = Meme.new(title: "Bouton stress", public: true, user: julien)
@@ -22,7 +23,24 @@ meme4 = Meme.new(title: "Drake Dance", public: true, user: amin)
 meme1.image.attach(io: URI.open("https://i.imgflip.com/26am.jpg"), filename: 'alien_theory.jpg')
 meme2.image.attach(io: URI.open("https://i.imgflip.com/1g8my4.jpg"), filename: 'bouton_stress.jpg')
 meme3.image.attach(io: URI.open("https://i.imgflip.com/1jwhww.jpg"), filename: 'cerveau_explos.jpg')
+=======
+# Create memes with images
+meme1 = Meme.new(title: "Alien Theory explication", public: true, user: antoine)
+meme1.image.attach(io: URI.open("https://i.imgflip.com/26am.jpg"), filename: 'alien_theory.jpg')
+meme1.save
+
+meme2 = Meme.new(title: "Bouton stress", public: true, user: julien)
+meme2.image.attach(io: URI.open("https://i.imgflip.com/1g8my4.jpg"), filename: 'bouton_stress.jpg')
+meme2.save
+
+meme3 = Meme.new(title: "Cerveau Explosion", public: false, user: anais)
+meme3.image.attach(io: URI.open("https://i.imgflip.com/1jwhww.jpg"), filename: 'cerveau_explos.jpg')
+meme3.save
+
+meme4 = Meme.new(title: "Drake Dance", public: true, user: amin)
+>>>>>>> Stashed changes
 meme4.image.attach(io: URI.open("https://i.imgflip.com/30b1gx.jpg"), filename: 'drake_dance.jpg')
+meme4.save
 
 # Save memes with images attached
 meme1.save!
