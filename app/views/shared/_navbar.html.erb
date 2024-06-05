@@ -1,4 +1,4 @@
-<nav class="navbar sticky-navbar">
+<nav class="navbar sticky-top">
   <!-- Logo -->
   <div class="navbar-brand align-items-center m-0 mb-1">
     <%= link_to root_path do %>
@@ -7,7 +7,7 @@
   </div>
 
   <!-- Recherche -->
-  <%= form_tag memes_path, method: :get, class: "search-form" do %>
+  <%= form_tag root_path, method: :get, class: "search-form" do %>
     <div class="search-form-control input-group">
       <i class="fas fa-search search-icon"></i>
       <%= text_field_tag :search, params[:search], placeholder: 'Rechercher un mème', class: 'form-control' %>
