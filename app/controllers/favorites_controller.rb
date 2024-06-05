@@ -6,7 +6,5 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    
   end
-
 end
