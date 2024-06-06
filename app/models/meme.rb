@@ -11,6 +11,14 @@ class Meme < ApplicationRecord
 
   accepts_nested_attributes_for :meme_tags
 
+  include PgSearch
+
+  pg_search_scope :search_by_title_and_tag,
+    against: [:title],
+    associated_against: {
+      tags: [:name]
+    }
+
   # def public_checked?
   #   public? ? "checked" : ""
   # end

@@ -29,7 +29,6 @@ meme4 = Meme.new(title: "Drake Dance", public: true, user: amin)
 meme4.image.attach(io: URI.open("https://i.imgflip.com/30b1gx.jpg"), filename: 'drake_dance.jpg')
 meme4.save
 
-
 # Create tags
 tag_alien_theory = Tag.create!(name: "alien theory")
 tag_bouton = Tag.create!(name: "bouton")
