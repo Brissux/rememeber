@@ -7,14 +7,20 @@
     </div>
 
     <div class="navbar-add">
-        <%= link_to root_path do %>
+        <%= link_to new_meme_path do %>
           <%= image_tag("add_icon.svg", class:"add-icon")  %>
         <% end %>
     </div>
 
     <div class="navbar-library">
-        <%= link_to root_path do %>
+        <%= link_to favorites_path do %>
           <%= image_tag("library_icon.svg", class:"library-icon")  %>
+        <% end %>
+    </div>
+
+    <div>
+    <%= link_to user_session_path do %>
+          <%= image_tag("profile.png", class:"profile-icon")  %>
         <% end %>
     </div>
 
