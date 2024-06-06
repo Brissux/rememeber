@@ -1,7 +1,8 @@
 <%= simple_form_for @meme, html: { multipart: true } do |f| %>
   <div class="form-check form-switch d-flex justify-content-start flex-row-reverse align-items-center">
     <%= f.check_box :public, id: 'meme_public' %>
-    <%= f.label :public, "Public", class: "form-check-label", for: "meme_public" %>
+    <%= f.label :public, "Public", class: "form-check-label", for: "meme_public"%>
+    <p id="rp">Rendre public</p>
   </div>
 
   <%= f.input :title, label: "Titre du mème", class: "titre" %>
