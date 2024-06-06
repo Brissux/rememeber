@@ -29,8 +29,8 @@ class MemesController < ApplicationController
   def show
     @meme = Meme.find(params[:id])
     @tags = @meme.tags
+    @favorite = Favorite.new
     # @like = current_user.likes.find_by(meme: @meme)
-    # @favorite = current_user.favorites.find_by(meme: @meme)
   end
 
   def update
@@ -39,8 +39,14 @@ class MemesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to meme_path }
-      format.text { render partial: "memes/form", locals: {meme: @meme}, formats: [:html] }
+      format.text { render partial: "memes/form", locals: { meme: @meme }, formats: [:html] }
     end
+  end
+
+  helper_method :favorite_exists?
+
+  def favorite_exists?
+    Favorite.exists?(user: current_user, meme: @meme)
   end
 
   private

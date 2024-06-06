@@ -19,7 +19,7 @@ class Meme < ApplicationRecord
       tags: [:name]
     }
 
-  def public_checked?
-    public? ? "checked" : ""
-  end
+  # def public_checked?
+  #   public? ? "checked" : ""
+  # end
 end

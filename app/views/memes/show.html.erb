@@ -1,17 +1,28 @@
 <h2><%= @meme.title %></h2>
 
-<%= render "form", meme: @meme %>
+<% if @meme.user == current_user %>
+  <%= render "form", meme: @meme %>
+<% end %>
 
-<%# <div>
-  <%= cl_image_tag(@meme.image, width: 400, height: 300, crop: :fill) %>
-<%# </div> %>
+<div class="d-flex justify-content-evenly flex-wrap row-gap-2">
+  <%= render partial: "shared/card2", locals: { meme: @meme } %>
+</div>
 
-<ul>
-  <% if @tags.any? %>
-    <% @meme.tags.each do |tag| %>
-      <li><%= tag.name %></li>
+
+<% if @tags.any? %>
+  <div class="d-flex gap-3 mb-4">
+    <% @tags.each do |tag| %>
+      <div>
+        <%= render "shared/button_tag", tag: tag %>
+      </div>
     <% end %>
-  <% end %>
-</ul>
+  </div>
+<% end %>
 
-<%# <%= link_to 'Retour', root_path %>
+<% if current_user.favorites.find_by(meme: @meme) %>
+  <div class="text-center">
+    <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-validate" %>
+  </div>
+<% else %>
+  <%= render "favorite", meme: @meme, favorite: @favorite %>
+<% end %>
