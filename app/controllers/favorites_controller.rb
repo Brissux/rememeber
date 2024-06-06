@@ -11,21 +11,13 @@ class FavoritesController < ApplicationController
     @favorite.meme = @meme
     @favorite.user = current_user
     @favorite.save
-    # redirect_to meme_path(@meme), notice: 'Favori créé avec succès !'
-
-    respond_to do |format|
-      format.html { meme_favorites_path(meme) }
-      format.text { render partial: "memes/favorite", locals: { meme: @meme }, formats: [:html] }
-    end
+    redirect_to meme_path(@meme)
   end
 
-  def delete
+  def destroy
     @favorite = Favorite.find(params[:id])
+    @meme = @favorite.meme
     @favorite.destroy
-
-    respond_to do |format|
-      format.html { meme_favorite_path(meme, favorite) }
-      format.text { render partial: "memes/favorite", locals: { meme: @meme, favorite: @favorite }, formats: [:html] }
-    end
+    redirect_to meme_path(@meme)
   end
 end

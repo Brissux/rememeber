@@ -1,15 +1,5 @@
-<div data-controller="favorite">
-  <%= simple_form_for favorite,
-      html: {
-        class: "d-none",
-        data: {
-          favorite_target: "form",
-          action: favorite_exists? ? "submit->favorite#retirer" : "submit->favorite#create"
-        }
-      } do |f| %>
-      <%= f.button :submit, "Retirer de ma galerie", class: "btn btn-primary", data: { favorite_target: "retirer" }%>
-      <% else %>
-        <%= f.button :submit, "Ajouter à ma galerie", class: "btn btn-primary", data: { favorite_target: "ajouter" }%>
-      <% end %>
+<div class="text-center">
+  <%= simple_form_for [meme, favorite] do |f| %>
+    <%= f.button :submit, "AJOUTER À MA GALERIE", class: "btn button-validate" %>
   <% end %>
 </div>

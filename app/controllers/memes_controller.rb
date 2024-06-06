@@ -29,7 +29,7 @@ class MemesController < ApplicationController
   def show
     @meme = Meme.find(params[:id])
     @tags = @meme.tags
-    @favorite = current_user.favorites.find_by(meme: @meme)
+    @favorite = Favorite.new
     # @like = current_user.likes.find_by(meme: @meme)
   end
 
