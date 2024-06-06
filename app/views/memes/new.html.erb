@@ -1,19 +1,19 @@
-
-
 <%= simple_form_for @meme, html: { multipart: true } do |f| %>
-   <div class="form-check form-switch d-flex justify-content-start flex-row-reverse align-items-center">
-      <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
-    </div>
+  <div class="form-check form-switch d-flex justify-content-start flex-row-reverse align-items-center">
+    <%= f.check_box :public, id: 'meme_public' %>
+    <%= f.label :public, "Public", class: "form-check-label", for: "meme_public"%>
+    <p id="rp">Rendre public</p>
+  </div>
+
   <%= f.input :title, label: "Titre du mème", class: "titre" %>
 
-    <%= f.fields_for :meme_tags do |mt| %>
+  <%= f.fields_for :meme_tags do |mt| %>
     <%= mt.fields_for :tag do |t| %>
       <%= t.input :name, label: "Nom du/des tags (Séparés par des virgules)" %>
     <% end %>
   <% end %>
 
-
-  <%= f.input :image, label: "SVG" %>
+  <%= f.input :image, label: "SVG", as: :file %>
 
   <%= f.button :submit, "Créer le mème" %>
 <% end %>

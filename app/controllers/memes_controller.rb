@@ -55,6 +55,7 @@ class MemesController < ApplicationController
     params.require(:meme).permit(:title, :public, :image, meme_tags_attributes: [tag_attributes: [:name]])
   end
 
+
   def process_meme_tags(meme)
     meme.meme_tags.each do |meme_tag|
       tag_names = meme_tag.tag.name.split(",").map { |tag_name| tag_name.strip }
