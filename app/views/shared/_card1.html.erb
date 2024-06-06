@@ -1,8 +1,5 @@
 <div class="card1">
-
-  <div class="d-flex flex-column">
     <div class="card-content card_img">
-
       <% if meme.image.attached? %>
         <%= cl_image_tag meme.image.key, alt: meme.title, width: 160 %>
       <% end %>
