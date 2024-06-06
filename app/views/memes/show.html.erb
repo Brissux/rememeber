@@ -2,8 +2,12 @@
 
 <%= render "form", meme: @meme %>
 
+<%# <div class="d-flex justify-content-evenly flex-wrap row-gap-2">
+  <%= render partial: "shared/card2", locals: { meme: @meme } %>
+<%# </div> %>
+
 <%# <div>
-  <%= cl_image_tag(@meme.image, width: 400, height: 300, crop: :fill) %>
+  <%= image_tag(@meme.image, width: 400, height: 300, crop: :fill) %>
 <%# </div> %>
 
 <ul>
@@ -14,3 +18,4 @@
   <% end %>
 </ul>
 
+<%# <%= render "favorite", meme: @meme, favorite: @favorite %>
