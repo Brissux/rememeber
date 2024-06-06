@@ -1,10 +1,21 @@
-<h1>Tous les mèmes</h1>
-
 <% if @memes.any? %>
-  <div class="d-flex justify-content-evenly flex-wrap row-gap-2">
-    <% @memes.each do |meme| %>
-      <%= render partial: "shared/card1", locals: { meme: meme } %>
-    <% end %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <% @memes.each_with_index do |meme, index| %>
+          <% if index.even? %>
+            <%= render partial: "shared/card1", locals: { meme: meme } %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <% @memes.each_with_index do |meme, index| %>
+          <% if index.odd? %>
+            <%= render partial: "shared/card1", locals: { meme: meme } %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 <% else %>
   <p>Aucun résultat</p>

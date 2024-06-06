@@ -1,16 +1,17 @@
 <div class="card1">
+
   <div class="d-flex flex-column">
     <div class="card-content card_img">
+
       <% if meme.image.attached? %>
-        <%= cl_image_tag meme.image.key, alt: meme.title, width: 180 %>
+        <%= cl_image_tag meme.image.key, alt: meme.title, width: 160 %>
       <% end %>
     </div>
     <div class="card-tab">
       <div class="share-icon">
-        <%= image_tag 'open_icon.svg' %>
+          <%= link_to image_tag('open_icon.svg'), meme_path(meme) %>
       </div>
     </div>
-  </div>
 </div>
 
 

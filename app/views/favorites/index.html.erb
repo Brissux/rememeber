@@ -1,10 +1,22 @@
 <h1>Mes Favoris</h1>
 <% if @favorites.any? %>
-<div class="d-flex justify-content-evenly flex-wrap row-gap-2">
-
-  <% @favorites.each do |favorite| %>
-    <%= render partial: "shared/card1", locals: { meme: favorite.meme } %>
-  <% end %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <% @favorites.each_with_index do |favorite, index| %>
+          <% if index.even? %>
+            <%= render partial: "shared/card1", locals: { meme: favorite.meme } %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <% @favorites.each_with_index do |favorite, index| %>
+          <% if index.odd? %>
+            <%= render partial: "shared/card1", locals: { meme: favorite.meme } %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 <% else %>
   <p>Vous n'avez aucun favori pour le moment.</p>
