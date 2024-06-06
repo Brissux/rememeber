@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :likes
   has_many :memes
+  has_one_attached :photo
 
   validates :nickname, presence: true, uniqueness: true
 end

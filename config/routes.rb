@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
   resources :tags, only: [:create]
   resources :favorites, only: [:index]
+  get 'profile', to: 'users#show', as: 'current_user_profile'
 end
