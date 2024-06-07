@@ -16,15 +16,15 @@
   margin-left: 7px;
 }
 
-.meme_image .form-label {
-  width: 96%;
-  height: 300px;
-  background-color: lightgray;
-  text-align: center;
-  padding-top: 130px;
-  margin-left: 8px;
-  margin-top: .5rem;
-}
+// .meme_image .form-label {
+//   width: 96%;
+//   height: 300px;
+//   background-color: lightgray;
+//   text-align: center;
+//   padding-top: 130px;
+//   margin-left: 8px;
+//   margin-top: .5rem;
+// }
 
 .meme_image input {
   display: none;
@@ -190,4 +190,10 @@
 
 .form-switch{
   margin-bottom: 10px;
+}
+
+ .preview {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
 }
