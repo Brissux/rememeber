@@ -14,12 +14,21 @@
     <% end %>
   <% end %>
 
-
-<%= f.input :image, label: "SVG", as: :file, input_html: { data: { controller: "image-upload", image_upload_target: "input" } } %>
-
-
+  <div data-controller="image-upload">
+    <div class="my-2 preview">
+            <%= image_tag("",  :width => "350px", :hight => "300px",
+    data: { image_upload_target: "output" }) %>
+      <%= f.input :image, label: "SVG", as: :file, input_html: { data: {image_upload_target: "input", action: "change->image-upload#readURL change->" "" } } %>
+    </div>
+  </div>
   <%= f.button :submit, "Créer le mème" %>
+
 <% end %>
+
+
+
+
+
 
 
 

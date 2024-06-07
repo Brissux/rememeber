@@ -1,13 +1,14 @@
 <div class="card1">
-    <div class="card-content card_img">
-      <% if meme.image.attached? %>
+  <div class="card-content card_img">
+    <% if meme.image.attached? %>
+      <%= link_to meme_path(meme) do %>
         <%= cl_image_tag meme.image.key, alt: meme.title, width: 160 %>
       <% end %>
+    <% end %>
+  </div>
+  <div class="card-tab">
+    <div class="share-icon">
+      <%= link_to image_tag('open_icon.svg'), meme_path(meme) %>
     </div>
-    <div class="card-tab">
-      <div class="share-icon">
-          <%= link_to image_tag('open_icon.svg'), meme_path(meme) %>
-      </div>
-    </div>
-
+  </div>
 </div>

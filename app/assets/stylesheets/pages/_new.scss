@@ -16,15 +16,15 @@
   margin-left: 7px;
 }
 
-.meme_image .form-label {
-  width: 96%;
-  height: 300px;
-  background-color: lightgray;
-  text-align: center;
-  padding-top: 130px;
-  margin-left: 8px;
-  margin-top: .5rem;
-}
+// .meme_image .form-label {
+//   width: 96%;
+//   height: 300px;
+//   background-color: lightgray;
+//   text-align: center;
+//   padding-top: 130px;
+//   margin-left: 8px;
+//   margin-top: .5rem;
+// }
 
 .meme_image input {
   display: none;
@@ -193,7 +193,13 @@
   margin-bottom: 10px;
 }
 
-.form-check {
+
+ .preview {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+
+ .form-check {
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
