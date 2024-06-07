@@ -9,16 +9,16 @@
 </div>
 
 <% if @tags.any? %>
-  <div class="d-flex gap-3 mb-4">
+  <div class="d-flex flex-wrap mb-4">
     <% @tags.each do |tag| %>
-      <div>
+      <div class="me-2 mb-1"> <!-- Ajout de la marge droite et basse entre les tags -->
         <%= render "shared/button_tag", tag: tag %>
       </div>
     <% end %>
   </div>
 <% end %>
 
-<% if current_user.favorites.find_by(meme: @meme) %>
+<% if current_user && current_user.favorites.find_by(meme: @meme) %>
   <div class="text-center">
     <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-unvalidate" %>
   </div>
