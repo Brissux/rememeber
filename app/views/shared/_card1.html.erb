@@ -1,8 +1,5 @@
 <div class="card1">
-
-  <div class="d-flex flex-column">
     <div class="card-content card_img">
-
       <% if meme.image.attached? %>
         <%= cl_image_tag meme.image.key, alt: meme.title, width: 160 %>
       <% end %>
@@ -12,16 +9,5 @@
           <%= link_to image_tag('open_icon.svg'), meme_path(meme) %>
       </div>
     </div>
+
 </div>
-
-
-<%# <p> %>
-  <%#= link_to "Voir le mème", meme_path(meme), class: "btn btn-primary" %>
-  <%# if meme.user == current_user %>
-    <%#= link_to "Supprimer", meme_path(meme), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce mème ?" }, class: "btn btn-danger" %>
-  <%# end %>
-<%# </p> %>
-
-
-<%# cette ligne dans l'index de favorite  %>
-<%#= cl_image_tag favorite.meme.image.key, alt: favorite.meme.title, width: 180 %>

@@ -1,19 +1,30 @@
 <%= simple_form_for @meme, html: { multipart: true } do |f| %>
-  <div class="form-check form-switch d-flex justify-content-start flex-row-reverse align-items-center">
-    <%= f.check_box :public, id: 'meme_public' %>
-    <%= f.label :public, "Public", class: "form-check-label", for: "meme_public"%>
-    <p id="rp">Rendre public</p>
-  </div>
+<div class="toggle-switch-container custom-toggle">
+  <input id="switchToggle4" class="toggle-switch toggle-switch-wide custom-toggle-input" type="checkbox">
+  <label for="switchToggle4" class="custom-toggle-label" data-switch-on="Public" data-switch-off="Privé"></label>
+</div>
+
+
 
   <%= f.input :title, label: "Titre du mème", class: "titre" %>
 
   <%= f.fields_for :meme_tags do |mt| %>
     <%= mt.fields_for :tag do |t| %>
-      <%= t.input :name, label: "Nom du/des tags (Séparés par des virgules)" %>
+      <%= t.input :name, label: "Nom du/des tags (séparés par des virgules)" %>
     <% end %>
   <% end %>
 
-  <%= f.input :image, label: "SVG", as: :file %>
+
+<%= f.input :image, label: "SVG", as: :file, input_html: { data: { controller: "image-upload", image_upload_target: "input" } } %>
+
 
   <%= f.button :submit, "Créer le mème" %>
 <% end %>
+
+
+
+  <%# <div class="form-check form-switch d-flex justify-content-start flex-row-reverse align-items-center">
+    <%= f.check_box :public, id: 'meme_public' %>
+    <%# <%= f.label :public, "Public", class: "form-check-label", for: "meme_public"%>
+    <%# <p id="rp">Rendre public</p>
+  </div> %>
