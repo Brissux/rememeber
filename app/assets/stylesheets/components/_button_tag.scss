@@ -16,3 +16,7 @@
 .text-center {
   margin: 0; /* Ajoutez cette ligne pour s'assurer qu'il n'y a pas de marge par défaut */
 }
+
+.button-tag:hover {
+  background: #EBB3E5; /* la même couleur de fond que celle du bouton de tag normal */
+}

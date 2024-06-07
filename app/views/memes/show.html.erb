@@ -9,10 +9,10 @@
 </div>
 
 <% if @tags.any? %>
-  <div class="d-flex flex-wrap mb-4">
+  <div class="d-flex flex-wrap mb-4 gap-2">
     <% @tags.each do |tag| %>
-      <div class="me-2 mb-1"> <!-- Ajout de la marge droite et basse entre les tags -->
-        <%= render "shared/button_tag", tag: tag %>
+      <div>
+        <%= link_to tag.name, root_path(search: tag.name), class: "btn button-tag", style: "text-decoration: none; color: black;" %>
       </div>
     <% end %>
   </div>
