@@ -3,7 +3,7 @@ class MemesController < ApplicationController
 
   def index
     if params[:search].present?
-      @memes = Meme.search_by_title_and_tag(params[:search])
+      @memes = Meme.search_by_title_and_tag(params[:search]).where(public: true)
     else
       @memes = Meme.where(public: true).order(created_at: :desc)
     end
