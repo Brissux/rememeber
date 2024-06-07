@@ -14,8 +14,20 @@
     <% end %>
   <% end %>
 
+  <div data-controller="image-upload">
+    <div class="my-2 preview">
+            <%= image_tag("",  :width => "350px", :hight => "300px",
+    data: { image_upload_target: "output" }) %>
+      <%= f.input :image, label: "SVG", as: :file, input_html: { data: {image_upload_target: "input", action: "change->image-upload#readURL change->" "" } } %>
+    </div>
+  </div>
+  <%= f.button :submit, "Créer le mème" %>
 
-<%= f.input :image, label: "SVG", as: :file, input_html: { data: { controller: "image-upload", image_upload_target: "input" } } %>
+<% end %>
+
+
+
+
 
 
   <div class="text-center">
@@ -25,8 +37,3 @@
 
 
 
-  <%# <div class="form-check form-switch d-flex justify-content-start flex-row-reverse align-items-center">
-    <%= f.check_box :public, id: 'meme_public' %>
-    <%# <%= f.label :public, "Public", class: "form-check-label", for: "meme_public"%>
-    <%# <p id="rp">Rendre public</p>
-  </div> %>

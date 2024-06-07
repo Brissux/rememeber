@@ -1,15 +1,27 @@
-import { Controller } from "stimulus";
+import { Controller } from "@hotwired/stimulus"
+
+// Connects to data-controller="image-upload"
 
 export default class extends Controller {
-  static targets = [ "input" ]
+  static targets = [ "output", "input" ]
 
-  connect() {
-    this.inputTarget.addEventListener('change', this.handleFileUpload);
+
+  readURL() {
+    var input = this.inputTarget
+    var output = this.outputTarget
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function () {
+       output.src = reader.result
+     }
+
+     reader.readAsDataURL(input.files[0]);
+   }
   }
+  addDnone() {
 
-  handleFileUpload(event) {
-    if (event.target.files.length > 0) {
-      alert('Une photo a été téléchargée');
-    }
+    
   }
 }
