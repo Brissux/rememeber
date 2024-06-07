@@ -8,7 +8,6 @@
   <%= render partial: "shared/card2", locals: { meme: @meme } %>
 </div>
 
-
 <% if @tags.any? %>
   <div class="d-flex gap-3 mb-4">
     <% @tags.each do |tag| %>
@@ -21,7 +20,7 @@
 
 <% if current_user.favorites.find_by(meme: @meme) %>
   <div class="text-center">
-    <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-validate" %>
+    <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-unvalidate" %>
   </div>
 <% else %>
   <%= render "favorite", meme: @meme, favorite: @favorite %>
