@@ -1,4 +1,4 @@
-<h2><%= @meme.title %></h2>
+<h2 class="mb-3"><%= @meme.title %></h2>
 
 <% if @meme.user == current_user %>
   <%= render "form", meme: @meme %>
@@ -8,20 +8,19 @@
   <%= render partial: "shared/card2", locals: { meme: @meme } %>
 </div>
 
-
 <% if @tags.any? %>
-  <div class="d-flex gap-3 mb-4">
+  <div class="d-flex flex-wrap mb-4 gap-2">
     <% @tags.each do |tag| %>
       <div>
-        <%= render "shared/button_tag", tag: tag %>
+        <%= link_to tag.name, root_path(search: tag.name), class: "btn button-tag", style: "text-decoration: none; color: black;" %>
       </div>
     <% end %>
   </div>
 <% end %>
 
-<% if current_user.favorites.find_by(meme: @meme) %>
+<% if current_user && current_user.favorites.find_by(meme: @meme) %>
   <div class="text-center">
-    <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-validate" %>
+    <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-unvalidate" %>
   </div>
 <% else %>
   <%= render "favorite", meme: @meme, favorite: @favorite %>

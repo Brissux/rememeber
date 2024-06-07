@@ -4,6 +4,6 @@
       public_target: "form",
       action: "change->public#makePublic"
     } do |f| %>
-      <%= f.input :public, as: :boolean, input_html: { class: 'form-check-input', data: { public_target: "input"} } %>
+      <%= f.input :public, as: :boolean, label: "Rendre public", input_html: { class: 'form-check-input', data: { public_target: "input"} } %>
   <% end %>
 </div>
