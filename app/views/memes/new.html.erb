@@ -18,7 +18,9 @@
 <%= f.input :image, label: "SVG", as: :file, input_html: { data: { controller: "image-upload", image_upload_target: "input" } } %>
 
 
-  <%= f.button :submit, "Créer le mème" %>
+  <div class="text-center">
+    <%= f.button :submit, "AJOUTER UN MEME", class: "btn button-create" %>
+  </div>
 <% end %>
 
 
