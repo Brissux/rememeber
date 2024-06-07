@@ -12,7 +12,7 @@
   <div class="d-flex gap-3 mb-4">
     <% @tags.each do |tag| %>
       <div>
-        <%= render "shared/button_tag", tag: tag %>
+        <%= link_to tag.name, root_path(search: tag.name), class: "btn button-tag" %>
       </div>
     <% end %>
   </div>

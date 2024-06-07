@@ -7,10 +7,19 @@
   </div>
 
   <!-- Recherche -->
-  <%= form_tag root_path, method: :get, class: "search-form" do %>
-    <div class="search-form-control input-group">
-      <i class="fas fa-search search-icon"></i>
-      <%= text_field_tag :search, params[:search], placeholder: 'Rechercher un mème', class: 'form-control' %>
-    </div>
+  <% if current_page?(root_path) || current_page?(new_meme_path) %>
+    <%= form_tag root_path, method: :get, class: "search-form" do %>
+      <div class="search-form-control input-group">
+        <i class="fas fa-search search-icon"></i>
+        <%= text_field_tag :search, params[:search], placeholder: 'Rechercher un mème', class: 'form-control' %>
+      </div>
+    <% end %>
+  <% elsif current_page?(favorites_path) %>
+    <%= form_tag favorites_path, method: :get, class: "search-form" do %>
+      <div class="search-form-control input-group">
+        <i class="fas fa-search search-icon"></i>
+        <%= text_field_tag :search, params[:search], placeholder: 'Rechercher dans vos favoris', class: 'form-control' %>
+      </div>
+    <% end %>
   <% end %>
 </nav>
