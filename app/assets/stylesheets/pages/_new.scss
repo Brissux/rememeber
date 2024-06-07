@@ -136,7 +136,28 @@
 }
 
 
+.button-create {
+  align-content: center;
+  width: 300px;
+  height: 50px;
+  background-color: #D05BC5; /* Nouvelle couleur de fond */
+  border: 1px solid #D05BC5; /* Ajuste la bordure pour correspondre */
+  box-shadow: 5px 5px 0px black;
+  border-radius: 10px;
+  color: black;
+  font-size: 16px;
+  font-family: Montserrat;
+  font-weight: 700;
+  line-height: 22px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  transition: background-color 0.3s, color 0.3s;
+}
 
+.button-create:hover {
+  background-color: #B347A8; /* Change la couleur de fond au survol */
+  color: white; /* Change la couleur du texte au survol */
+}
 
 
 
