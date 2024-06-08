@@ -15,13 +15,18 @@
         <%= link_to tag.name, root_path(search: tag.name), class: "btn button-tag", style: "text-decoration: none; color: black;" %>
       </div>
     <% end %>
+    <p>Nombre de likes : <%= @meme.likes.count %></p>
   </div>
 <% end %>
 
-<% if current_user && current_user.favorites.find_by(meme: @meme) %>
-  <div class="text-center">
-    <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-unvalidate" %>
-  </div>
-<% else %>
-  <%= render "favorite", meme: @meme, favorite: @favorite %>
+<% if user_signed_in? %>
+  <% if current_user.liked_memes.include?(@meme) %>
+    <%= form_with(url: meme_like_path(@meme), method: :delete, local: true) do |form| %>
+      <%= form.submit "Retirer de mes likes", class: "btn btn-danger" %>
+    <% end %>
+  <% else %>
+    <%= form_with(url: meme_likes_path(@meme), method: :post, local: true) do |form| %>
+      <%= form.submit "Ajouter à mes likes", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
 <% end %>

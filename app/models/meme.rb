@@ -9,6 +9,9 @@ class Meme < ApplicationRecord
   has_many :meme_tags
   has_many :tags, through: :meme_tags
 
+  has_many :likes
+  has_many :likers, through: :likes, source: :user
+
   accepts_nested_attributes_for :meme_tags
 
   include PgSearch

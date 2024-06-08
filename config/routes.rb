@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/liked_memes'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -9,9 +10,10 @@ Rails.application.routes.draw do
   root to: "memes#index"
   resources :memes, only: %i[show new create update] do
     resources :favorites, only: %i[create destroy]
-    resources :likes, only: %i[create destroy]
+    resources :likes, only: [:create, :destroy]
   end
   resources :tags, only: [:create]
   resources :favorites, only: [:index]
   get 'profile', to: 'users#show', as: 'current_user_profile'
+  get '/liked_memes', to: 'users#liked_memes'
 end

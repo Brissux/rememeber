@@ -30,9 +30,9 @@ class MemesController < ApplicationController
     @meme = Meme.find(params[:id])
     @tags = @meme.tags
     @favorite = Favorite.new
-    # @like = current_user.likes.find_by(meme: @meme)
+    @like = current_user.likes.find_by(meme: @meme) if user_signed_in?
   end
-
+  
   def update
     @meme = Meme.find(params[:id])
     @meme.update(meme_params)
