@@ -1,8 +1,9 @@
 class Meme < ApplicationRecord
   belongs_to :user
   has_one_attached :image
+  has_one_attached :video
   validates :title, presence: true
-  validates :image, presence: true
+  validate :file_presence
 
   has_many :likes
   has_many :favorites
@@ -27,4 +28,12 @@ class Meme < ApplicationRecord
   # def public_checked?
   #   public? ? "checked" : ""
   # end
+
+  private
+
+  def file_presence
+    if image.blank? && video.blank?
+      errors.add(:base, "You must provide either an image or a video")
+    end
+  end
 end

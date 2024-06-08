@@ -18,6 +18,12 @@ class MemesController < ApplicationController
     @meme = current_user.memes.build(meme_params)
     process_meme_tags(@meme)
 
+    if params[:meme][:video].present?
+      upload_result = Cloudinary::Uploader.upload_large(params[:meme][:video].tempfile, resource_type: "video", eager: [{ format: 'jpg', width: 160, crop: 'fill', gravity: 'auto' }])
+      @meme.video_url = upload_result["secure_url"]
+      @meme.thumbnail_url = upload_result["eager"].first["secure_url"]
+    end
+
     if @meme.save
       redirect_to root_path, notice: 'Mème créé avec succès !'
       current_user.favorites.create(meme: @meme)
@@ -32,7 +38,7 @@ class MemesController < ApplicationController
     @favorite = Favorite.new
     @like = current_user.likes.find_by(meme: @meme) if user_signed_in?
   end
-  
+
   def update
     @meme = Meme.find(params[:id])
     @meme.update(meme_params)
@@ -52,7 +58,7 @@ class MemesController < ApplicationController
   private
 
   def meme_params
-    params.require(:meme).permit(:title, :public, :image, meme_tags_attributes: [tag_attributes: [:name]])
+    params.require(:meme).permit(:title, :public, :image, :video, meme_tags_attributes: [tag_attributes: [:name]])
   end
 
 
