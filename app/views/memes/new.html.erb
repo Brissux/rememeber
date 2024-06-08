@@ -1,10 +1,8 @@
 <%= simple_form_for @meme, html: { multipart: true } do |f| %>
-<div class="toggle-switch-container custom-toggle">
-  <input id="switchToggle4" class="toggle-switch toggle-switch-wide custom-toggle-input" type="checkbox">
-  <label for="switchToggle4" class="custom-toggle-label" data-switch-on="Public" data-switch-off="Privé"></label>
-</div>
-
-
+  <div class="toggle-switch-container custom-toggle">
+    <%= f.check_box :public, id: 'meme_public', class: 'toggle-switch toggle-switch-wide custom-toggle-input' %>
+    <%= label_tag 'meme_public', nil, class: 'custom-toggle-label', data: { switch_on: 'Public', switch_off: 'Privé' } %>
+  </div>
 
   <%= f.input :title, label: "Titre du mème", class: "titre" %>
 
