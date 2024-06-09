@@ -19,8 +19,11 @@
     </div>
   </div>
 
-  <div>
-    <%= f.input :video, as: :file, label: "Vidéo (MP4)" %>
+  <div data-controller="image-upload">
+    <div class="my-2 preview">
+      <video width="350px" height="300px" controls data-image-upload-target="output" style="display: none;"></video>
+      <%= f.input :video, label: "Vidéo (MP4)", as: :file, input_html: { data: { image_upload_target: "input", action: "change->image-upload#readURL" } } %>
+    </div>
   </div>
 
   <div class="text-center">

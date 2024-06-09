@@ -248,7 +248,7 @@ tag_love_her = Tag.create!(name: "love her")
 tag_folle = Tag.create!(name: "folle")
 tag_dejantee = Tag.create!(name: "déjantée")
 
-tag_un_avis = Tag.create!(name: "un avis")
+tag_avis = Tag.create!(name: "un avis")
 tag_mettre_position = Tag.create!(name: "mettrait dans cette position")
 
 tag_narcos = Tag.create!(name: "narcos")
