@@ -55,12 +55,21 @@ class MemesController < ApplicationController
     Favorite.exists?(user: current_user, meme: @meme)
   end
 
+  def destroy
+    @meme = Meme.find(params[:id])
+    if @meme.user == current_user
+      @meme.destroy
+      redirect_to root_path, notice: "Meme deleted successfully."
+    else
+      redirect_to memes_path, alert: "You are not authorized to delete this meme."
+    end
+  end
+
   private
 
   def meme_params
     params.require(:meme).permit(:title, :public, :image, :video, meme_tags_attributes: [tag_attributes: [:name]])
   end
-
 
   def process_meme_tags(meme)
     meme_tags = []
@@ -78,5 +87,4 @@ class MemesController < ApplicationController
 
     meme.meme_tags = meme_tags
   end
-
 end
