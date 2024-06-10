@@ -18,22 +18,17 @@
   }
 
 
-  .profile-icon{
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
-  border: 1px solid #000;
-  background:lightgray 50%;
-  }
+/* Styles par défaut pour les icônes de profil */
+.profile-icon {
+  width: 35px; /* Ajustez selon la taille désirée */
+  height: 35px; /* Ajustez selon la taille désirée */
+  border: 2px solid transparent; /* Bordure transparente par défaut */
+  border-radius: 50%; /* Si vous voulez un contour arrondi */
+  object-fit: cover; /* Pour s'assurer que l'image ne se déforme pas */
+  box-sizing: border-box; /* Inclure la bordure dans la taille totale de l'élément */
+}
 
-  .navbar-home.active{
-  color:#D05BC5;
-  }
-
-  .navbar-add.active{
-  color:#D05BC5;
-  }
-
-  .navbar-library.active{
-  color:#D05BC5;
-  }
+/* Styles pour l'icône de profil active */
+.profile-icon.active-profile {
+  border: 2px solid black; /* Bordure noire de 2px quand actif */
+}
