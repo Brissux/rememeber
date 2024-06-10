@@ -11,8 +11,8 @@
       <% end %>
     </div>
     <div class="card-tab2">
-      <div class="like-icon">
-        <%= image_tag 'like_icon.svg', height: '33px' %>
+      <div class="like-icon" data-controller="like-icon" data-action="click->like-icon#click">
+        <%= image_tag 'like_icon.svg', height: '33px', data: { like_icon_target: "likeIcon" } %>
       </div>
       <div class="share-icon">
         <%= image_tag 'share_icon.svg' %>
