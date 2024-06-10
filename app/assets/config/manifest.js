@@ -4,3 +4,4 @@
 //= link_tree ../../../vendor/javascript .js
 //= link popper.js
 //= link bootstrap.min.js
+//= link social-share-button.js

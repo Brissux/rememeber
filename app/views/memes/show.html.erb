@@ -15,9 +15,10 @@
         <%= link_to tag.name, root_path(search: tag.name), class: "btn button-tag", style: "text-decoration: none; color: black;" %>
       </div>
     <% end %>
-    <p>Nombre de likes : <%= @meme.likes.count %></p>
   </div>
 <% end %>
+
+<p>Nombre de likes : <%= @meme.likes.count %></p>
 
 <% if user_signed_in? %>
   <% if current_user.liked_memes.include?(@meme) %>
