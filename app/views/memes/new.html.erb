@@ -6,11 +6,15 @@
 
   <%= f.input :title, label: "Titre du mème", class: "titre" %>
 
-  <%= f.fields_for :meme_tags do |mt| %>
-    <%= mt.fields_for :tag do |t| %>
-      <%= t.input :name, label: "Nom du/des tags (séparés par des virgules)" %>
+  <div data-controller="tag-input">
+    <%= f.fields_for :meme_tags do |mt| %>
+      <%= mt.fields_for :tag do |t| %>
+        <%= t.input :name, label: "Nom du/des tags (séparés par des virgules)", input_html: { data: { tag_input_target: "input" } } %>
+      <% end %>
+      <div data-tag-input-target="tags" class="d-flex flex-wrap mb-2 gap-1"></div>
     <% end %>
-  <% end %>
+  </div>
+
 
   <div data-controller="image-upload">
     <div class="my-2 preview">
