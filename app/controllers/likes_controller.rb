@@ -2,7 +2,11 @@ class LikesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @meme = Meme.find(params[:meme_id])
+    @meme = Meme.find_by(id: params[:meme_id])
+    if @meme.nil?
+      redirect_to root_path, alert: "Meme not found."
+      return
+    end
     @like = current_user.likes.build(meme: @meme)
     if @like.save
       redirect_to @meme, notice: 'Mème aimé avec succès !'
