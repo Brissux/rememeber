@@ -1,18 +1,23 @@
 <div class="card1">
-  <div class="card-content card_img">
+  <div class="card-img">
     <% if meme.thumbnail_url.present? %>
       <%= link_to meme_path(meme) do %>
-        <%= image_tag meme.thumbnail_url, width: 160, alt: meme.title %>
+        <%= image_tag meme.thumbnail_url, alt: meme.title %>
       <% end %>
     <% elsif meme.image.attached? %>
       <%= link_to meme_path(meme) do %>
-        <%= cl_image_tag meme.image.key, alt: meme.title, width: 160 %>
+        <%= cl_image_tag meme.image.key, alt: meme.title %>
       <% end %>
     <% end %>
   </div>
-  <div class="card-tab">
-    <div class="share-icon">
-      <%= link_to image_tag('open_icon.svg'), meme_path(meme) %>
+  <div class="card-tab d-flex m-2">
+    <div class="like-icon">
+      <i class="fa-regular fa-heart fa-xl" style="color: #353535"></i>
+    </div>
+    <div class="open-icon">
+      <%= link_to meme_path(meme) do %>
+        <i class="fa-solid fa-ellipsis" style="color: #353535; vertical-align: bottom;"></i>
+      <% end %>
     </div>
   </div>
 </div>
