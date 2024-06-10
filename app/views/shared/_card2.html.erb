@@ -11,11 +11,38 @@
       <% end %>
     </div>
     <div class="card-tab2">
-      <div class="like-icon">
-        <%= image_tag 'like_icon.svg', height: '33px' %>
-      </div>
+      <%= form_with(url: meme_likes_path(@meme), method: :post, local: true, class: "invisible-form", data: { controller: "like-icon", action: "click->like-icon#submit", like_icon_target: "likeIcon", like_count_target: "likeCount" }) do |form| %>
+        <div class="like-icon" data-like-icon-target="likeIcon">
+          <%= image_tag 'like_icon.svg', height: '33px' %>
+          <span id="like-count"><%= @meme.likes.count %></span>
+        </div>
+      <% end %>
       <div class="share-icon">
-        <%= image_tag 'share_icon.svg' %>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#shareModal">
+          <%= image_tag 'share_icon.svg' %>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shareModalLabel">Partager sur les réseaux</h5>
+      </div>
+      <div class="modal-body">
+        <%= social_share_button_tag(meme.title, url: meme_url(meme)) %>
+        <div class="d-flex align-items-center pt-4" data-controller="copyurl" data-action="click->copyurl#copyurl">
+          <button type="button" class="btn btn-link" id="popover-link" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Copié !" data-bs-trigger="click">
+            <%= image_tag 'link.svg' %>
+          </button>
+          <input type="text" class="form-control ms-2" id="page-url" value="<%= meme_url(meme) %>" data-copyurl-target="input" readonly>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
       </div>
     </div>
   </div>
