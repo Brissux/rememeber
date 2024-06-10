@@ -181,30 +181,124 @@ meme33 = Meme.new(title: "Chat triste tristesse", public: true, user: antoine)
 meme33.image.attach(io: URI.open("https://pbs.twimg.com/media/EhGjGEkXcAIbcfQ?format=jpg&name=small"), filename: 'sad_cat.jpg')
 meme33.save
 
+# New memes
+meme5 = Meme.new(title: "Homer et Bart dans les escaliers", public: true, user: antoine)
+meme5.image.attach(io: URI.open("https://pbs.twimg.com/media/GKgjOCnWwAA7l_B?format=jpg&name=small"), filename: 'homer_bart_stairs.jpg')
+meme5.save
+
+meme6 = Meme.new(title: "Among us Impostor", public: false, user: julien)
+meme6.image.attach(io: URI.open("https://pbs.twimg.com/media/GKaWGJsXcAA063J?format=jpg&name=large"), filename: 'among_us_impostor.jpg')
+meme6.save
+
+meme7 = Meme.new(title: "Snap Mohammed Henni bloqué", public: true, user: anais)
+meme7.image.attach(io: URI.open("https://pbs.twimg.com/media/GKPxrp2WcAAYJS5?format=jpg&name=medium"), filename: 'mohammed_henni_blocked.jpg')
+meme7.save
+
+meme8 = Meme.new(title: "Pas mal non c'est français", public: true, user: amin)
+meme8.image.attach(io: URI.open("https://pbs.twimg.com/media/GKKu9t4WQAAZw2_?format=jpg&name=small"), filename: 'french_class.jpg')
+meme8.save
+
+meme9 = Meme.new(title: "Lionel Messi costar", public: true, user: antoine)
+meme9.image.attach(io: URI.open("https://pbs.twimg.com/media/GKFta4XW4AAXcDz?format=jpg&name=900x900"), filename: 'messi_costar.jpg')
+meme9.save
+
+meme10 = Meme.new(title: "Zinedine Zidane boit son café", public: false, user: julien)
+meme10.image.attach(io: URI.open("https://pbs.twimg.com/media/GJ3VlnqXoAEkkVq?format=jpg&name=900x900"), filename: 'zidane_coffee.jpg')
+meme10.save
+
+meme11 = Meme.new(title: "Tik tok mec pleure", public: true, user: anais)
+meme11.image.attach(io: URI.open("https://pbs.twimg.com/media/GJyT9fMW8AAhByu?format=jpg&name=medium"), filename: 'tiktok_guy_crying.jpg')
+meme11.save
+
+meme12 = Meme.new(title: "Merde je me suis cramé tout seul", public: true, user: amin)
+meme12.image.attach(io: URI.open("https://pbs.twimg.com/media/GJdB3FfXwAAj7Sg?format=jpg&name=900x900"), filename: 'burnt_myself.jpg')
+meme12.save
+
+meme13 = Meme.new(title: "Les Simpson Moe dégage Barney", public: true, user: antoine)
+meme13.image.attach(io: URI.open("https://pbs.twimg.com/media/GI5J5fkWEAApTcH?format=jpg&name=medium"), filename: 'moe_kicks_barney.jpg')
+meme13.save
+
+meme14 = Meme.new(title: "Snap mauvaise journée", public: false, user: julien)
+meme14.image.attach(io: URI.open("https://pbs.twimg.com/media/GI0VGsmWIAA23uK?format=jpg&name=medium"), filename: 'bad_day_snap.jpg')
+meme14.save
+
+meme15 = Meme.new(title: "Meme image Neo the one", public: true, user: anais)
+meme15.image.attach(io: URI.open("https://pbs.twimg.com/media/GH663NPWkAAnWkU?format=jpg&name=900x900"), filename: 'neo_the_one.jpg')
+meme15.save
+
+meme16 = Meme.new(title: "Un avis qui vous mettrait dans cette position", public: true, user: amin)
+meme16.image.attach(io: URI.open("https://pbs.twimg.com/media/GH1vy41W4AMyrk4?format=jpg&name=large"), filename: 'opinion_position.jpg')
+meme16.save
+
+meme17 = Meme.new(title: "Mickey mouse c'est un outil surprise", public: true, user: antoine)
+meme17.image.attach(io: URI.open("https://pbs.twimg.com/media/GHric2OWEAAJCl5?format=jpg&name=small"), filename: 'mickey_tool.jpg')
+meme17.save
+
+meme18 = Meme.new(title: "Face à face confrontation", public: false, user: julien)
+meme18.image.attach(io: URI.open("https://pbs.twimg.com/media/GGY3cETWYAAva-W?format=jpg&name=small"), filename: 'face_to_face.jpg')
+meme18.save
+
+meme19 = Meme.new(title: "Mec qui dit il a pas tort", public: true, user: anais)
+meme19.image.attach(io: URI.open("https://pbs.twimg.com/media/GGY3cETWYAAva-W?format=jpg&name=small"), filename: 'guy_not_wrong.jpg')
+meme19.save
+
+meme20 = Meme.new(title: "Mec suicide selfie", public: true, user: amin)
+meme20.image.attach(io: URI.open("https://pbs.twimg.com/media/GF1-MecW4AAGqo6?format=jpg&name=900x900"), filename: 'suicide_selfie.jpg')
+meme20.save
+
+meme21 = Meme.new(title: "Temps gagné tik tok mec", public: true, user: antoine)
+meme21.image.attach(io: URI.open("https://pbs.twimg.com/media/GFqkkU1XwAARWCs?format=jpg&name=900x900"), filename: 'time_saved_tiktok.jpg')
+meme21.save
+
+meme22 = Meme.new(title: "Shrek l'âne donkey te fixe", public: false, user: julien)
+meme22.image.attach(io: URI.open("https://pbs.twimg.com/media/GFlYQ8BWoAAGOQh?format=jpg&name=900x900"), filename: 'shrek_donkey_stare.jpg')
+meme22.save
+
+meme23 = Meme.new(title: "Ville futuriste du futur", public: true, user: anais)
+meme23.image.attach(io: URI.open("https://pbs.twimg.com/media/GFbhXyxWQAA9qyl?format=jpg&name=900x900"), filename: 'futuristic_city.jpg')
+meme23.save
+
+meme24 = Meme.new(title: "Gamin enfant a mangé du caca", public: true, user: amin)
+meme24.image.attach(io: URI.open("https://pbs.twimg.com/media/GFQrs0ZXIAAuldA?format=jpg&name=medium"), filename: 'kid_ate_poop.jpg')
+meme24.save
+
+meme25 = Meme.new(title: "Anime Akakichi no Eleven mec annonce un truc", public: true, user: antoine)
+meme25.image.attach(io: URI.open("https://pbs.twimg.com/media/GDj05z2WoAAharW?format=jpg&name=small"), filename: 'akakichi_announcement.jpg')
+meme25.save
+
+meme26 = Meme.new(title: "She's so crazy love her", public: false, user: julien)
+meme26.image.attach(io: URI.open("https://pbs.twimg.com/media/Fly2wJCWIAwrfzA?format=jpg&name=small"), filename: 'crazy_love.jpg')
+meme26.save
+
+meme27 = Meme.new(title: "Les Simpsons Bart un avis catastrophique", public: true, user: anais)
+meme27.image.attach(io: URI.open("https://pbs.twimg.com/media/GFLpW1pWgAAfdV8?format=jpg&name=900x900"), filename: 'bart_catastrophic.jpg')
+meme27.save
+
+meme28 = Meme.new(title: "Snap mec choqué il a eu 0/20", public: true, user: amin)
+meme28.image.attach(io: URI.open("https://pbs.twimg.com/media/FhE7R9wX0AIB_8j?format=jpg&name=large"), filename: 'snap_shocked_zero.jpg')
+meme28.save
+
+meme29 = Meme.new(title: "Il revient Zinedine Zidane", public: true, user: antoine)
+meme29.image.attach(io: URI.open("https://pbs.twimg.com/media/FgLxMplWYAIHZDa?format=jpg&name=900x900"), filename: 'zidane_returns.jpg')
+meme29.save
+
+meme30 = Meme.new(title: "Narcos solitude ennui", public: false, user: julien)
+meme30.image.attach(io: URI.open("https://pbs.twimg.com/media/Eg3T9iNWsAAFhXS?format=jpg&name=small"), filename: 'narcos_boredom.jpg')
+meme30.save
+
+meme31 = Meme.new(title: "Bob Razowski Sulli", public: true, user: anais)
+meme31.image.attach(io: URI.open("https://pbs.twimg.com/media/EgYAdvrU0AE0UnK?format=jpg&name=900x900"), filename: 'bob_sulli.jpg')
+meme31.save
+
+meme32 = Meme.new(title: "Abraham Simpson raconte une histoire", public: true, user: amin)
+meme32.image.attach(io: URI.open("https://pbs.twimg.com/media/Eg_sH2IXsAESKuh?format=jpg&name=small"), filename: 'abraham_story.jpg')
+meme32.save
+
+meme33 = Meme.new(title: "Chat triste tristesse", public: true, user: antoine)
+meme33.image.attach(io: URI.open("https://pbs.twimg.com/media/EhGjGEkXcAIbcfQ?format=jpg&name=small"), filename: 'sad_cat.jpg')
+meme33.save
+
 # Create tags
-<<<<<<< HEAD
-tag_alien_theory = Tag.create!(name: "alien theory")
-tag_bouton = Tag.create!(name: "bouton")
-tag_hide_the_pain = Tag.create!(name: "pain")
-tag_cerveau = Tag.create!(name: "cerveau")
-tag_drake = Tag.create!(name: "drake")
-tag_funny = Tag.create!(name: "funny") # Common tag
-tag_reaction = Tag.create!(name: "reaction") # Common tag
-
-# Create meme_tags
-MemeTag.create!(meme: meme1, tag: tag_alien_theory) # Alien Theory explication - alien theory
-MemeTag.create!(meme: meme2, tag: tag_bouton) # Bouton stress - bouton
-MemeTag.create!(meme: meme2, tag: tag_hide_the_pain) # Hide the pain - pain
-MemeTag.create!(meme: meme3, tag: tag_cerveau) # Cerveau Explosion - cerveau
-MemeTag.create!(meme: meme4, tag: tag_drake) # Drake Dance - drake
-
-# Associate common tags with memes
-MemeTag.create!(meme: meme1, tag: tag_funny) # Alien Theory explication - funny (common tag)
-MemeTag.create!(meme: meme2, tag: tag_reaction) # Bouton stress - reaction (common tag)
-MemeTag.create!(meme: meme2, tag: tag_hide_the_pain) # Bouton stress - reaction (common tag)
-MemeTag.create!(meme: meme3, tag: tag_funny) # Cerveau Explosion - funny (common tag)
-MemeTag.create!(meme: meme4, tag: tag_reaction) # Drake Dance - reaction (common tag)
-=======
 tag_homer = Tag.create!(name: "homer")
 tag_bart = Tag.create!(name: "bart")
 tag_simpsons = Tag.create!(name: "les simpsons")
@@ -471,8 +565,6 @@ MemeTag.create!(meme: meme32, tag: tag_raconte)
 MemeTag.create!(meme: meme33, tag: tag_chat)
 MemeTag.create!(meme: meme33, tag: tag_triste)
 MemeTag.create!(meme: meme33, tag: tag_tristesse)
->>>>>>> master
-
 
 # Create favorites
 Favorite.create!(user: antoine, meme: meme2) # Antoine likes Bouton stress

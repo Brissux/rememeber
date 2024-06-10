@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 360px;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0);
   margin-bottom: 10px;
 }
@@ -11,14 +11,6 @@
   flex: 1;
 }
 
-<<<<<<< HEAD
-
-.like-icon,
-.share-icon {
-  width: 32px;
-  height: 32px;
-  color:#D05BC5;
-=======
 .card-tab2 {
   display: flex;
   justify-content: space-between;
@@ -30,5 +22,4 @@
   background: #52D1DC;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
->>>>>>> master
 }
