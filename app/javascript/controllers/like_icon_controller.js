@@ -1,28 +1,40 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["likeIcon"];
+  static targets = ["likeIcon"]
 
-  click() {
-    const memeId = this.data.get("memeId");
-    fetch(`/memes/${memeId}/likes`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({}) // Tu peux passer des données supplémentaires ici si nécessaire
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+  connect() {
+    console.log("Like icon controller connected!")
+    this.likeCount = parseInt(document.getElementById("like-count").textContent)
+  }
+
+  async submit(event) {
+    event.preventDefault()
+    console.log("Like icon clicked!")
+
+    // Récupérer l'URL et les données du formulaire
+    const form = event.currentTarget.closest("form")
+    const url = form.action
+    const formData = new FormData(form)
+
+    try {
+      // Envoyer la requête AJAX
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData
+      })
+
+      // Traiter la réponse
+      if (response.ok) {
+        console.log("Like submitted successfully!")
+        // Mettre à jour le nombre de likes
+        this.likeCount += 1
+        document.getElementById("like-count").textContent = this.likeCount
+      } else {
+        console.error("Failed to submit like.")
       }
-      return response.json();
-    })
-    .then(data => {
-      // Faire quelque chose après avoir liké le mème si nécessaire
-    })
-    .catch(error => {
-      console.error("There was an error liking the meme:", error);
-    });
+    } catch (error) {
+      console.error("Error submitting like:", error)
+    }
   }
 }

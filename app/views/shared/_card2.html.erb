@@ -11,9 +11,12 @@
       <% end %>
     </div>
     <div class="card-tab2">
-      <div class="like-icon" data-controller="like-icon" data-action="click->like-icon#click">
-        <%= image_tag 'like_icon.svg', height: '33px', data: { like_icon_target: "likeIcon" } %>
-      </div>
+      <%= form_with(url: meme_likes_path(@meme), method: :post, local: true, class: "invisible-form", data: { controller: "like-icon", action: "click->like-icon#submit", like_icon_target: "likeIcon", like_count_target: "likeCount" }) do |form| %>
+        <div class="like-icon" data-like-icon-target="likeIcon">
+          <%= image_tag 'like_icon.svg', height: '33px' %>
+          <span id="like-count"><%= @meme.likes.count %></span>
+        </div>
+      <% end %>
       <div class="share-icon">
         <%= image_tag 'share_icon.svg' %>
       </div>
