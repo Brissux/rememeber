@@ -1,23 +1,26 @@
 .card1 {
   width: 160px;
-  // box-shadow: 5px 5px 0px 0px rgb(0, 0, 0);
-  padding-bottom: 15px;
+  padding: 5px;
+  flex-shrink: 0;
+  border: 2px solid #000;
+  border-radius: 5px;
+  box-shadow: 4px 3px 1px 1px black;
+  margin-bottom: 25px;
+  background-color: #daa8d5;
+}
 
+.card1 .card-img {
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 1px 1px 3px 0px rgb(142, 141, 141)
+}
+
+.card1 .card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-tab {
-  display: flex;
-  padding-right: 5px;
-  align-items: center;
-  justify-content: flex-end;
-  width: 160px;
-  height: 40px;
-  background: #D05BC5;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.open-icon {
-  width: 32px;
-  height: 32px;
+  justify-content: space-between;
 }
