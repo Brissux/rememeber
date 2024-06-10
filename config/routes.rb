@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   root to: "memes#index"
-  resources :memes, only: %i[show new create update] do
+  resources :memes, only: %i[show new create update destroy] do
     resources :favorites, only: %i[create destroy]
     resources :likes, only: [:create, :destroy]
   end

@@ -15,9 +15,10 @@
         <%= link_to tag.name, root_path(search: tag.name), class: "btn button-tag", style: "text-decoration: none; color: black;" %>
       </div>
     <% end %>
-    <p>Nombre de likes : <%= @meme.likes.count %></p>
   </div>
 <% end %>
+
+<p>Nombre de likes : <%= @meme.likes.count %></p>
 
 <% if user_signed_in? %>
   <% if current_user.liked_memes.include?(@meme) %>
@@ -30,3 +31,15 @@
     <% end %>
   <% end %>
 <% end %>
+
+
+<% if current_user && current_user.favorites.find_by(meme: @meme) %>
+  <div class="text-center">
+    <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-unvalidate" %>
+  </div>
+<% else %>
+  <%= render "favorite", meme: @meme, favorite: @favorite %>
+<% end %>
+
+
+<%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>

@@ -1,0 +1,22 @@
+.button-tag-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 17.5px;
+  background: #D05BC5;
+  box-shadow: 3px 3px 0px black;
+  font-size: 16px;
+  font-family: Montserrat;
+  color: black;
+  font-weight: 700;
+  padding: 5px 24px;
+}
+
+.text-center {
+  margin: 0; /* Ajoutez cette ligne pour s'assurer qu'il n'y a pas de marge par défaut */
+}
+
+.button-tag-input:hover {
+  background: #EBB3E5; /* la même couleur de fond que celle du bouton de tag normal */
+}
