@@ -68,7 +68,7 @@ class MemesController < ApplicationController
   private
 
   def meme_params
-    params.require(:meme).permit(:title, :public, :image, :video, meme_tags_attributes: [tag_attributes: [:name]])
+    params.require(:meme).permit(:title, :public, :image, :video, meme_tags_attributes: [:id, tag_attributes: [:name]])
   end
 
   def process_meme_tags(meme)
