@@ -1,6 +1,10 @@
 <div class="card1">
   <div class="card-content card_img">
-    <% if meme.image.attached? %>
+    <% if meme.thumbnail_url.present? %>
+      <%= link_to meme_path(meme) do %>
+        <%= image_tag meme.thumbnail_url, width: 160, alt: meme.title %>
+      <% end %>
+    <% elsif meme.image.attached? %>
       <%= link_to meme_path(meme) do %>
         <%= cl_image_tag meme.image.key, alt: meme.title, width: 160 %>
       <% end %>

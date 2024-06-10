@@ -1,7 +1,14 @@
 <div class="card2">
   <div class="d-flex flex-column">
     <div class="card-content">
-      <%= cl_image_tag meme.image.key, alt: meme.title, width: 360 %>
+      <% if meme.video_url.present? %>
+        <video width="360" controls>
+          <source src="<%= meme.video_url %>" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      <% elsif meme.image.attached? %>
+        <%= cl_image_tag meme.image.key, alt: meme.title, width: 360 %>
+      <% end %>
     </div>
     <div class="card-tab2">
       <div class="like-icon">

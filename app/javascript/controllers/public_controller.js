@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["form", "input"];
 
   connect() {
-    console.log("ok")
+    // console.log("ok")
   }
 
   makePublic() {

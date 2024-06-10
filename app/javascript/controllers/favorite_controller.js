@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ["retirer", "ajouter"];
 
   connect() {
-    console.log("ok")
+    // console.log("ok")
   }
 
   delete(event) {
