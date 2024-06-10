@@ -1,32 +1,30 @@
-<div style="height: 60px;"></div>
-
 <div class="navbar-footer">
     <div class="navbar-home <%= 'active' if current_page?(root_path) %>">
         <%= link_to root_path do %>
-            <%= image_tag(current_page?(root_path) ? "home_icon_fill.svg" : "home_icon.svg", class:"home-icon")  %>
+            <%= image_tag(current_page?(root_path) ? "home_icon_fill.svg" : "home_icon.svg", class:"home-icon") %>
         <% end %>
     </div>
 
     <div class="navbar-add <%= 'active' if current_page?(new_meme_path) %>">
         <%= link_to new_meme_path do %>
-            <%= image_tag(current_page?(new_meme_path) ? "add_icon_fill.svg" : "add_icon.svg", class:"add-icon")  %>
+            <%= image_tag(current_page?(new_meme_path) ? "add_icon_fill.svg" : "add_icon.svg", class:"add-icon") %>
         <% end %>
     </div>
 
     <div class="navbar-library <%= 'active' if current_page?(favorites_path) %>">
         <%= link_to favorites_path do %>
-            <%= image_tag(current_page?(favorites_path) ? "library_icon_fill.svg" : "library_icon.svg", class:"library-icon")  %>
+            <%= image_tag(current_page?(favorites_path) ? "library_icon_fill.svg" : "library_icon.svg", class:"library-icon") %>
         <% end %>
     </div>
 
     <% if user_signed_in? %>
       <% if current_user.photo.attached? %>
         <%= link_to edit_user_registration_path(current_user) do %>
-          <%= image_tag(current_user.photo.variant(resize: "100x100"), class: "profile-icon") %>
+          <%= image_tag(current_user.photo.variant(resize: "48x48"), class: "profile-icon #{'active-profile' if current_page?(edit_user_registration_path(current_user))}") %>
         <% end %>
       <% else %>
         <%= link_to edit_user_registration_path(current_user) do %>
-          <%= image_tag("profile.png", class: "profile-icon") %>
+          <%= image_tag("profile.png", class: "profile-icon #{'active-profile' if current_page?(edit_user_registration_path(current_user))}") %>
         <% end %>
       <% end %>
     <% else %>
