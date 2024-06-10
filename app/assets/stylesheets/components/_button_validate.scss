@@ -1,21 +1,44 @@
-.button-validate{
-  width: 300px; height: 50px; left: 0px; top: 0px; position: absolute; background: #52D1DC; box-shadow: 5px 5px 0px black; border-radius: 10px
-  }
-
-  .text{
-  left: 47px;
-  top: 14px;
-  left: 47px; top: 14px; position: absolute;
+.button-validate {
+  align-content: center;
+  width: 300px;
+  height: 50px;
+  background-color: #b3e5e9;
+  border: 1px solid #52D1DC;
+  box-shadow: 5px 5px 0px black;
+  border-radius: 10px;
   color: black;
   font-size: 16px;
   font-family: Montserrat;
   font-weight: 700;
   line-height: 22px;
-  word-wrap: break-word;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-validate:hover {
+  background-color: #63ced8; /* Changez la couleur de fond au survol */
+  color: white; /* Changez la couleur du texte au survol */
+}
+
+.button-unvalidate {
+  align-content: center;
+  width: 300px;
+  height: 50px;
+  background-color: #52D1DC;
+  box-shadow: 5px 5px 0px black;
+  border-radius: 10px;
   color: black;
   font-size: 16px;
   font-family: Montserrat;
   font-weight: 700;
-  line-height: 23px;
-  word-wrap: break-word;
-  }
+  line-height: 22px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-unvalidate:hover {
+  background-color: #27a9b5; /* Changez la couleur de fond au survol */
+  color: white; /* Changez la couleur du texte au survol */
+}

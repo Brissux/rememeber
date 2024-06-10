@@ -1,18 +1,32 @@
 <%= simple_form_for @meme, html: { multipart: true } do |f| %>
-  <div class="form-check form-switch d-flex justify-content-start flex-row-reverse align-items-center">
-    <%= f.check_box :public, id: 'meme_public' %>
-    <%= f.label :public, "Public", class: "form-check-label", for: "meme_public" %>
+  <div class="toggle-switch-container custom-toggle">
+    <%= f.check_box :public, id: 'meme_public', class: 'toggle-switch toggle-switch-wide custom-toggle-input' %>
+    <%= label_tag 'meme_public', nil, class: 'custom-toggle-label', data: { switch_on: 'Public', switch_off: 'Privé' } %>
   </div>
 
   <%= f.input :title, label: "Titre du mème", class: "titre" %>
 
   <%= f.fields_for :meme_tags do |mt| %>
     <%= mt.fields_for :tag do |t| %>
-      <%= t.input :name, label: "Nom du/des tags (Séparés par des virgules)" %>
+      <%= t.input :name, label: "Nom du/des tags (séparés par des virgules)" %>
     <% end %>
   <% end %>
 
-  <%= f.input :image, label: "SVG", as: :file %>
+  <div data-controller="image-upload">
+    <div class="my-2 preview">
+      <%= image_tag("",  :width => "350px", :hight => "300px", data: { image_upload_target: "output" }) %>
+      <%= f.input :image, label: "SVG", as: :file, input_html: { data: {image_upload_target: "input", action: "change->image-upload#readURL change->" "" } } %>
+    </div>
+  </div>
 
-  <%= f.button :submit, "Créer le mème" %>
+  <div data-controller="image-upload">
+    <div class="my-2 preview">
+      <video width="350px" height="300px" controls data-image-upload-target="output" style="display: none;"></video>
+      <%= f.input :video, label: "Vidéo (MP4)", as: :file, input_html: { data: { image_upload_target: "input", action: "change->image-upload#readURL" } } %>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= f.button :submit, "AJOUTER UN MEME", class: "btn button-create" %>
+  </div>
 <% end %>

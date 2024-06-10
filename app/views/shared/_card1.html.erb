@@ -1,23 +1,18 @@
 <div class="card1">
-  <div class="d-flex flex-column">
-    <div class="card-content">
-      <% if meme.image.attached? %>
-        <%= cl_image_tag meme.image.key, alt: meme.title, width: 180 %>
+  <div class="card-content card_img">
+    <% if meme.thumbnail_url.present? %>
+      <%= link_to meme_path(meme) do %>
+        <%= image_tag meme.thumbnail_url, width: 160, alt: meme.title %>
       <% end %>
-    </div>
-    <div class="card-tab">
+    <% elsif meme.image.attached? %>
+      <%= link_to meme_path(meme) do %>
+        <%= cl_image_tag meme.image.key, alt: meme.title, width: 160 %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="card-tab">
+    <div class="share-icon">
+      <%= link_to image_tag('open_icon.svg'), meme_path(meme) %>
     </div>
   </div>
 </div>
-
-
-<%# <p> %>
-  <%#= link_to "Voir le mème", meme_path(meme), class: "btn btn-primary" %>
-  <%# if meme.user == current_user %>
-    <%#= link_to "Supprimer", meme_path(meme), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce mème ?" }, class: "btn btn-danger" %>
-  <%# end %>
-<%# </p> %>
-
-
-<%# cette ligne dans l'index de favorite  %>
-<%#= cl_image_tag favorite.meme.image.key, alt: favorite.meme.title, width: 180 %>

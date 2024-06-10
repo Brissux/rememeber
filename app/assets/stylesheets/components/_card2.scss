@@ -4,16 +4,31 @@
   width: 360px;
   border-radius: 5px;
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0);
+  margin-bottom: 10px;
 }
 
 .card-content {
   flex: 1;
 }
 
+<<<<<<< HEAD
 
 .like-icon,
 .share-icon {
   width: 32px;
   height: 32px;
   color:#D05BC5;
+=======
+.card-tab2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px 0 15px;
+  width: 360px;
+  height: 60px;
+  background: #52D1DC;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+>>>>>>> master
 }

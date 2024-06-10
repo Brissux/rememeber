@@ -1,7 +1,30 @@
 <div class="card2">
+<<<<<<< HEAD
   <div class="card-content" ></div>
   <div class="card-tab2">
   </div>
     <div class="like-icon"  style="background: url('assets/images/like_icon.svg')" ></div>
     <div class="share-icon"  style="background: url('assets/images/share_icon.svg')" ></div>
+=======
+  <div class="d-flex flex-column">
+    <div class="card-content">
+      <% if meme.video_url.present? %>
+        <video width="360" controls>
+          <source src="<%= meme.video_url %>" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      <% elsif meme.image.attached? %>
+        <%= cl_image_tag meme.image.key, alt: meme.title, width: 360 %>
+      <% end %>
+    </div>
+    <div class="card-tab2">
+      <div class="like-icon">
+        <%= image_tag 'like_icon.svg', height: '33px' %>
+      </div>
+      <div class="share-icon">
+        <%= image_tag 'share_icon.svg' %>
+      </div>
+    </div>
+  </div>
+>>>>>>> master
 </div>

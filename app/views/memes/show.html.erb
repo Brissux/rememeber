@@ -1,17 +1,32 @@
-<h2><%= @meme.title %></h2>
+<h2 class="mb-3"><%= @meme.title %></h2>
 
-<%= render "form", meme: @meme %>
+<% if @meme.user == current_user %>
+  <%= render "form", meme: @meme %>
+<% end %>
 
-<%# <div>
-  <%= cl_image_tag(@meme.image, width: 400, height: 300, crop: :fill) %>
-<%# </div> %>
+<div class="d-flex justify-content-evenly flex-wrap row-gap-2">
+  <%= render partial: "shared/card2", locals: { meme: @meme } %>
+</div>
 
-<ul>
-  <% if @tags.any? %>
-    <% @meme.tags.each do |tag| %>
-      <li><%= tag.name %></li>
+<% if @tags.any? %>
+  <div class="d-flex flex-wrap mb-4 gap-2">
+    <% @tags.each do |tag| %>
+      <div>
+        <%= link_to tag.name, root_path(search: tag.name), class: "btn button-tag", style: "text-decoration: none; color: black;" %>
+      </div>
+    <% end %>
+    <p>Nombre de likes : <%= @meme.likes.count %></p>
+  </div>
+<% end %>
+
+<% if user_signed_in? %>
+  <% if current_user.liked_memes.include?(@meme) %>
+    <%= form_with(url: meme_like_path(@meme), method: :delete, local: true) do |form| %>
+      <%= form.submit "Retirer de mes likes", class: "btn btn-danger" %>
+    <% end %>
+  <% else %>
+    <%= form_with(url: meme_likes_path(@meme), method: :post, local: true) do |form| %>
+      <%= form.submit "Ajouter à mes likes", class: "btn btn-primary" %>
     <% end %>
   <% end %>
-</ul>
-
-<%# <%= link_to 'Retour', root_path %>
+<% end %>

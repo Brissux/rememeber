@@ -1,15 +1,17 @@
-<% if @memes.any? %>
+<h1>Mèmes Likés par <%= @user.nickname %></h1>
+
+<% if @liked_memes.any? %>
   <div class="container-fluid">
     <div class="row">
       <div class="col-6">
-        <% @memes.each_with_index do |meme, index| %>
+        <% @liked_memes.each_with_index do |meme, index| %>
           <% if index.even? %>
             <%= render partial: "shared/card1", locals: { meme: meme } %>
           <% end %>
         <% end %>
       </div>
       <div class="col-6">
-        <% @memes.each_with_index do |meme, index| %>
+        <% @liked_memes.each_with_index do |meme, index| %>
           <% if index.odd? %>
             <%= render partial: "shared/card1", locals: { meme: meme } %>
           <% end %>
@@ -18,9 +20,5 @@
     </div>
   </div>
 <% else %>
-  <% if params[:search].present? %>
-    <p>Aucun résultat pour "<%= params[:search] %>".</p>
-  <% else %>
-    <p>Aucun résultat.</p>
-  <% end %>
+  <p>Vous n'avez pas encore aimé de mèmes.</p>
 <% end %>
