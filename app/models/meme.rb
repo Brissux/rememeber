@@ -1,7 +1,8 @@
 class Meme < ApplicationRecord
   belongs_to :user
-  has_one_attached :image
-  has_one_attached :video
+  # has_one_attached :image
+  # has_one_attached :video
+  has_one_attached :file
   validates :title, presence: true
   validate :file_presence
 
@@ -9,7 +10,6 @@ class Meme < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :meme_tags, dependent: :destroy
   has_many :tags, through: :meme_tags
-
 
   has_many :likers, through: :likes, source: :user
 
@@ -34,9 +34,7 @@ class Meme < ApplicationRecord
   private
 
   def file_presence
-    if image.blank? && video.blank?
-      errors.add(:base, "You must provide either an image or a video")
-    end
+    errors.add(:file, "can't be blank") unless file.attached?
   end
 
   def delete_related_meme_tags

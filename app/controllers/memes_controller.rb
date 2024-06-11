@@ -17,13 +17,15 @@ class MemesController < ApplicationController
   def create
     @meme = current_user.memes.build(meme_params)
     process_meme_tags(@meme)
-
-    if params[:meme][:video].present?
-      upload_result = Cloudinary::Uploader.upload_large(params[:meme][:video].tempfile, resource_type: "video", eager: [{ format: 'jpg', width: 160, crop: 'fill', gravity: 'auto' }])
-      @meme.video_url = upload_result["secure_url"]
-      @meme.thumbnail_url = upload_result["eager"].first["secure_url"]
+    if params[:meme][:file].present?
+      file = params[:meme][:file]
+      if file.content_type.start_with? 'video'
+        upload_result = Cloudinary::Uploader.upload_large(file.tempfile, resource_type: "video", eager: [{ format: 'jpg', width: 160, crop: 'fill', gravity: 'auto' }])
+        @meme.video_url = upload_result["secure_url"]
+        @meme.thumbnail_url = upload_result["eager"].first["secure_url"]
+      end
+      @meme.file.attach(file)
     end
-
     if @meme.save
       redirect_to root_path, notice: 'Mème créé avec succès !'
       current_user.favorites.create(meme: @meme)
