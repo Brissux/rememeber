@@ -10,9 +10,12 @@
       <% end %>
     <% end %>
   </div>
-  <div class="card-tab d-flex m-2">
+  <div class="card-tab d-flex m-2" data-like-target="card" data-controller="like"
+    <% if user_signed_in? %>
+      data-like-id-value="<%= current_user.id %>"
+    <% end %>>
     <div class="like-icon">
-      <i class="fa-regular fa-heart fa-xl" style="color: #353535"></i>
+      <%= render partial: "shared/like_icon", locals: { meme: meme } %>
     </div>
     <div class="open-icon">
       <%= link_to meme_path(meme) do %>

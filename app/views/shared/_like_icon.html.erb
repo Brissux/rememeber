@@ -1,0 +1,15 @@
+<div class="like-icon">
+  <% if user_signed_in? %>
+    <% if current_user.liked_memes.include?(meme) %>
+      <%= simple_form_for(meme, url: meme_like_url(meme, meme.likes.find_by(user: current_user)), method: :delete, local: true, html: { id: "unlike-form-#{meme.id}", data: { like_target: "unlikeForm", action: "click->like#unlike" } }) do |form| %>
+        <%= image_tag 'unlike_icon.svg', alt: 'Retirer de mes likes', class: 'like-icon', data: { like_target: "full" } %>
+      <% end %>
+    <% else %>
+      <%= simple_form_for(meme, url: meme_likes_path(meme), method: :post, local: true, html: { id: "like-form-#{meme.id}", data: { like_target: "likeForm", action: "click->like#like" } }) do |form| %>
+        <%= image_tag 'like_icon.svg', alt: 'Ajouter à mes likes', class: 'like-icon', data: { like_target: "empty" } %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= image_tag 'like_icon.svg', alt: 'Ajouter à mes likes', class: 'like-icon', data: { like_target: "empty", disabled: true } %>
+  <% end %>
+</div>
