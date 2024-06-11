@@ -32,6 +32,10 @@
   <% end %>
 <% end %>
 
+<% if @meme.user == current_user %>
+  <%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
+
 
 <% if current_user && current_user.favorites.find_by(meme: @meme) %>
   <div class="text-center">
@@ -39,8 +43,4 @@
   </div>
 <% else %>
   <%= render "favorite", meme: @meme, favorite: @favorite %>
-<% end %>
-
-<% if @meme.user == current_user %>
-  <%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <% end %>
