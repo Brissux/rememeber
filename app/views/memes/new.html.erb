@@ -15,19 +15,12 @@
     <% end %>
   </div>
 
-  <div data-controller="image-upload">
-    <div class="my-2 preview">
-      <%= image_tag("",  :width => "350px", :hight => "300px", data: { image_upload_target: "output" }) %>
-      <%= f.input :image, label: "SVG", as: :file, input_html: { data: {image_upload_target: "input", action: "change->image-upload#readURL change->" "" } } %>
-    </div>
+<div data-controller="upload">
+  <div class="my-2 preview">
+    <div data-upload-target="output"></div>
+    <%= f.input :file, label: "Fichier (SVG, MP4)", as: :file, input_html: { data: { upload_target: "input", action: "change->upload#readURL" } } %>
   </div>
-
-  <div data-controller="image-upload">
-    <div class="my-2 preview">
-      <video width="350px" height="300px" controls data-image-upload-target="output" style="display: none;"></video>
-      <%= f.input :video, label: "Vidéo (MP4)", as: :file, input_html: { data: { image_upload_target: "input", action: "change->image-upload#readURL" } } %>
-    </div>
-  </div>
+</div>
 
   <div class="text-center">
     <%= f.button :submit, "AJOUTER UN MEME", class: "btn button-create" %>
