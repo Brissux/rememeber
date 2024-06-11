@@ -4,6 +4,9 @@
       public_target: "form",
       action: "change->public#makePublic"
     } do |f| %>
-      <%= f.input :public, as: :boolean, label: "Rendre public", input_html: { class: 'form-check-input', data: { public_target: "input"} } %>
+        <div class="toggle-switch-container custom-toggle">
+    <%= f.check_box :public, id: 'meme_public', class: 'toggle-switch toggle-switch-wide custom-toggle-input' %>
+    <%= label_tag 'meme_public', nil, class: 'custom-toggle-label', data: { switch_on: 'Public', switch_off: 'Privé' } %>
+  </div>
   <% end %>
 </div>
