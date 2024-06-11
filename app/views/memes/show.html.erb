@@ -41,5 +41,6 @@
   <%= render "favorite", meme: @meme, favorite: @favorite %>
 <% end %>
 
-
-<%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% if @meme.user == current_user %>
+  <%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
