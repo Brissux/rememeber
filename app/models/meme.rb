@@ -35,13 +35,33 @@ class Meme < ApplicationRecord
 
   def add_text_to_image(text, options = {})
     image = MiniMagick::Image.read(self.file.download)
+
+    # Déterminer la largeur de l'image
+    image_width = image.width
+
+    # Calculer la taille de la police en fonction de la largeur de l'image
+    # Exemple : taille de base pour 500px de largeur est 20, ajuster proportionnellement
+    base_width = 500
+    base_font_size = 20
+    default_font_size = (image_width.to_f / base_width) * base_font_size
+    default_font_size = [default_font_size, 20].max # Assurer une taille min de 20
+
+    text_height = default_font_size * 1.2
+    background_height = text_height + 20
+
+    # Échapper les caractères spéciaux dans le texte
+    escaped_text = text.gsub("'", "\\\\'").gsub('"', '\\"')
+
     image.combine_options do |c|
-      c.gravity options[:gravity] || "SouthEast"
-      c.pointsize options[:size] if options[:size]
-      c.fill options[:color] if options[:color]
-      c.draw "text 0,0 '#{text}'"
-      # Add more customization based on options as needed
+      c.gravity 'North'
+      c.fill 'white'
+      c.draw "rectangle 0,0 #{image.width},#{background_height}"
+      c.fill 'black'
+      # Utiliser des guillemets doubles autour du texte échappé
+      c.pointsize default_font_size # Appliquer la taille de la police calculée
+      c.draw "text 0,#{10 + (text_height - default_font_size) / 2} \"#{escaped_text}\""
     end
+
     blob = ActiveStorage::Blob.create_and_upload!(
       io: StringIO.new(image.to_blob),
       filename: "edited_#{self.file.filename}",

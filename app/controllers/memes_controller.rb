@@ -58,18 +58,18 @@ class MemesController < ApplicationController
   def update
     @meme = Meme.find(params[:id])
     if @meme.update(meme_params)
-      # Extract text options from params
-      text_options = {
-        size: params[:meme][:text_size],
-        color: params[:meme][:text_color],
-        # Add any other options you need for text styling
-      }
-      # Call add_text_to_image with the text and options
-      @meme.add_text_to_image(params[:meme][:text], text_options) if params[:meme][:text].present?
+      # Le texte est ajouté au-dessus de l'image sans la rogner, avec une taille et une couleur de police par défaut.
+      @meme.add_text_to_image(params[:meme][:text], {}) if params[:meme][:text].present?
       redirect_to @meme, notice: 'Meme updated successfully.'
     else
       render :edit
     end
+  end
+
+  def preview_text
+    meme = Meme.find(params[:id])
+    meme.add_text_to_image(params[:text], {color: 'black', size: 20}) # Utilisez les options souhaitées
+    render json: {image_url: url_for(meme.file)}
   end
 
   helper_method :favorite_exists?

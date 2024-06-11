@@ -1,10 +1,16 @@
-<h2 class="mb-3"><%= @meme.title %></h2>
-
 <% if @meme.user == current_user %>
-  <%= link_to 'Edit Meme', edit_meme_path(@meme), class: 'btn btn-primary' %>
-<% end %>
+  <%= form_with(model: @meme, local: true) do |form| %>
+    <div class="field">
+      <%= form.label :text %>
+      <%= form.text_field :text %>
+    </div>
+    <%= form.submit "Add Text" %>
+  <% end %>
 
-<% if @meme.user == current_user %>
+  <!-- Code pour la prévisualisation en direct reste inchangé -->
+  <input type="text" data-controller="text-preview" data-text-preview-target="textInput" data-action="input->text-preview#updatePreview">
+  <img data-text-preview-target="preview">
+
   <%= render "form", meme: @meme %>
 <% end %>
 
@@ -23,9 +29,9 @@
 <% end %>
 
 <% if @meme.user == current_user %>
-<div class="text-center">
-  <%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn button-delete" %>
-   </div>
+  <div class="text-center">
+    <%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn button-delete" %>
+  </div>
 <% else %>
   <% if current_user && current_user.favorites.find_by(meme: @meme) %>
     <div class="text-center">

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index]
   get 'profile', to: 'users#show', as: 'current_user_profile'
   get '/liked_memes', to: 'users#liked_memes'
+  get 'memes/:id/preview_text', to: 'memes#preview_text', as: :preview_text
 end
