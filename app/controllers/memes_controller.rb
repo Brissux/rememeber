@@ -3,11 +3,7 @@ class MemesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    if params[:search].present?
-      @memes = Meme.search_by_title_and_tag(params[:search]).where(public: true)
-    else
-      @memes = Meme.where(public: true).order(created_at: :desc)
-    end
+    @memes = params[:search].present? ? Meme.search_by_title_and_tag(params[:search]).where(public: true) : Meme.where(public: true).order(created_at: :desc)
   end
 
   def new
@@ -22,8 +18,7 @@ class MemesController < ApplicationController
       file = params[:meme][:file]
       if file.content_type.start_with? 'video'
         upload_result = Cloudinary::Uploader.upload_large(file.tempfile, resource_type: "video", eager: [{ format: 'jpg', width: 160, crop: 'fill', gravity: 'auto' }])
-        @meme.video_url = upload_result["secure_url"]
-        @meme.thumbnail_url = upload_result["eager"].first["secure_url"]
+        @meme.video_url, @meme.thumbnail_url = upload_result["secure_url"], upload_result["eager"].first["secure_url"]
       end
       @meme.file.attach(file)
     end
@@ -62,8 +57,6 @@ class MemesController < ApplicationController
     render json: {image_url: url_for(meme.file)}
   end
 
-  helper_method :favorite_exists?
-
   def favorite_exists?
     Favorite.exists?(user: current_user, meme: @meme)
   end
@@ -86,18 +79,13 @@ class MemesController < ApplicationController
 
   def process_meme_tags(meme)
     meme_tags = []
-
     meme.meme_tags.each do |meme_tag|
       tag_names = meme_tag.tag.name.downcase.split(",").map(&:strip)
-
       tag_names.each do |tag_name|
-        tag = Tag.find_or_create_by(name: tag_name) do |t|
-          t.name = tag_name.downcase
-        end
+        tag = Tag.find_or_create_by(name: tag_name) { |t| t.name = tag_name.downcase }
         meme_tags << MemeTag.new(meme: meme, tag: tag) unless meme.tags.include?(tag)
       end
     end
-
     meme.meme_tags = meme_tags
   end
 end
