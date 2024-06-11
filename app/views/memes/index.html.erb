@@ -1,6 +1,16 @@
-<% if @memes.any? %>
+<div data-controller="menu">
+  <% if @memes.any? %>
   <div class="container-fluid">
-    <div class="row">
+    <%# <%= render partial: "menu", locals: { memes: @memes } %>
+
+    <nav>
+      <ul class="menu">
+        <li><a href="#" class="menu-item active" data-action="click->menu#filter" data-menu-target="recent">Les + récents</a></li>
+        <li><a href="#" class="menu-item" data-action="click->menu#filter" data-menu-target="popular">Les + populaires</a></li>
+      </ul>
+    </nav>
+
+    <div class="row" data-menu-target="memes">
       <div class="col-6">
         <% @memes.each_with_index do |meme, index| %>
           <% if index.even? %>
@@ -17,10 +27,11 @@
       </div>
     </div>
   </div>
-<% else %>
-  <% if params[:search].present? %>
-    <p>Aucun résultat pour "<%= params[:search] %>".</p>
   <% else %>
-    <p>Aucun résultat.</p>
+    <% if params[:search].present? %>
+      <p>Aucun résultat pour "<%= params[:search] %>".</p>
+    <% else %>
+      <p>Aucun résultat.</p>
+    <% end %>
   <% end %>
-<% end %>
+</div>

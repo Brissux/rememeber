@@ -2,11 +2,9 @@ class MemesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    if params[:search].present?
-      @memes = Meme.search_by_title_and_tag(params[:search]).where(public: true)
-    else
-      @memes = Meme.where(public: true).order(created_at: :desc)
-    end
+    @memes = Meme.where(public: true).order(created_at: :desc)
+    @memes = @memes.search_by_title_and_tag(params[:search]) if params[:search].present?
+    # @memes = @memes.
   end
 
   def new

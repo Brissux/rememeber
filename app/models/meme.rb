@@ -30,6 +30,10 @@ class Meme < ApplicationRecord
   #   public? ? "checked" : ""
   # end
 
+  def like_counter
+    self.likes.count
+  end
+
   private
 
   def file_presence
