@@ -9,14 +9,14 @@ export default class extends Controller {
   like(event) {
     event.preventDefault()
     const url = this.likeFormTarget.action
-    console.log(this.idValue)
+    console.log(url)
 
     fetch(url, {
       method: "POST",
-      headers: { "Accept": "application/json" },
-        // body: new FormData(this.likeFormTarget)
+      headers: {"Accept": "text/plain"},
+      body: new FormData(this.likeFormTarget)
     })
-      .then(response => response.json())
+      .then(response => response.text())
       .then((data) => {
         console.log(data)
       })
@@ -25,15 +25,16 @@ export default class extends Controller {
   unlike(event) {
     event.preventDefault()
     const url = this.unlikeFormTarget.action
+    console.log(url)
 
-    // fetch(url, {
-    //   method: "DELETE",
-    //   headers: { "Accept": "application/json" },
-    //   // body: new FormData(this.unlikeFormTarget)
-    // })
-    //   .then(response => response.json())
-    //   .then((data) => {
-    //     console.log(data)
-    //   })
+    fetch(url, {
+      method: "DELETE",
+      headers: { "Accept": "text/plain" },
+      body: new FormData(this.unlikeFormTarget)
+    })
+      .then(response => response.text())
+      .then((data) => {
+        console.log(data)
+      })
   }
 }

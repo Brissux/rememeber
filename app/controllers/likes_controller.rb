@@ -3,17 +3,20 @@ class LikesController < ApplicationController
 
   def create
     @meme = Meme.find_by(id: params[:meme_id])
-    if @meme.nil?
-      redirect_to root_path, alert: "Meme not found."
-      return
-    end
     @like = current_user.likes.build(meme: @meme)
     if @like.save
-      redirect_to @meme, notice: 'Mème aimé avec succès !'
+      respond_to do |format|
+        format.html { redirect_to @meme, notice: 'Mème aimé avec succès !' }
+        format.text { render partial: "shared/button_like", locals: {meme: @meme}, formats: [:html] }
+      end
     else
-      redirect_to @meme, alert: 'Erreur lors de l\'ajout du like.'
+      respond_to do |format|
+        format.html { redirect_to @meme, alert: 'Erreur lors de l\'ajout du like.' }
+        format.text { render partial: "shared/button_like", locals: {meme: @meme}, formats: [:html] }
+      end
     end
   end
+
 
   def destroy
     @meme = Meme.find(params[:meme_id])
