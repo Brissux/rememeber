@@ -1,37 +1,27 @@
-<div data-controller="menu">
-  <% if @memes.any? %>
-  <div class="container-fluid">
-    <%# <%= render partial: "menu", locals: { memes: @memes } %>
-
-    <nav>
-      <ul class="menu">
-        <li><a href="#" class="menu-item active" data-action="click->menu#filter" data-menu-target="recent">Les + récents</a></li>
-        <li><a href="#" class="menu-item" data-action="click->menu#filter" data-menu-target="popular">Les + populaires</a></li>
-      </ul>
-    </nav>
-
-    <div class="row" data-menu-target="memes">
-      <div class="col-6">
-        <% @memes.each_with_index do |meme, index| %>
-          <% if index.even? %>
-            <%= render partial: "shared/card1", locals: { meme: meme } %>
-          <% end %>
+<% if @memes.any? %>
+<div class="container-fluid">
+  <%= render partial: "menu", locals: { memes: @memes } %>
+  <div class="row">
+    <div class="col-6">
+      <% @memes.each_with_index do |meme, index| %>
+        <% if index.even? %>
+          <%= render partial: "shared/card1", locals: { meme: meme } %>
         <% end %>
-      </div>
-      <div class="col-6">
-        <% @memes.each_with_index do |meme, index| %>
-          <% if index.odd? %>
-            <%= render partial: "shared/card1", locals: { meme: meme } %>
-          <% end %>
+      <% end %>
+    </div>
+    <div class="col-6">
+      <% @memes.each_with_index do |meme, index| %>
+        <% if index.odd? %>
+          <%= render partial: "shared/card1", locals: { meme: meme } %>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
-  <% else %>
-    <% if params[:search].present? %>
-      <p>Aucun résultat pour "<%= params[:search] %>".</p>
-    <% else %>
-      <p>Aucun résultat.</p>
-    <% end %>
-  <% end %>
 </div>
+<% else %>
+  <% if params[:search].present? %>
+    <p>Aucun résultat pour "<%= params[:search] %>".</p>
+  <% else %>
+    <p>Aucun résultat.</p>
+  <% end %>
+<% end %>
