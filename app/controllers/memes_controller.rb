@@ -1,3 +1,4 @@
+# memes_controller.rb
 class MemesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -41,16 +42,6 @@ class MemesController < ApplicationController
     @like = current_user.likes.find_by(meme: @meme) if user_signed_in?
   end
 
-  # def update
-  #   @meme = Meme.find(params[:id])
-  #   @meme.update(meme_params)
-
-  #   respond_to do |format|
-  #     format.html { redirect_to meme_path }
-  #     format.text { render partial: "memes/form", locals: { meme: @meme }, formats: [:html] }
-  #   end
-  # end
-
   def edit
     @meme = Meme.find(params[:id])
   end
@@ -58,7 +49,6 @@ class MemesController < ApplicationController
   def update
     @meme = Meme.find(params[:id])
     if @meme.update(meme_params)
-      # Le texte est ajouté au-dessus de l'image sans la rogner, avec une taille et une couleur de police par défaut.
       @meme.add_text_to_image(params[:meme][:text], {}) if params[:meme][:text].present?
       redirect_to @meme, notice: 'Meme updated successfully.'
     else
@@ -68,7 +58,7 @@ class MemesController < ApplicationController
 
   def preview_text
     meme = Meme.find(params[:id])
-    meme.add_text_to_image(params[:text], {color: 'black', size: 20}) # Utilisez les options souhaitées
+    meme.add_text_to_image(params[:text], {color: 'black', size: 20})
     render json: {image_url: url_for(meme.file)}
   end
 
