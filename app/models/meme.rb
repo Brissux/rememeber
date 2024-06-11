@@ -42,4 +42,8 @@ class Meme < ApplicationRecord
     puts "Deleting related meme tags for meme with ID #{self.id}"
     self.meme_tags.destroy_all
   end
+
+  def liked_by?(user)
+    likes.where(user: user).exists?
+  end
 end

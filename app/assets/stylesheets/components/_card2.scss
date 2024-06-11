@@ -23,3 +23,19 @@
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
+.like-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.like-icon {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
