@@ -1,40 +1,42 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["likeIcon"]
-
-  connect() {
-    console.log("Like icon controller connected!")
-    this.likeCount = parseInt(document.getElementById("like-count").textContent)
+  static targets = ["empty", "full", "likeForm", "unlikeForm", "card"]
+  static values = {
+    id: Number
   }
 
-  async submit(event) {
+  like(event) {
     event.preventDefault()
-    console.log("Like icon clicked!")
+    const url = this.likeFormTarget.action
+    console.log(url)
 
-    // Récupérer l'URL et les données du formulaire
-    const form = event.currentTarget.closest("form")
-    const url = form.action
-    const formData = new FormData(form)
-
-    try {
-      // Envoyer la requête AJAX
-      const response = await fetch(url, {
-        method: 'POST',
-        body: formData
+    fetch(url, {
+      method: "POST",
+      headers: {"Accept": "text/plain"},
+      body: new FormData(this.likeFormTarget)
+    })
+      .then(response => response.text())
+      .then((data) => {
+        console.log(data)
+        this.cardTarget.outerHTML = data
       })
+  }
 
-      // Traiter la réponse
-      if (response.ok) {
-        console.log("Like submitted successfully!")
-        // Mettre à jour le nombre de likes
-        this.likeCount += 1
-        document.getElementById("like-count").textContent = this.likeCount
-      } else {
-        console.error("Failed to submit like.")
-      }
-    } catch (error) {
-      console.error("Error submitting like:", error)
-    }
+  unlike(event) {
+    event.preventDefault()
+    const url = this.unlikeFormTarget.action
+    console.log(url)
+
+    fetch(url, {
+      method: "DELETE",
+      headers: { "Accept": "text/plain" },
+      body: new FormData(this.unlikeFormTarget)
+    })
+      .then(response => response.text())
+      .then((data) => {
+        console.log(data)
+        this.cardTarget.outerHTML = data
+      })
   }
 }
