@@ -11,14 +11,20 @@
       <% end %>
     </div>
     <div class="card-tab2">
-      <%= form_with(url: meme_likes_path(@meme), method: :post, local: true, class: "invisible-form", data: { controller: "like-icon", action: "click->like-icon#submit", like_icon_target: "likeIcon", like_count_target: "likeCount" }) do |form| %>
-        <div class="like-icon" data-like-icon-target="likeIcon">
-          <%= image_tag 'like_icon.svg', height: '33px' %>
-          <span id="like-count"><%= @meme.likes.count %></span>
-        </div>
-      <% end %>
-      <div class="like-icon" data-controller="like-icon" data-action="click->like-icon#click">
-        <%= image_tag 'like_icon.svg', height: '33px', data: { like_icon_target: "likeIcon" } %>
+      <div class="like-icon" data-controller="like-icon" data-like-icon-target="likeIcon,likeCount" data-like-state="<%= @like ? 'liked' : 'unliked' %>">
+        <% if user_signed_in? %>
+          <% if current_user.liked_memes.include?(@meme) %>
+            <%= form_with(url: meme_like_path(@meme), method: :delete, local: true) do |form| %>
+              <%= form.submit "", class: "d-inline-block" %>
+            <% end %>
+          <% else %>
+            <%= form_with(url: meme_likes_path(@meme), method: :post, local: true) do |form| %>
+              <%= form.submit "", class: "d-inline-block" %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= image_tag @like ? 'unlike_icon.svg' : 'like_icon.svg', height: '33px' %>
+        <span id="like-count"><%= @meme.likes.count %></span>
       </div>
       <div class="share-icon">
         <a href="#" data-bs-toggle="modal" data-bs-target="#shareModal">
@@ -28,6 +34,9 @@
     </div>
   </div>
 </div>
+
+<!-- Le reste du code HTML reste inchangé -->
+
 
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
   <div class="modal-dialog">
