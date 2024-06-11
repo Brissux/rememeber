@@ -41,13 +41,34 @@ class MemesController < ApplicationController
     @like = current_user.likes.find_by(meme: @meme) if user_signed_in?
   end
 
+  # def update
+  #   @meme = Meme.find(params[:id])
+  #   @meme.update(meme_params)
+
+  #   respond_to do |format|
+  #     format.html { redirect_to meme_path }
+  #     format.text { render partial: "memes/form", locals: { meme: @meme }, formats: [:html] }
+  #   end
+  # end
+
+  def edit
+    @meme = Meme.find(params[:id])
+  end
+
   def update
     @meme = Meme.find(params[:id])
-    @meme.update(meme_params)
-
-    respond_to do |format|
-      format.html { redirect_to meme_path }
-      format.text { render partial: "memes/form", locals: { meme: @meme }, formats: [:html] }
+    if @meme.update(meme_params)
+      # Extract text options from params
+      text_options = {
+        size: params[:meme][:text_size],
+        color: params[:meme][:text_color],
+        # Add any other options you need for text styling
+      }
+      # Call add_text_to_image with the text and options
+      @meme.add_text_to_image(params[:meme][:text], text_options) if params[:meme][:text].present?
+      redirect_to @meme, notice: 'Meme updated successfully.'
+    else
+      render :edit
     end
   end
 
@@ -70,7 +91,7 @@ class MemesController < ApplicationController
   private
 
   def meme_params
-    params.require(:meme).permit(:title, :public, :image, :video, meme_tags_attributes: [:id, tag_attributes: [:name]])
+    params.require(:meme).permit(:title, :public, :image, :video)
   end
 
   def process_meme_tags(meme)

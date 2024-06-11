@@ -1,0 +1,18 @@
+<%= form_with(model: @meme, local: true) do |form| %>
+  <!-- Champs existants -->
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_field :text %>
+  </div>
+  <!-- Nouveaux champs pour la personnalisation -->
+  <div class="field">
+    <%= form.label :text_size %>
+    <%= form.number_field :text_size %>
+  </div>
+  <div class="field">
+    <%= form.label :text_color %>
+    <%= form.text_field :text_color %>
+  </div>
+  <!-- Ajouter plus de champs selon les besoins -->
+  <%= form.submit "Add Text" %>
+<% end %>

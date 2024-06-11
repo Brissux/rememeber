@@ -1,6 +1,10 @@
 <h2 class="mb-3"><%= @meme.title %></h2>
 
 <% if @meme.user == current_user %>
+  <%= link_to 'Edit Meme', edit_meme_path(@meme), class: 'btn btn-primary' %>
+<% end %>
+
+<% if @meme.user == current_user %>
   <%= render "form", meme: @meme %>
 <% end %>
 
