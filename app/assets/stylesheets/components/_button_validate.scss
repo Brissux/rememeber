@@ -12,7 +12,7 @@
   font-weight: 700;
   line-height: 22px;
   margin-top: 5px;
-  margin-bottom: 100px;
+  margin-bottom:30px;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -34,11 +34,35 @@
   font-weight: 700;
   line-height: 22px;
   margin-top: 5px;
-  margin-bottom: 100px;
+  margin-bottom:30px;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .button-unvalidate:hover {
   background-color: #27a9b5; /* Changez la couleur de fond au survol */
+  color: white; /* Changez la couleur du texte au survol */
+}
+
+
+.button-delete {
+  align-content: center;
+  width: 300px;
+  height: 50px;
+  background-color: #c35757;
+  border: 1px solid #8a1b1b;
+  box-shadow: 5px 5px 0px black;
+  border-radius: 10px;
+  color: black;
+  font-size: 16px;
+  font-family: Montserrat;
+  font-weight: 700;
+  line-height: 22px;
+  margin-top: 5px;
+  margin-bottom:30px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-delete:hover {
+  background-color: black; /* Changez la couleur de fond au survol */
   color: white; /* Changez la couleur du texte au survol */
 }
