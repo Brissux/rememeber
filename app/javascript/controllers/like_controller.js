@@ -18,7 +18,6 @@ export default class extends Controller {
     })
       .then(response => response.text())
       .then((data) => {
-        console.log(data)
         this.cardTarget.outerHTML = data
       })
   }
@@ -35,7 +34,6 @@ export default class extends Controller {
     })
       .then(response => response.text())
       .then((data) => {
-        console.log(data)
         this.cardTarget.outerHTML = data
       })
   }
