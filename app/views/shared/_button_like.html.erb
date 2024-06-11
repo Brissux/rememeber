@@ -1,0 +1,21 @@
+<div class="card-tab2">
+  <div class="like-icon" data-controller="like" data-like-id-value=<%= current_user.id%>>
+    <% if user_signed_in? %>
+      <% if current_user.liked_memes.include?(meme) %>
+          <%= form_with(url: meme_like_path(meme), local: true, html: { id: "unlike-form-#{meme.id}", data: {like_target: "unlikeForm", turbo_method: :delete} }) do |form| %>
+            <%= image_tag 'unlike_icon.svg', alt: 'Retirer de mes likes', class: 'like-icon', data: {like_target: "full", action: "click->like#unlike"}  %>
+          <% end %>
+      <% else %>
+        <%= form_with(url: meme_likes_path(meme), method: :post, local: true, html: { id: "like-form-#{meme.id}", data: {like_target: "likeForm"} }) do |form| %>
+          <%= image_tag 'like_icon.svg', alt: 'Ajouter à mes likes', class: 'like-icon', data: {like_target: "empty", action: "click->like#like"} %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <span id="like-count"><%= meme.likes.count %></span>
+  </div>
+  <div class="share-icon">
+    <a href="#" data-bs-toggle="modal" data-bs-target="#shareModal">
+      <%= image_tag 'share_icon.svg' %>
+    </a>
+  </div>
+</div>

@@ -10,27 +10,7 @@
         <%= cl_image_tag meme.image.key, alt: meme.title, width: 360 %>
       <% end %>
     </div>
-    <div class="card-tab2">
-      <div class="like-icon" data-controller="like-icon" data-like-icon-target="likeIcon,likeCount" data-like-state="<%= @like ? 'liked' : 'unliked' %>">
-        <% if user_signed_in? %>
-          <% if current_user.liked_memes.include?(@meme) %>
-            <%= form_with(url: meme_like_path(@meme), method: :delete, local: true, html: { id: "unlike-form-#{@meme.id}" }) do |form| %>
-              <%= image_tag 'unlike_icon.svg', alt: 'Retirer de mes likes', class: 'like-icon', onclick: "document.getElementById('unlike-form-#{@meme.id}').submit();" %>
-            <% end %>
-          <% else %>
-            <%= form_with(url: meme_likes_path(@meme), method: :post, local: true, html: { id: "like-form-#{@meme.id}" }) do |form| %>
-              <%= image_tag 'like_icon.svg', alt: 'Ajouter à mes likes', class: 'like-icon', onclick: "document.getElementById('like-form-#{@meme.id}').submit();" %>
-            <% end %>
-          <% end %>
-        <% end %>
-        <span id="like-count"><%= @meme.likes.count %></span>
-      </div>
-      <div class="share-icon">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#shareModal">
-          <%= image_tag 'share_icon.svg' %>
-        </a>
-      </div>
-    </div>
+   <%= render "shared/button_like", meme: @meme %>
   </div>
 </div>
 
