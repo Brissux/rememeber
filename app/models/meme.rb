@@ -5,10 +5,11 @@ class Meme < ApplicationRecord
   validates :title, presence: true
   validate :file_presence
 
-  has_many :likes, dependent: :destroy
+  has_many :likes,  dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :meme_tags, dependent: :destroy
   has_many :tags, through: :meme_tags
+
 
   has_many :likers, through: :likes, source: :user
 
@@ -41,9 +42,5 @@ class Meme < ApplicationRecord
   def delete_related_meme_tags
     puts "Deleting related meme tags for meme with ID #{self.id}"
     self.meme_tags.destroy_all
-  end
-
-  def liked_by?(user)
-    likes.where(user: user).exists?
   end
 end
