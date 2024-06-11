@@ -18,29 +18,16 @@
   </div>
 <% end %>
 
-<p>Nombre de likes : <%= @meme.likes.count %></p>
-
-<% if user_signed_in? %>
-  <% if current_user.liked_memes.include?(@meme) %>
-    <%= form_with(url: meme_like_path(@meme), method: :delete, local: true) do |form| %>
-      <%= form.submit "Retirer de mes likes", class: "btn btn-danger" %>
-    <% end %>
-  <% else %>
-    <%= form_with(url: meme_likes_path(@meme), method: :post, local: true) do |form| %>
-      <%= form.submit "Ajouter à mes likes", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
-<% end %>
-
-
-<% if current_user && current_user.favorites.find_by(meme: @meme) %>
-  <div class="text-center">
-    <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-unvalidate" %>
-  </div>
-<% else %>
-  <%= render "favorite", meme: @meme, favorite: @favorite %>
-<% end %>
-
 <% if @meme.user == current_user %>
-  <%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<div class="text-center">
+  <%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn button-delete" %>
+   </div>
+<% else %>
+  <% if current_user && current_user.favorites.find_by(meme: @meme) %>
+    <div class="text-center">
+      <%= link_to "RETIRER DE MA GALERIE", meme_favorite_path(@meme, current_user.favorites.find_by(meme: @meme)), data: {turbo_method: "delete"}, class: "btn button-unvalidate" %>
+    </div>
+  <% else %>
+    <%= render "favorite", meme: @meme, favorite: @favorite %>
+  <% end %>
 <% end %>

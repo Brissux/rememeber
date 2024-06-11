@@ -3,15 +3,17 @@ class LikesController < ApplicationController
 
   def create
     @meme = Meme.find_by(id: params[:meme_id])
-    if @meme.nil?
-      redirect_to root_path, alert: "Meme not found."
-      return
-    end
     @like = current_user.likes.build(meme: @meme)
     if @like.save
-      redirect_to @meme, notice: 'Mème aimé avec succès !'
+      respond_to do |format|
+        format.html { redirect_to @meme, notice: 'Mème aimé avec succès !' }
+        format.text { render partial: "shared/like_icon", locals: { meme: @meme }, formats: [:html] }
+      end
     else
-      redirect_to @meme, alert: 'Erreur lors de l\'ajout du like.'
+      respond_to do |format|
+        format.html { redirect_to @meme, alert: 'Erreur lors de l\'ajout du like.' }
+        format.text { render partial: "shared/like_icon", locals: { meme: @meme }, formats: [:html] }
+      end
     end
   end
 
@@ -19,9 +21,15 @@ class LikesController < ApplicationController
     @meme = Meme.find(params[:meme_id])
     @like = @meme.likes.find_by(user: current_user)
     if @like.destroy
-      redirect_to @meme, notice: 'Mème retiré de vos likes avec succès !'
+      respond_to do |format|
+        format.html { redirect_to @meme, notice: 'Mème retiré de vos likes avec succès !' }
+        format.text { render partial: "shared/like_icon", locals: { meme: @meme }, formats: [:html] }
+      end
     else
-      redirect_to @meme, alert: 'Erreur lors de la suppression du like.'
+      respond_to do |format|
+        format.html { redirect_to @meme, alert: 'Erreur lors de la suppression du like.' }
+        format.text { render partial: "shared/like_icon", locals: { meme: @meme }, formats: [:html] }
+      end
     end
   end
 end

@@ -45,3 +45,8 @@
   border: none;
   padding-right: 10px;
 }
+
+.form-control:focus {
+  box-shadow: none;
+  background-color: white
+}
