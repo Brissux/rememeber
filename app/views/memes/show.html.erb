@@ -18,20 +18,6 @@
   </div>
 <% end %>
 
-<p>Nombre de likes : <%= @meme.likes.count %></p>
-
-<% if user_signed_in? %>
-  <% if current_user.liked_memes.include?(@meme) %>
-    <%= form_with(url: meme_like_path(@meme), method: :delete, local: true) do |form| %>
-      <%= form.submit "Retirer de mes likes", class: "btn btn-danger" %>
-    <% end %>
-  <% else %>
-    <%= form_with(url: meme_likes_path(@meme), method: :post, local: true) do |form| %>
-      <%= form.submit "Ajouter à mes likes", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
-<% end %>
-
 <% if @meme.user == current_user %>
 <div class="text-center">
   <%= link_to "Delete", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn button-delete" %>

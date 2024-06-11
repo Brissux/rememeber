@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["empty", "full", "likeForm", "unlikeForm"]
+  static targets = ["empty", "full", "likeForm", "unlikeForm", "card"]
   static values = {
     id: Number
   }
@@ -19,6 +19,7 @@ export default class extends Controller {
       .then(response => response.text())
       .then((data) => {
         console.log(data)
+        this.cardTarget.outerHTML = data
       })
   }
 
@@ -35,6 +36,7 @@ export default class extends Controller {
       .then(response => response.text())
       .then((data) => {
         console.log(data)
+        this.cardTarget.outerHTML = data
       })
   }
 }
