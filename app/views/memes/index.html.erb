@@ -1,22 +1,23 @@
 <% if @memes.any? %>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-6">
-        <% @memes.each_with_index do |meme, index| %>
-          <% if index.even? %>
-            <%= render partial: "shared/card1", locals: { meme: meme } %>
-          <% end %>
+<div class="container-fluid">
+  <%= render partial: "menu", locals: { memes: @memes } %>
+  <div class="row">
+    <div class="col-6">
+      <% @memes.each_with_index do |meme, index| %>
+        <% if index.even? %>
+          <%= render partial: "shared/card1", locals: { meme: meme } %>
         <% end %>
-      </div>
-      <div class="col-6">
-        <% @memes.each_with_index do |meme, index| %>
-          <% if index.odd? %>
-            <%= render partial: "shared/card1", locals: { meme: meme } %>
-          <% end %>
+      <% end %>
+    </div>
+    <div class="col-6">
+      <% @memes.each_with_index do |meme, index| %>
+        <% if index.odd? %>
+          <%= render partial: "shared/card1", locals: { meme: meme } %>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
+</div>
 <% else %>
   <% if params[:search].present? %>
     <p>Aucun résultat pour "<%= params[:search] %>".</p>

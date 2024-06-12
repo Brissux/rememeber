@@ -57,6 +57,11 @@ class Meme < ApplicationRecord
     self.file.attach(blob)
   end
 
+
+  def like_counter
+    self.likes.count
+  end
+
   private
 
   def file_presence
