@@ -1,18 +1,16 @@
-<div class="card2">
-  <div class="d-flex flex-column">
-    <div class="card-content">
-      <% if meme.video_url.present? %>
-        <video width="360" controls>
-          <source src="<%= meme.video_url %>" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      <% elsif meme.file.attached? %>
-        <%= image_tag url_for(meme.file), alt: meme.title, width: 360 %>
-      <% end %>
-    </div>
-   <%= render "shared/button_like", meme: @meme %>
+<div class="d-flex flex-column">
+  <div class="card-content">
+    <% if meme.video_url.present? %>
+      <video width="360" controls>
+        <source src="<%= meme.video_url %>" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    <% elsif meme.file.attached? %>
+      <%= image_tag url_for(meme.file), alt: meme.title, width: 360 %>
+    <% end %>
   </div>
-</div>
+  <%= render "shared/button_like", meme: @meme %>
+</div> <!-- Fermeture de balise ajoutée ici -->
 
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -22,18 +20,19 @@
         <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-      <div class="icone-media d-flex justify-content-evenly align-items-center">
-       <%= social_share_button_tag(meme.title, url: meme_url(meme)) %>
-        <%= image_tag 'messenger.svg' %>
-        <%= image_tag 'instagram.svg' %>
-        <%= image_tag 'x_twitter.svg' %>
-      </div>
+        <div class="icone-media d-flex justify-content-evenly align-items-center">
+          <%= social_share_button_tag(meme.title, url: meme_url(meme)) %>
+          <%= image_tag 'messenger.svg' %>
+          <%= image_tag 'instagram.svg' %>
+          <%= image_tag 'x_twitter.svg' %>
+        </div>
         <div class="d-flex align-items-center pt-4" data-controller="copyurl" data-action="click->copyurl#copyurl">
           <button type="button" class="btn btn-link" id="popover-link" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Copié !" data-bs-trigger="click">
             <%= image_tag 'link.svg' %>
           </button>
           <input type="text" class="form-control ms-2" id="page-url" value="<%= meme_url(meme) %>" data-copyurl-target="input" readonly>
         </div>
+      </div>
     </div>
   </div>
-</div>
+</div> <!-- Fermeture de balise ajoutée ici -->
