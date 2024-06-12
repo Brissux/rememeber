@@ -5,13 +5,8 @@ export default class extends Controller {
 
   static targets = ["retirer", "ajouter"];
 
-  connect() {
-    // console.log("ok")
-  }
-
   delete(event) {
     event.preventDefault()
-    console.log("delete");
 
     fetch(this.formTarget.action, {
       method: "DELETE",
