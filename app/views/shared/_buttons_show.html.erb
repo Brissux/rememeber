@@ -1,0 +1,17 @@
+<div class="card-tab2 d-flex" data-controller="like"
+  <% if user_signed_in? %>
+    data-like-id-value="<%= current_user.id %>"
+  <% end %>>
+  <div class="like-icon-container d-flex">
+    <%= render partial: "shared/like_icon", locals: { meme: meme } %>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <%= link_to "#", data: { action: "click->editor-form#showForm" } do %>
+      <i class="fa-solid fa-pen-to-square fa-2xl" style="color: #000000;"></i>
+    <% end %>
+    <a href="#" data-bs-toggle="modal" data-bs-target="#shareModal">
+      <%= image_tag 'share_icon.svg' %>
+    </a>
+    <div data-editor-form-target="formContainer"></div>
+  </div>
+</div>

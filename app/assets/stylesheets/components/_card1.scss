@@ -5,14 +5,15 @@
   border: 2px solid #000;
   border-radius: 5px;
   box-shadow: 2px 2px 1px 1px black;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   background-color: #F5BDD9;
 }
 
 .card1 .card-img {
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 1px 1px 3px 0px rgb(142, 141, 141)
+  box-shadow: 1px 1px 3px 0px rgb(142, 141, 141);
+  position: relative; /* Ajoutez cette ligne */
 }
 
 .card1 .card-img img {
@@ -23,5 +24,12 @@
 
 .card-tab {
   justify-content: space-between;
+
   margin: 10px 5px 5px 5px;
+}
+
+.video-icon {
+  position: absolute;
+  top: 226px;
+  right: 114px;
 }

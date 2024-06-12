@@ -3,6 +3,9 @@
     <% if meme.video_url.present? %>
       <%= link_to meme_path(meme) do %>
         <%= image_tag meme.thumbnail_url, alt: meme.title %>
+        <div class="video-icon">
+          <%= image_tag "video_icon.svg", alt: "Video icon" %>
+        </div>
       <% end %>
     <% elsif meme.file.attached? %>
       <%= link_to meme_path(meme) do %>
