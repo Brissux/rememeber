@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   width: 360px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0);
+  border: 2px solid #000;
+  border-radius: 5px;
+  box-shadow: 6px 3px 1px 0px black;
   margin-bottom: 10px;
 }
 
@@ -19,7 +20,7 @@
   padding: 0 10px 0 15px;
   width: 360px;
   height: 60px;
-  background: #52D1DC;
+  background: #F5BDD9;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
