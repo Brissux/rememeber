@@ -39,3 +39,21 @@
   display: inline-block;
   cursor: pointer;
 }
+
+
+#canvas-container {
+  position: relative;
+
+}
+
+// #text-generator {
+//   position: relative; /* Make text box positionable within the card */
+//   top: 10px; /* Adjust initial position as needed */
+//   left: 10px; /* Adjust initial position as needed */
+//   z-index: 1000; /* Ensure text box is above other elements */
+//   resize: both; /* Enable resizing in both directions */
+//   // overflow: auto; /* Allow scrolling if content overflows */
+//   background-color: red;
+//   border-color: transparent;
+
+// }
