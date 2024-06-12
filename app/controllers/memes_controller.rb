@@ -54,12 +54,6 @@ class MemesController < ApplicationController
     end
   end
 
-  def preview_text
-    meme = Meme.find(params[:id])
-    meme.add_text_to_image(params[:text], {color: 'black', size: 20})
-    render json: {image_url: url_for(meme.file)}
-  end
-
   def favorite_exists?
     Favorite.exists?(user: current_user, meme: @meme)
   end
