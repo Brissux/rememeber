@@ -1,0 +1,21 @@
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+  display: flex;
+  gap: 20px;
+}
+
+.menu-item {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.menu-item.active {
+  text-decoration: underline;
+  text-decoration-color: #D05BC5;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 3px;
+}

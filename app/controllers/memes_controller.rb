@@ -2,11 +2,10 @@ class MemesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    if params[:search].present?
-      @memes = Meme.search_by_title_and_tag(params[:search]).where(public: true)
-    else
-      @memes = Meme.where(public: true).order(created_at: :desc)
-    end
+    @memes = Meme.where(public: true).order('RANDOM()')
+    @memes = Meme.where(public: true).search_by_title_and_tag(params[:search]) if params[:search].present?
+    @memes = Meme.where(public: true).order(created_at: :desc) if params[:filter] == "recent"
+    @memes = Meme.where(public: true).sort_by(&:like_counter).reverse if params[:filter] == "popular"
   end
 
   def new

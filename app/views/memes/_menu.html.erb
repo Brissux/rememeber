@@ -1,0 +1,7 @@
+<nav>
+  <ul class="menu">
+    <li><%= link_to "Tout", root_path, class: "menu-item #{params[:filter] ? '' : 'active'}"  %></li>
+    <li><%= link_to "Récents", root_path(filter: "recent"), class: "menu-item #{params[:filter] == 'recent' ? 'active' : ''}"  %></li>
+    <li><%= link_to "Populaires", root_path(filter: "popular"), class: "menu-item #{params[:filter] == 'popular' ? 'active' : ''}"  %></li>
+  </ul>
+</nav>

@@ -7,12 +7,12 @@ class LikesController < ApplicationController
     if @like.save
       respond_to do |format|
         format.html { redirect_to @meme, notice: 'Mème aimé avec succès !' }
-        format.text { render partial: "shared/button_like", locals: { meme: @meme }, formats: [:html] }
+        format.text { render partial: "shared/like_icon", locals: { meme: @meme }, formats: [:html] }
       end
     else
       respond_to do |format|
         format.html { redirect_to @meme, alert: 'Erreur lors de l\'ajout du like.' }
-        format.text { render partial: "shared/button_like", locals: { meme: @meme }, formats: [:html] }
+        format.text { render partial: "shared/like_icon", locals: { meme: @meme }, formats: [:html] }
       end
     end
   end
@@ -23,12 +23,12 @@ class LikesController < ApplicationController
     if @like.destroy
       respond_to do |format|
         format.html { redirect_to @meme, notice: 'Mème retiré de vos likes avec succès !' }
-        format.text { render partial: "shared/button_like", locals: { meme: @meme }, formats: [:html] }
+        format.text { render partial: "shared/like_icon", locals: { meme: @meme }, formats: [:html] }
       end
     else
       respond_to do |format|
         format.html { redirect_to @meme, alert: 'Erreur lors de la suppression du like.' }
-        format.text { render partial: "shared/button_like", locals: { meme: @meme }, formats: [:html] }
+        format.text { render partial: "shared/like_icon", locals: { meme: @meme }, formats: [:html] }
       end
     end
   end

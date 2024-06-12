@@ -25,6 +25,15 @@ class Meme < ApplicationRecord
 
   before_destroy :delete_related_meme_tags
 
+
+  # def public_checked?
+  #   public? ? "checked" : ""
+  # end
+
+  def like_counter
+    self.likes.count
+  end
+
   private
 
   def file_presence
