@@ -1,3 +1,4 @@
+# memes_controller.rb
 class MemesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -20,8 +21,7 @@ class MemesController < ApplicationController
       file = params[:meme][:file]
       if file.content_type.start_with? 'video'
         upload_result = Cloudinary::Uploader.upload_large(file.tempfile, resource_type: "video", eager: [{ format: 'jpg', width: 160, crop: 'fill', gravity: 'auto' }])
-        @meme.video_url = upload_result["secure_url"]
-        @meme.thumbnail_url = upload_result["eager"].first["secure_url"]
+        @meme.video_url, @meme.thumbnail_url = upload_result["secure_url"], upload_result["eager"].first["secure_url"]
       end
       @meme.file.attach(file)
     end
@@ -40,17 +40,25 @@ class MemesController < ApplicationController
     @like = current_user.likes.find_by(meme: @meme) if user_signed_in?
   end
 
+  def edit
+    @meme = Meme.find(params[:id])
+  end
+
   def update
     @meme = Meme.find(params[:id])
-    @meme.update(meme_params)
-
-    respond_to do |format|
-      format.html { redirect_to meme_path }
-      format.text { render partial: "memes/form", locals: { meme: @meme }, formats: [:html] }
+    if @meme.update(meme_params)
+      @meme.add_text_to_image(params[:meme][:text], {}) if params[:meme][:text].present?
+      redirect_to @meme, notice: 'Meme updated successfully.'
+    else
+      render :edit
     end
   end
 
-  helper_method :favorite_exists?
+  def preview_text
+    meme = Meme.find(params[:id])
+    meme.add_text_to_image(params[:text], {color: 'black', size: 20})
+    render json: {image_url: url_for(meme.file)}
+  end
 
   def favorite_exists?
     Favorite.exists?(user: current_user, meme: @meme)
@@ -69,23 +77,18 @@ class MemesController < ApplicationController
   private
 
   def meme_params
-    params.require(:meme).permit(:title, :public, :image, :video, meme_tags_attributes: [:id, tag_attributes: [:name]])
+    params.require(:meme).permit(:title, :public, :image, :video)
   end
 
   def process_meme_tags(meme)
     meme_tags = []
-
     meme.meme_tags.each do |meme_tag|
       tag_names = meme_tag.tag.name.downcase.split(",").map(&:strip)
-
       tag_names.each do |tag_name|
-        tag = Tag.find_or_create_by(name: tag_name) do |t|
-          t.name = tag_name.downcase
-        end
+        tag = Tag.find_or_create_by(name: tag_name) { |t| t.name = tag_name.downcase }
         meme_tags << MemeTag.new(meme: meme, tag: tag) unless meme.tags.include?(tag)
       end
     end
-
     meme.meme_tags = meme_tags
   end
 end

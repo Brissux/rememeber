@@ -1,8 +1,13 @@
-<h2 class="mb-3"><%= @meme.title %></h2>
-
-<% if @meme.user == current_user %>
-  <%= render "form", meme: @meme %>
+<%= form_with(model: @meme, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :text, class: 'form-label' %> <!-- Applique le style Bootstrap aux labels -->
+    <!-- Réduction de la hauteur et application du style Bootstrap -->
+    <textarea name="meme[text]" rows="2" class="form-control" data-controller="text-preview" data-text-preview-target="textInput" data-action="input->text-preview#updatePreview"></textarea>
+  </div>
+  <%= form.submit "Add Text", class: 'btn btn-primary' %> <!-- Applique le style Bootstrap au bouton -->
 <% end %>
+
+<%= render "form", meme: @meme %>
 
 <div class="d-flex justify-content-evenly flex-wrap row-gap-2">
   <%= render partial: "shared/card2", locals: { meme: @meme } %>
@@ -19,6 +24,7 @@
 <% end %>
 
 <% if @meme.user == current_user %>
+
 <div class="text-center">
   <%= link_to "SUPPRIMER", meme_path(@meme), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn button-delete" %>
    </div>
