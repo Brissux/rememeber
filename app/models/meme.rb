@@ -1,7 +1,5 @@
 class Meme < ApplicationRecord
   belongs_to :user
-  # has_one_attached :image
-  # has_one_attached :video
   has_one_attached :file
   validates :title, presence: true
   validate :file_presence
@@ -26,10 +24,6 @@ class Meme < ApplicationRecord
     }
 
   before_destroy :delete_related_meme_tags
-
-  # def public_checked?
-  #   public? ? "checked" : ""
-  # end
 
   private
 

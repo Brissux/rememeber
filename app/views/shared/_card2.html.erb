@@ -14,8 +14,6 @@
   </div>
 </div>
 
-<!-- Le reste du code HTML reste inchangé -->
-
 
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -24,7 +22,11 @@
         <h5 class="modal-title" id="shareModalLabel">Partager sur les réseaux</h5>
       </div>
       <div class="modal-body">
-        <%= social_share_button_tag(meme.title, url: meme_url(meme)) %>
+      <div class="icone-media">
+       <%= social_share_button_tag(meme.title, url: meme_url(meme)) %>
+        <%= image_tag 'messenger.svg' %>
+        <%= image_tag 'instagram.svg' %>
+      </div>
         <div class="d-flex align-items-center pt-4" data-controller="copyurl" data-action="click->copyurl#copyurl">
           <button type="button" class="btn btn-link" id="popover-link" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Copié !" data-bs-trigger="click">
             <%= image_tag 'link.svg' %>
