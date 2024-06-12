@@ -23,8 +23,9 @@ class Meme < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
-
+  
   before_destroy :delete_related_meme_tagsrai
+
 
   def like_counter
     self.likes.count
