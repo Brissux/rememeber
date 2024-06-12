@@ -4,15 +4,16 @@
   flex-shrink: 0;
   border: 2px solid #000;
   border-radius: 5px;
-  box-shadow: 4px 3px 1px 1px black;
-  margin-bottom: 25px;
+  box-shadow: 3px 2px 1px 1px black;
+  margin-bottom: 20px;
   background-color: #daa8d5;
 }
 
 .card1 .card-img {
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 1px 1px 3px 0px rgb(142, 141, 141)
+  box-shadow: 1px 1px 3px 0px rgb(142, 141, 141);
+  position: relative; /* Ajoutez cette ligne */
 }
 
 .card1 .card-img img {
@@ -23,4 +24,11 @@
 
 .card-tab {
   justify-content: space-between;
+  margin: 8px 8px 0 8px;
+}
+
+.video-icon {
+  position: absolute;
+  top: 226px;
+  right: 114px;
 }
