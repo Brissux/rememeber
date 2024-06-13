@@ -2,11 +2,10 @@
   align-content: center;
   width: 300px;
   height: 50px;
-  background-color: #f5bdd9;
-  border: 1px solid #f3a8d0;
+  background-color: #CE5AC3;
   box-shadow: 5px 5px 0px black;
   border-radius: 10px;
-  color: black;
+  color: white;
   font-size: 16px;
   font-family: Montserrat;
   font-weight: 700;
@@ -17,7 +16,7 @@
 }
 
 .button-validate:hover {
-  background-color: #cb8bad; /* Changez la couleur de fond au survol */
+  background-color: #a7459d; /* Changez la couleur de fond au survol */
   color: white; /* Changez la couleur du texte au survol */
 }
 
@@ -25,10 +24,10 @@
   align-content: center;
   width: 300px;
   height: 50px;
-  background-color: #f3a8d0;
+  background-color: #CE5AC3;
   box-shadow: 5px 5px 0px black;
   border-radius: 10px;
-  color: black;
+  color: white;
   font-size: 16px;
   font-family: Montserrat;
   font-weight: 700;
@@ -39,7 +38,7 @@
 }
 
 .button-unvalidate:hover {
-  background-color: #cb8bad; /* Changez la couleur de fond au survol */
+  background-color: #a7459d; /* Changez la couleur de fond au survol */
   color: white; /* Changez la couleur du texte au survol */
 }
 
