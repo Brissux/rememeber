@@ -26,8 +26,13 @@
         <% end %>
       <% else %>
         <%= link_to edit_user_registration_path(current_user) do %>
-          <%= image_tag(is_user_page ? 'profile_icon_fill.svg' : 'profile_icon.svg', alt: 'Profile Icon') %>
+          <%= image_tag('profile_icon_fill.svg', alt: 'Profile Icon') if request.path.include?('/users/sign_in') || request.path.include?('/users/edit') %>
+          <%= image_tag('profile_icon.svg', alt: 'Profile Icon') unless request.path.include?('/users/sign_in') || request.path.include?('/users/edit') %>
         <% end %>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path do %>
+        <%= image_tag('profile_icon.svg', alt: 'Profile Icon') %>
       <% end %>
     <% end %>
   </div>
