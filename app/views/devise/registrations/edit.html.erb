@@ -21,12 +21,15 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.input :file, as: :file %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Update" %>
   </div>
 <% end %>
+
+<%= button_to "logout", destroy_user_session_path, method: :delete  %>
 
 <h3>Cancel my account</h3>
 

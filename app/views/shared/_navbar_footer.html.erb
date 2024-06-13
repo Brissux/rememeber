@@ -17,20 +17,21 @@
             <%= image_tag(current_page?(favorites_path) ? "library_icon_fill.svg" : "library_icon.svg", class:"library-icon") %>
         <% end %>
     </div>
-    
+
     <% if user_signed_in? %>
-      <% if current_user.photo.attached? %>
+      <% if current_user.file.attached? %>
         <%= link_to edit_user_registration_path(current_user) do %>
-          <%= image_tag(current_user.photo.variant(resize: "48x48"), class: "profile-icon #{'active-profile' if current_page?(edit_user_registration_path(current_user))}") %>
+          <%# <%= image_tag(url_for(current_user.file.variant(resize: "48x48")), class: "profile-icon #{'active-profile' if current_page?(edit_user_registration_path(current_user))}") %>
+          <%= cl_image_tag(current_user.file.key, transformation: { width: 48, height: 48, crop: "fill" }, class: "profile-icon #{'active-profile' if current_page?(edit_user_registration_path(current_user))}") %>
         <% end %>
       <% else %>
         <%= link_to edit_user_registration_path(current_user) do %>
-          <%= image_tag("profile.png", class: "profile-icon #{'active-profile' if current_page?(edit_user_registration_path(current_user))}") %>
+          <%= image_tag("profile.svg", class: "profile-icon #{'active-profile' if current_page?(edit_user_registration_path(current_user))}") %>
         <% end %>
       <% end %>
     <% else %>
       <%= link_to user_session_path do %>
-        <%= image_tag("profile.png", class: "profile-icon") %>
+        <%= image_tag("profile.svg", class: "profile-icon") %>
       <% end %>
     <% end %>
   </div>
