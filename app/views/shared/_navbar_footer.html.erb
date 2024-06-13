@@ -22,18 +22,13 @@
       <% is_user_page = request.path.include?(current_user_profile_path) || request.path.include?('/users/edit') || request.path.include?('/users/sign_in') %>
       <% if current_user.photo.attached? %>
         <%= link_to edit_user_registration_path(current_user) do %>
-          <%= image_tag(is_user_page ? 'profile_icon_fill.svg' : 'profile_icon.svg', alt: 'Profile Icon') %>
+          <%= cl_image_tag(current_user.file.key, transformation: { width: 48, height: 48, crop: "fill" }, class: "profile-icon #{'active-profile' if current_page?(edit_user_registration_path(current_user))}") %>
         <% end %>
       <% else %>
         <%= link_to edit_user_registration_path(current_user) do %>
           <%= image_tag(is_user_page ? 'profile_icon_fill.svg' : 'profile_icon.svg', alt: 'Profile Icon') %>
         <% end %>
       <% end %>
-    <% else %>
-      <%= link_to user_session_path do %>
-        <%= image_tag('profile_icon.svg', alt: 'Profile Icon') %>
-      <% end %>
     <% end %>
-
   </div>
 </div>

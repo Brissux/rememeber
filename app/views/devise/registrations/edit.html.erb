@@ -21,10 +21,14 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.input :file, as: :file %>
   </div>
 
   <div class="form-actions d-flex justify-content-center">
     <%= f.button :submit, "Update", class: "btn button-create paddingperso" %>
   </div>
 <% end %>
+
+<%= button_to "logout", destroy_user_session_path, method: :delete  %>
+
 <div class="py-3"></div>
