@@ -13,6 +13,6 @@
     <% else %>
       <%= image_tag 'like_icon.svg', alt: 'Ajouter à mes likes', class: 'like-icon', data: { like_target: "empty", disabled: true } %>
     <% end %>
-      <p id="like-count" class="ms-2"><%= meme.likes.count %></p>
+      <p id="like-count"><%= meme.likes.count %></p>
   </div>
 </div>
