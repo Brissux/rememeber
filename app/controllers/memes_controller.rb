@@ -35,6 +35,10 @@ class MemesController < ApplicationController
     if @meme.save
       redirect_to @meme, notice: 'Mème créé avec succès !'
       current_user.favorites.create(meme: @meme)
+      respond_to do |format|
+        format.html { redirect_to movies_path }
+        format.text { render partial: "movies/movie_infos", locals: {movie: @movie}, formats: [:html] }
+      end
     else
       render :new, status: :unprocessable_entity
     end

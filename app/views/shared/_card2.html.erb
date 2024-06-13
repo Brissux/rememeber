@@ -8,14 +8,23 @@
           Your browser does not support the video tag.
         </video>
       <% elsif meme.file.attached? %>
-        <%= cl_image_tag meme.file.key, alt: meme.title, width: 360, height: 360, data: { texteditor_target: "image"}, class: "d-none", crossorigin: "anonymous"  %>
-        <canvas id="imageCanvas" width="360" height="360" data-texteditor-target="canvas">
+        <%= cl_image_tag meme.file.key, alt: meme.title, data: { texteditor_target: "image"}, class: "d-none", crossorigin: "anonymous"  %>
+        <canvas id="imageCanvas" width="360" data-texteditor-target="canvas">
         </canvas>
       <% end %>
     </div>
     <%= render "shared/button_like", meme: @meme %>
   </div>
-</div>
+
+
+
+  <%= simple_form_for meme, html: { data: { texteditor_target: "form" } } do |f| %>
+    <%= f.input :file, as: :file, input_html: { data: { texteditor_target: "input" }} %>  <%#, input_html: { value: "https://res.cloudinary.com/demplfybm/image/upload/v1/development/hje40jxx5wiwbqo451djvrpkqded?_a=BACCd2Bn" } %>
+    <%= f.button :submit, "AJOUTER UN MEME", class: "btn button-create" %>
+  <% end %>
+
+</div> <!-- Fermeture de balise ajoutée ici -->
+
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
