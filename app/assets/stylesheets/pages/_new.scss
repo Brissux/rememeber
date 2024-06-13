@@ -1,11 +1,9 @@
 .meme_title > input {
-  border: black 1px solid;
   margin: 0 auto;
   width: 96%;
   border-radius: 5px;
 }
 .meme_meme_tags_tag_name > input {
-  border: black 1px solid;
   margin: 0 auto;
   width: 96%;
   border-radius: 5px;
@@ -140,7 +138,7 @@
   font-weight: 700;
   line-height: 22px;
   margin-top: 5px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -214,4 +212,11 @@
 
 .form-check-input.is-valid {
   border-color: transparent;
+}
+
+
+.form-control[type="file"]:not(:disabled):not([readonly]) {
+  width: 346.5px;
+  margin-top: 10px;
+  border-radius: 5px;
 }
