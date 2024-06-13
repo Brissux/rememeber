@@ -2,12 +2,14 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @favorites = current_user.favorites.joins(:meme)
+
+    if params[:search].present?
+      @favorites = @favorites.merge(Meme.search_by_title_and_tag(params[:search]))
+    end
+
     if params[:filter] == "my_memes"
-      @favorites = current_user.favorites.joins(:meme).where(memes: { user_id: current_user.id })
-    elsif params[:search].present?
-      @favorites = current_user.favorites.joins(:meme).merge(Meme.search_by_title_and_tag(params[:search]))
-    else
-      @favorites = current_user.favorites
+      @favorites = @favorites.where(memes: { user_id: current_user.id })
     end
   end
 

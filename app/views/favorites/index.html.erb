@@ -1,5 +1,5 @@
 <h1>Ma galerie</h1>
-<%= render partial: "favorites/menu_favorites", locals: { memes: @memes } %>
+<%= render partial: "favorites/menu_favorites", locals: { search: params[:search] } %>
 <% if @favorites.any? %>
   <div class="container-fluid">
     <div class="row">
