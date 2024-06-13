@@ -1,5 +1,6 @@
+<% if @meme.user == current_user %>
 <%= render "form", meme: @meme %>
-
+<% end %>
 <div class="d-flex justify-content-evenly flex-wrap row-gap-2">
   <%= render partial: "shared/card2", locals: { meme: @meme } %>
 </div>

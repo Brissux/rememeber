@@ -42,6 +42,10 @@ class MemesController < ApplicationController
 
   def show
     @meme = Meme.find(params[:id])
+    if !@meme.public && @meme.user != current_user
+      redirect_to root_path, alert: "Vous n'avez pas l'autorisation de voir ce meme."
+      return
+    end
     @tags = @meme.tags
     @favorite = Favorite.new
     @like = current_user.likes.find_by(meme: @meme) if user_signed_in?
