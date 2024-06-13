@@ -33,7 +33,7 @@ class MemesController < ApplicationController
       @meme.file.attach(file)
     end
     if @meme.save
-      redirect_to root_path, notice: 'Mème créé avec succès !'
+      redirect_to @meme, notice: 'Mème créé avec succès !'
       current_user.favorites.create(meme: @meme)
     else
       render :new, status: :unprocessable_entity

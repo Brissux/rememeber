@@ -1,0 +1,78 @@
+.devise-form {
+  .form-custom {
+    // Styles spécifiques à la forme de session
+    .form-inputs {
+      // Styles pour les champs de formulaire
+    }
+    .form-actions {
+      display: flex;
+      justify-content: center; // Centre le bouton de login
+      margin-top: 20px;
+      .button-create {
+        align-content: center;
+        width: 300px;
+        height: 50px;
+        background-color: #D05BC5; // Couleur spécifique du projet pour le bouton
+        border: 1px solid #D05BC5;
+        box-shadow: 5px 5px 0px black;
+        border-radius: 10px;
+        color: black;
+        font-size: 16px;
+        font-family: Montserrat;
+        font-weight: 700;
+        line-height: 22px;
+        margin-top: 5px;
+        margin-bottom: 50px;
+        transition: background-color 0.3s, color 0.3s;
+        &:hover {
+          background-color: #B347A8; // Couleur au survol
+          color: white;
+        }
+      }
+    }
+    .form-check {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .form-check-input {
+        height: 25px;
+        width: 40px;
+        transition: background-color 0.3s;
+        &:checked {
+          background-color: #52D1DC; // Nouvelle couleur de fond pour le bouton "remember me"
+        }
+        &:before {
+          content: "";
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          transition: transform 0.3s;
+          transform: translateX(10px);
+        }
+        &:focus {
+          box-shadow: none;
+        }
+        &.is-valid {
+          border-color: transparent;
+        }
+      }
+      .form-check-label {
+        color: black;
+        margin-left: 5px;
+        margin-right: 3rem;
+      }
+    }
+    // Amélioration du style pour les liens "sign-up" et "forgot password"
+    a {
+      color: #D05BC5; // Utilise une couleur du projet
+      text-decoration: none;
+      &:hover {
+        color: #B347A8; // Changement de couleur au survol
+        text-decoration: underline;
+      }
+    }
+  }
+}
