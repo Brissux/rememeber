@@ -28,12 +28,18 @@
 #like-button {
   margin-left: 9px;
   font-size: 17px;
-
 }
 
-.like-icon {
+.card2 .like-icon {
   display: flex;
-  height: 25px;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+}
+
+#like-count {
+  margin: 0;
+  font-weight: 600;
 }
 
 .fas, .fa-solid {
