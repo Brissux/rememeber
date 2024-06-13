@@ -4,7 +4,8 @@
   align-items: center;
   flex-shrink: 0;
   border-radius: 17.5px;
-  background: #D05BC5;
+  background: #EBB3E5;
+  border: 1px solid #CE5AC3;
   box-shadow: 3px 3px 0px black;
   font-size: 16px;
   font-family: Montserrat;
@@ -18,5 +19,5 @@
 }
 
 .button-tag:hover {
-  background: #EBB3E5; /* la même couleur de fond que celle du bouton de tag normal */
+  background: #D05BC5;/* la même couleur de fond que celle du bouton de tag normal */
 }
