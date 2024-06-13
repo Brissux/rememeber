@@ -3,12 +3,17 @@ class FavoritesController < ApplicationController
 
   def index
     if params[:filter] == "my_memes"
-      @favorites = current_user.favorites.joins(:meme).where(memes: { user_id: current_user.id })
-    elsif params[:search].present?
-      @favorites = current_user.favorites.joins(:meme).merge(Meme.search_by_title_and_tag(params[:search]))
+      @memes = current_user.memes
+      @favorites = current_user.favorites.joins(:meme).where(memes: { id: @memes })
     else
       @favorites = current_user.favorites
     end
+
+    if params[:search].present?
+      @favorites = @favorites.joins(:meme).merge(Meme.search_by_title_and_tag(params[:search]))
+    end
+
+    @favorites = @favorites.order(created_at: :desc)
   end
 
   def create
