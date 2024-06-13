@@ -15,7 +15,9 @@
     </div>
     <%= render "shared/button_like", meme: @meme %>
   </div>
-</div> <!-- Fermeture de balise ajoutée ici -->
+</div>
+
+
 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -30,12 +32,12 @@
           <%= image_tag 'instagram.svg' %>
           <%= image_tag 'x_twitter.svg' %>
         </div>
-        <div class="d-flex align-items-center pt-4" data-controller="copyurl" data-action="click->copyurl#copyurl">
-          <button type="button" class="btn btn-link" id="popover-link" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Copié !" data-bs-trigger="click">
-            <%= image_tag 'link.svg' %>
-          </button>
-          <input type="text" class="form-control ms-2" id="page-url" value="<%= meme_url(meme) %>" data-copyurl-target="input" readonly>
-        </div>
+        <div class="d-flex align-items-center pt-4" data-controller="copyurl">
+        <button type="button" class="btn btn-link" data-action="click->copyurl#copyurl" data-copyurl-target="link" id="popover-link" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Copié !" data-bs-trigger="click">
+          <%= image_tag 'link.svg' %>
+        </button>
+        <input type="text" class="form-control ms-2" id="page-url" value="<%= meme_url(meme) %>" data-copyurl-target="input" readonly>
+      </div>
       </div>
     </div>
   </div>
