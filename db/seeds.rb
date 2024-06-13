@@ -13,138 +13,138 @@ anais = User.create!(email: "anais@gmail.com", nickname: "Anaïs", password: "pa
 amin = User.create!(email: "amin@gmail.com", nickname: "Amin", password: "password")
 
 # Create memes with images
-meme1 = Meme.new(title: "Alien Theory explication", public: true, user: antoine)
+meme1 = Meme.create(title: "Alien Theory explication", public: true, user: antoine)
 meme1.file.attach(io: URI.open("https://i.imgflip.com/26am.jpg"), filename: 'alien_theory.jpg')
-meme1.save
+antoine.favorites.create(meme: meme1)
 
-meme2 = Meme.new(title: "Bouton stress", public: true, user: julien)
+meme2 = Meme.create(title: "Bouton stress", public: true, user: julien)
 meme2.file.attach(io: URI.open("https://i.imgflip.com/1g8my4.jpg"), filename: 'bouton_stress.jpg')
-meme2.save
+julien.favorites.create(meme: meme2)
 
-meme3 = Meme.new(title: "Cerveau Explosion", public: false, user: anais)
+meme3 = Meme.create(title: "Cerveau Explosion", public: false, user: anais)
 meme3.file.attach(io: URI.open("https://i.imgflip.com/1jwhww.jpg"), filename: 'cerveau_explos.jpg')
-meme3.save
+anais.favorites.create(meme: meme3)
 
-meme4 = Meme.new(title: "Drake Dance", public: true, user: amin)
+meme4 = Meme.create(title: "Drake Dance", public: true, user: amin)
 meme4.file.attach(io: URI.open("https://i.imgflip.com/30b1gx.jpg"), filename: 'drake_dance.jpg')
-meme4.save
+amin.favorites.create(meme: meme4)
 
 # New memes
-meme5 = Meme.new(title: "Homer et Bart dans les escaliers", public: true, user: antoine)
+meme5 = Meme.create(title: "Homer et Bart dans les escaliers", public: true, user: antoine)
 meme5.file.attach(io: URI.open("https://pbs.twimg.com/media/GKgjOCnWwAA7l_B?format=jpg&name=small"), filename: 'homer_bart_stairs.jpg')
-meme5.save
+antoine.favorites.create(meme: meme5)
 
-meme6 = Meme.new(title: "Among us Impostor", public: false, user: julien)
+meme6 = Meme.create(title: "Among us Impostor", public: false, user: julien)
 meme6.file.attach(io: URI.open("https://pbs.twimg.com/media/GKaWGJsXcAA063J?format=jpg&name=large"), filename: 'among_us_impostor.jpg')
-meme6.save
+julien.favorites.create(meme: meme6)
 
-meme7 = Meme.new(title: "Snap Mohammed Henni bloqué", public: true, user: anais)
+meme7 = Meme.create(title: "Snap Mohammed Henni bloqué", public: true, user: anais)
 meme7.file.attach(io: URI.open("https://pbs.twimg.com/media/GKPxrp2WcAAYJS5?format=jpg&name=medium"), filename: 'mohammed_henni_blocked.jpg')
-meme7.save
+anais.favorites.create(meme: meme7)
 
-meme8 = Meme.new(title: "Pas mal non c'est français", public: true, user: amin)
+meme8 = Meme.create(title: "Pas mal non c'est français", public: true, user: amin)
 meme8.file.attach(io: URI.open("https://pbs.twimg.com/media/GKKu9t4WQAAZw2_?format=jpg&name=small"), filename: 'french_class.jpg')
-meme8.save
+amin.favorites.create(meme: meme8)
 
-meme9 = Meme.new(title: "Lionel Messi costar", public: true, user: antoine)
+meme9 = Meme.create(title: "Lionel Messi costar", public: true, user: antoine)
 meme9.file.attach(io: URI.open("https://pbs.twimg.com/media/GKFta4XW4AAXcDz?format=jpg&name=900x900"), filename: 'messi_costar.jpg')
-meme9.save
+antoine.favorites.create(meme: meme9)
 
-meme10 = Meme.new(title: "Zinedine Zidane boit son café", public: false, user: julien)
+meme10 = Meme.create(title: "Zinedine Zidane boit son café", public: false, user: julien)
 meme10.file.attach(io: URI.open("https://pbs.twimg.com/media/GJ3VlnqXoAEkkVq?format=jpg&name=900x900"), filename: 'zidane_coffee.jpg')
-meme10.save
+julien.favorites.create(meme: meme10)
 
-meme11 = Meme.new(title: "Tik tok mec pleure", public: true, user: anais)
+meme11 = Meme.create(title: "Tik tok mec pleure", public: true, user: anais)
 meme11.file.attach(io: URI.open("https://pbs.twimg.com/media/GJyT9fMW8AAhByu?format=jpg&name=medium"), filename: 'tiktok_guy_crying.jpg')
-meme11.save
+anais.favorites.create(meme: meme11)
 
-meme12 = Meme.new(title: "Merde je me suis cramé tout seul", public: true, user: amin)
+meme12 = Meme.create(title: "Merde je me suis cramé tout seul", public: true, user: amin)
 meme12.file.attach(io: URI.open("https://pbs.twimg.com/media/GJdB3FfXwAAj7Sg?format=jpg&name=900x900"), filename: 'burnt_myself.jpg')
-meme12.save
+amin.favorites.create(meme: meme12)
 
-meme13 = Meme.new(title: "Les Simpson Moe dégage Barney", public: true, user: antoine)
+meme13 = Meme.create(title: "Les Simpson Moe dégage Barney", public: true, user: antoine)
 meme13.file.attach(io: URI.open("https://pbs.twimg.com/media/GI5J5fkWEAApTcH?format=jpg&name=medium"), filename: 'moe_kicks_barney.jpg')
-meme13.save
+antoine.favorites.create(meme: meme13)
 
-meme14 = Meme.new(title: "Snap mauvaise journée", public: false, user: julien)
+meme14 = Meme.create(title: "Snap mauvaise journée", public: false, user: julien)
 meme14.file.attach(io: URI.open("https://pbs.twimg.com/media/GI0VGsmWIAA23uK?format=jpg&name=medium"), filename: 'bad_day_snap.jpg')
-meme14.save
+julien.favorites.create(meme: meme14)
 
-meme15 = Meme.new(title: "Meme image Neo the one", public: true, user: anais)
+meme15 = Meme.create(title: "Meme image Neo the one", public: true, user: anais)
 meme15.file.attach(io: URI.open("https://pbs.twimg.com/media/GH663NPWkAAnWkU?format=jpg&name=900x900"), filename: 'neo_the_one.jpg')
-meme15.save
+anais.favorites.create(meme: meme15)
 
-meme16 = Meme.new(title: "Un avis qui vous mettrait dans cette position", public: true, user: amin)
+meme16 = Meme.create(title: "Un avis qui vous mettrait dans cette position", public: true, user: amin)
 meme16.file.attach(io: URI.open("https://pbs.twimg.com/media/GH1vy41W4AMyrk4?format=jpg&name=large"), filename: 'opinion_position.jpg')
-meme16.save
+amin.favorites.create(meme: meme16)
 
-meme17 = Meme.new(title: "Mickey mouse c'est un outil surprise", public: true, user: antoine)
+meme17 = Meme.create(title: "Mickey mouse c'est un outil surprise", public: true, user: antoine)
 meme17.file.attach(io: URI.open("https://pbs.twimg.com/media/GHric2OWEAAJCl5?format=jpg&name=small"), filename: 'mickey_tool.jpg')
-meme17.save
+antoine.favorites.create(meme: meme17)
 
-meme18 = Meme.new(title: "Face à face confrontation", public: false, user: julien)
+meme18 = Meme.create(title: "Face à face confrontation", public: false, user: julien)
 meme18.file.attach(io: URI.open("https://pbs.twimg.com/media/GGY3cETWYAAva-W?format=jpg&name=small"), filename: 'face_to_face.jpg')
-meme18.save
+julien.favorites.create(meme: meme18)
 
-meme19 = Meme.new(title: "Mec qui dit il a pas tort", public: true, user: anais)
+meme19 = Meme.create(title: "Mec qui dit il a pas tort", public: true, user: anais)
 meme19.file.attach(io: URI.open("https://pbs.twimg.com/media/GGY3cETWYAAva-W?format=jpg&name=small"), filename: 'guy_not_wrong.jpg')
-meme19.save
+anais.favorites.create(meme: meme19)
 
-meme20 = Meme.new(title: "Mec suicide selfie", public: true, user: amin)
+meme20 = Meme.create(title: "Mec suicide selfie", public: true, user: amin)
 meme20.file.attach(io: URI.open("https://pbs.twimg.com/media/GF1-MecW4AAGqo6?format=jpg&name=900x900"), filename: 'suicide_selfie.jpg')
-meme20.save
+amin.favorites.create(meme: meme20)
 
-meme21 = Meme.new(title: "Temps gagné tik tok mec", public: true, user: antoine)
+meme21 = Meme.create(title: "Temps gagné tik tok mec", public: true, user: antoine)
 meme21.file.attach(io: URI.open("https://pbs.twimg.com/media/GFqkkU1XwAARWCs?format=jpg&name=900x900"), filename: 'time_saved_tiktok.jpg')
-meme21.save
+antoine.favorites.create(meme: meme21)
 
-meme22 = Meme.new(title: "Shrek l'âne donkey te fixe", public: false, user: julien)
+meme22 = Meme.create(title: "Shrek l'âne donkey te fixe", public: false, user: julien)
 meme22.file.attach(io: URI.open("https://pbs.twimg.com/media/GFlYQ8BWoAAGOQh?format=jpg&name=900x900"), filename: 'shrek_donkey_stare.jpg')
-meme22.save
+julien.favorites.create(meme: meme22)
 
-meme23 = Meme.new(title: "Ville futuriste du futur", public: true, user: anais)
+meme23 = Meme.create(title: "Ville futuriste du futur", public: true, user: anais)
 meme23.file.attach(io: URI.open("https://pbs.twimg.com/media/GFbhXyxWQAA9qyl?format=jpg&name=900x900"), filename: 'futuristic_city.jpg')
-meme23.save
+anais.favorites.create(meme: meme23)
 
-meme24 = Meme.new(title: "Gamin enfant a mangé du caca", public: true, user: amin)
+meme24 = Meme.create(title: "Gamin enfant a mangé du caca", public: true, user: amin)
 meme24.file.attach(io: URI.open("https://pbs.twimg.com/media/GFQrs0ZXIAAuldA?format=jpg&name=medium"), filename: 'kid_ate_poop.jpg')
-meme24.save
+amin.favorites.create(meme: meme24)
 
-meme25 = Meme.new(title: "Anime Akakichi no Eleven mec annonce un truc", public: true, user: antoine)
+meme25 = Meme.create(title: "Anime Akakichi no Eleven mec annonce un truc", public: true, user: antoine)
 meme25.file.attach(io: URI.open("https://pbs.twimg.com/media/GDj05z2WoAAharW?format=jpg&name=small"), filename: 'akakichi_announcement.jpg')
-meme25.save
+antoine.favorites.create(meme: meme25)
 
-meme26 = Meme.new(title: "She's so crazy love her", public: false, user: julien)
+meme26 = Meme.create(title: "She's so crazy love her", public: false, user: julien)
 meme26.file.attach(io: URI.open("https://pbs.twimg.com/media/Fly2wJCWIAwrfzA?format=jpg&name=small"), filename: 'crazy_love.jpg')
-meme26.save
+julien.favorites.create(meme: meme26)
 
-meme27 = Meme.new(title: "Les Simpsons Bart un avis catastrophique", public: true, user: anais)
+meme27 = Meme.create(title: "Les Simpsons Bart un avis catastrophique", public: true, user: anais)
 meme27.file.attach(io: URI.open("https://pbs.twimg.com/media/GFLpW1pWgAAfdV8?format=jpg&name=900x900"), filename: 'bart_catastrophic.jpg')
-meme27.save
+anais.favorites.create(meme: meme27)
 
-meme28 = Meme.new(title: "Snap mec choqué il a eu 0/20", public: true, user: amin)
+meme28 = Meme.create(title: "Snap mec choqué il a eu 0/20", public: true, user: amin)
 meme28.file.attach(io: URI.open("https://pbs.twimg.com/media/FhE7R9wX0AIB_8j?format=jpg&name=large"), filename: 'snap_shocked_zero.jpg')
-meme28.save
+amin.favorites.create(meme: meme28)
 
-meme29 = Meme.new(title: "Il revient Zinedine Zidane", public: true, user: antoine)
+meme29 = Meme.create(title: "Il revient Zinedine Zidane", public: true, user: antoine)
 meme29.file.attach(io: URI.open("https://pbs.twimg.com/media/FgLxMplWYAIHZDa?format=jpg&name=900x900"), filename: 'zidane_returns.jpg')
-meme29.save
+antoine.favorites.create(meme: meme29)
 
-meme30 = Meme.new(title: "Narcos solitude ennui", public: false, user: julien)
+meme30 = Meme.create(title: "Narcos solitude ennui", public: false, user: julien)
 meme30.file.attach(io: URI.open("https://pbs.twimg.com/media/Eg3T9iNWsAAFhXS?format=jpg&name=small"), filename: 'narcos_boredom.jpg')
-meme30.save
+julien.favorites.create(meme: meme30)
 
-meme31 = Meme.new(title: "Bob Razowski Sulli", public: true, user: anais)
+meme31 = Meme.create(title: "Bob Razowski Sulli", public: true, user: anais)
 meme31.file.attach(io: URI.open("https://pbs.twimg.com/media/EgYAdvrU0AE0UnK?format=jpg&name=900x900"), filename: 'bob_sulli.jpg')
-meme31.save
+anais.favorites.create(meme: meme31)
 
-meme32 = Meme.new(title: "Abraham Simpson raconte une histoire", public: true, user: amin)
+meme32 = Meme.create(title: "Abraham Simpson raconte une histoire", public: true, user: amin)
 meme32.file.attach(io: URI.open("https://pbs.twimg.com/media/Eg_sH2IXsAESKuh?format=jpg&name=small"), filename: 'abraham_story.jpg')
-meme32.save
+amin.favorites.create(meme: meme32)
 
-meme33 = Meme.new(title: "Chat triste tristesse", public: true, user: antoine)
+meme33 = Meme.create(title: "Chat triste tristesse", public: true, user: antoine)
 meme33.file.attach(io: URI.open("https://pbs.twimg.com/media/EhGjGEkXcAIbcfQ?format=jpg&name=small"), filename: 'sad_cat.jpg')
-meme33.save
+antoine.favorites.create(meme: meme33)
 
 # Create tags
 # Create tags
@@ -421,7 +421,7 @@ Favorite.create!(user: julien, meme: meme1) # Julien likes Alien Theory explicat
 Favorite.create!(user: anais, meme: meme4) # Anaïs likes Drake Dance
 Favorite.create!(user: amin, meme: meme3) # Amin likes Cerveau Explosion
 
-# New favorites
+# create favorites
 Favorite.create!(user: antoine, meme: meme6) # Antoine likes Among us Impostor
 Favorite.create!(user: julien, meme: meme5) # Julien likes Homer et Bart dans les escaliers
 Favorite.create!(user: anais, meme: meme9) # Anaïs likes Lionel Messi costar

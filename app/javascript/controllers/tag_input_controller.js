@@ -19,7 +19,7 @@ export default class extends Controller {
   addTag(name) {
     const index = this.tagsTarget.children.length;
     const tag = document.createElement("div");
-    tag.classList.add("tag-container", "button-tag-input", "d-flex", "align-items-center", "gap-1");
+    tag.classList.add("tag-container", "button-tag", "d-flex", "align-items-center", "gap-1");
     tag.innerHTML = `
       <div class="d-flex align-items-center justify-content-center">
         <p class="m-0" style="width: auto; padding-right: 5px;">${name}</p>

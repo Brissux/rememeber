@@ -33,8 +33,8 @@ class MemesController < ApplicationController
       @meme.file.attach(file)
     end
     if @meme.save
-      redirect_to @meme, notice: 'Mème créé avec succès !'
       current_user.favorites.create(meme: @meme)
+      redirect_to @meme, notice: 'Mème créé avec succès !'
       respond_to do |format|
         format.html { redirect_to movies_path }
         format.text { render partial: "movies/movie_infos", locals: {movie: @movie}, formats: [:html] }
