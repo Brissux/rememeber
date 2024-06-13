@@ -9,7 +9,7 @@
   <div data-controller="tag-input">
     <%= f.fields_for :meme_tags do |mt| %>
       <%= mt.fields_for :tag do |t| %>
-        <%= t.input :name, label: "Tags", input_html: { data: { tag_input_target: "input" }, style: "height: 50px;", placeholder: "Ajoutez des tags et appuyez sur Entrée" } %>
+        <%= t.input :name, label: "Tags", input_html: { data: { tag_input_target: "input" }, style: "height: 50px;", placeholder: "Ajoutez un tag et appuyez sur Entrée" } %>
       <% end %>
       <div data-tag-input-target="tags" class="d-flex flex-wrap mb-2 gap-1"></div>
     <% end %>
