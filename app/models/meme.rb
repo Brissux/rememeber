@@ -1,5 +1,6 @@
 # meme.rb
 class Meme < ApplicationRecord
+  attr_reader :image_url
   belongs_to :user
   has_one_attached :file
   validates :title, presence: true
