@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#show', as: 'current_user_profile'
   get '/liked_memes', to: 'users#liked_memes'
   get 'memes/:id/preview_text', to: 'memes#preview_text', as: :preview_text
-  post 'memes/:id', to: 'memes#edit_meme', as: :edit_meme
+  # post 'edit_meme/:id', to: 'memes#edit_meme', as: :edit_meme_test
+  post 'clone', to: "memes#clone", as: :clone_meme
 end
