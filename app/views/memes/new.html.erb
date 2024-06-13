@@ -11,12 +11,12 @@
       <%= mt.fields_for :tag do |t| %>
         <%= t.input :name, label: "Tags", input_html: { data: { tag_input_target: "input" }, style: "height: 50px;", placeholder: "Ajoutez un tag et appuyez sur Entrée" } %>
       <% end %>
-      <div data-tag-input-target="tags" class="d-flex flex-wrap mb-2 gap-1"></div>
+      <div data-tag-input-target="tags" class="d-flex flex-wrap mb-2 gap-2"></div>
     <% end %>
   </div>
 
 <div data-controller="upload">
-  <div class="my-2 preview">
+  <div class="my-2 preview mt-3">
     <div data-upload-target="output"></div>
 <%= f.input :file, label: "Fichier (PHOTO, VIDEO, GIF)", as: :file, label_html: { data: { upload_target: "label" } }, input_html: { data: { upload_target: "input", action: "change->upload#readURL" } } %>  </div>
 </div>
