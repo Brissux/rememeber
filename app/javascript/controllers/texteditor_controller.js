@@ -1,68 +1,66 @@
 import { Controller } from "@hotwired/stimulus"
-import { Canvas, Rect, IText, Image } from 'fabric'; // browser
+import { Canvas, Rect, IText, Image as FabricImage } from 'fabric'; // Assurez-vous d'importer `Image` avec un alias
 
 // Connects to data-controller="texteditor"
 export default class extends Controller {
-  static targets = ["canvas", "image", "input", "form"]
+  static targets = ["canvas", "image", "input", "form", "editButton"]
 
   connect() {
     window.onload = function() {
-      if(!window.location.hash) {
-          window.location = window.location + '#loaded';
-          window.location.reload();
+      if (!window.location.hash) {
+        window.location = window.location + '#loaded';
+        window.location.reload();
       }
     }
 
     if (this.hasCanvasTarget) {
       window.onload()
-      this.canvas = new Canvas(this.canvasTarget, {preserveObjectStacking: true})
+      this.canvas = new Canvas(this.canvasTarget, { preserveObjectStacking: true })
 
-      const imgInstance = new Image(this.imageTarget, {
+      const imgInstance = new FabricImage(this.imageTarget, {
         left: 0,
         top: 0,
         scaleX: this.canvas.width / this.imageTarget.width,
         scaleY: this.canvas.width / this.imageTarget.width,
-        lockMovementX:Boolean,
-        lockMovementY:Boolean,
+        lockMovementX: true,
+        lockMovementY: true,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        selectable: false, // Ensure the background image is not selectable
+        evented: false // Ensure no events are fired for the background image
       })
+
       this.canvas.add(imgInstance)
-      this.canvas.setDimensions({height:this.imageTarget.height * (this.canvas.width / this.imageTarget.width)})
+      this.canvas.setDimensions({ height: this.imageTarget.height * (this.canvas.width / this.imageTarget.width) })
     }
   }
 
   addText() {
-    let text = new IText('Sample Text', {
-      left: 0,  //this.canvas.width /2,
-      //left:0 //this.canvas.height /2,
+    let text = new IText('okkkkay', {
+      left: 180,
+      top: 100,
       fill: '#e0f7fa',
       fontFamily: 'montserrat',
       hasRotatingPoint: true,
       centerTransform: true,
-      orignX: 'center',
-      orignY: 'center',
+      originX: 'center',
+      originY: 'center',
       lockUniScaling: true
-    });
-    text.set('backgroundColor', "rgba(0,0,0,0.5)");
-    this.canvas.add(text);
+    })
+    text.set('backgroundColor', "rgba(0,0,0,0.5)")
+    this.canvas.add(text)
   }
-
-  // save() {
-  //   const dataURL = this.canvas.toDataURL('image/png')
-  //   // console.log(`dataURL : ${dataURL}`)
-  //   const link = document.createElement('a')
-  //   // console.log(`link : ${dataURL}`)
-  //   link.href = dataURL
-  //   link.download = "meme.png"
-  //   link.click()
-  //   // // console.dir(link);
-  //   // this.inputTarget.filename = dataURL;
-  // }
 
   save(event) {
     const dataURL = this.canvas.toDataURL('image/png')
     console.log(`dataURL : ${dataURL}`)
     this.inputTarget.value = dataURL
     this.formTarget.submit()
+  }
+
+  hideButton() {
+    this.editButtonTarget.classList.remove('d-none');
   }
 
 

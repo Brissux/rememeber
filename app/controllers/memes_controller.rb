@@ -38,7 +38,6 @@ class MemesController < ApplicationController
 
     if @meme.save
       current_user.favorites.create(meme: @meme)
-      redirect_to @meme, notice: 'Mème créé avec succès !'
       respond_to do |format|
         format.html { redirect_to @meme, notice: 'Mème créé avec succès !' }
         format.text { render partial: "shared/card2", locals: { meme: @meme }, formats: [:html] }
