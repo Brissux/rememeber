@@ -48,14 +48,14 @@ export default class extends Controller {
 
   // save() {
   //   const dataURL = this.canvas.toDataURL('image/png')
-  //   console.log(`dataURL : ${dataURL}`)
-  //   //const link = document.createElement('a')
-  //   //console.log(`link : ${dataURL}`)
-  //   //link.href = dataURL
-  //   //link.download = "meme.png"
-  //   //link.click()
-  //   // console.dir(link);
-  //   this.inputTarget.filename = dataURL;
+  //   // console.log(`dataURL : ${dataURL}`)
+  //   const link = document.createElement('a')
+  //   // console.log(`link : ${dataURL}`)
+  //   link.href = dataURL
+  //   link.download = "meme.png"
+  //   link.click()
+  //   // // console.dir(link);
+  //   // this.inputTarget.filename = dataURL;
   // }
 
   save(event) {
@@ -64,13 +64,15 @@ export default class extends Controller {
     const id = postURL.pop()
     const url = postURL.join('/')
 
-    console.log(url)
+    // const url = this.formTarget.action
+    // console.log(url)
 
     const dataURL = this.canvas.toDataURL('image/png')
     // console.log(`dataURL : ${dataURL}`)
 
     const formData = new FormData();
     formData.append('file', dataURL);
+    // console.log(formData);
 
     event.preventDefault()
     fetch(url, {
@@ -80,7 +82,7 @@ export default class extends Controller {
     })
       .then(response => response.text())
       .then((data) => {
-        // console.log(data)
+        console.log(data)
       })
   }
 

@@ -36,8 +36,8 @@ class MemesController < ApplicationController
       redirect_to @meme, notice: 'Mème créé avec succès !'
       current_user.favorites.create(meme: @meme)
       respond_to do |format|
-        format.html { redirect_to movies_path }
-        format.text { render partial: "movies/movie_infos", locals: {movie: @movie}, formats: [:html] }
+        format.html { redirect_to memes_path }
+        format.text { render partial: "shared/card2", locals: { meme: @meme }, formats: [:html] }
       end
     else
       render :new, status: :unprocessable_entity
@@ -82,6 +82,20 @@ class MemesController < ApplicationController
       redirect_to memes_path, alert: "You are not authorized to delete this meme."
     end
   end
+
+  # def edit_meme
+  #   @meme = current_user.memes.build(meme_params)
+  #   if @meme.save
+  #     # redirect_to @meme, notice: 'Mème créé avec succès !'
+  #     current_user.favorites.create(meme: @meme)
+  #     respond_to do |format|
+  #       format.html { redirect_to memes_path }
+  #       format.text { render partial: "shared/card2", locals: { meme: @meme }, formats: [:html] }
+  #     end
+  #   else
+  #     render :new, status: :unprocessable_entity
+  #   end
+  # end
 
   private
 

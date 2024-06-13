@@ -18,7 +18,7 @@
 
 
 
-  <%= simple_form_for meme, html: { data: { texteditor_target: "form" } } do |f| %>
+  <%= simple_form_for meme, method: "POST", html: { data: { texteditor_target: "form" } } do |f| %>
     <%= f.input :file, as: :file, input_html: { data: { texteditor_target: "input" }} %>  <%#, input_html: { value: "https://res.cloudinary.com/demplfybm/image/upload/v1/development/hje40jxx5wiwbqo451djvrpkqded?_a=BACCd2Bn" } %>
     <%= f.button :submit, "AJOUTER UN MEME", class: "btn button-create" %>
   <% end %>
