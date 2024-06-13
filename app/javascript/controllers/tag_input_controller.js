@@ -8,10 +8,11 @@ export default class extends Controller {
   }
 
   handleKeyDown(event) {
-    if (event.key === ",") {
-      event.preventDefault()
-      this.addTag(event.target.value.trim())
-      event.target.value = ""
+    if (event.key === "Enter") {
+      event.preventDefault(); // Empêche le comportement par défaut de la touche Entrée
+      event.stopPropagation(); // Empêche l'événement de se propager plus loin
+      this.addTag(event.target.value.trim());
+      event.target.value = "";
     }
   }
 
