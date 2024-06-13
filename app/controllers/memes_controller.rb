@@ -3,10 +3,17 @@ class MemesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @memes = Meme.where(public: true).order('RANDOM()')
-    @memes = Meme.where(public: true).search_by_title_and_tag(params[:search]) if params[:search].present?
-    @memes = Meme.where(public: true).order(created_at: :desc) if params[:filter] == "recent"
-    @memes = Meme.where(public: true).sort_by(&:like_counter).reverse if params[:filter] == "popular"
+    @memes = Meme.where(public: true)
+    @memes = @memes.search_by_title_and_tag(params[:search]) if params[:search].present?
+
+    case params[:filter]
+    when "recent"
+      @memes = @memes.order(created_at: :desc)
+    when "popular"
+      @memes = @memes.sort_by(&:like_counter).reverse
+    else
+      @memes = @memes.shuffle
+    end
   end
 
   def new
@@ -26,7 +33,7 @@ class MemesController < ApplicationController
       @meme.file.attach(file)
     end
     if @meme.save
-      redirect_to root_path, notice: 'Mème créé avec succès !'
+      redirect_to @meme, notice: 'Mème créé avec succès !'
       current_user.favorites.create(meme: @meme)
       respond_to do |format|
         format.html { redirect_to movies_path }
@@ -39,6 +46,10 @@ class MemesController < ApplicationController
 
   def show
     @meme = Meme.find(params[:id])
+    if !@meme.public && @meme.user != current_user
+      redirect_to root_path, alert: "Vous n'avez pas l'autorisation de voir ce meme."
+      return
+    end
     @tags = @meme.tags
     @favorite = Favorite.new
     @like = current_user.likes.find_by(meme: @meme) if user_signed_in?
@@ -75,7 +86,7 @@ class MemesController < ApplicationController
   private
 
   def meme_params
-    params.require(:meme).permit(:title, :public, :image, :video)
+    params.require(:meme).permit(:title, :public, :image, :video, meme_tags_attributes: [:id, :meme_id, tag_attributes: [:id, :name]])
   end
 
   def process_meme_tags(meme)

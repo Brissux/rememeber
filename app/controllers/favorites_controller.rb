@@ -2,11 +2,18 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:search].present?
-      @favorites = current_user.favorites.joins(:meme).merge(Meme.search_by_title_and_tag(params[:search])).order('favorites.created_at DESC')
+    if params[:filter] == "my_memes"
+      @memes = current_user.memes
+      @favorites = current_user.favorites.joins(:meme).where(memes: { id: @memes })
     else
-      @favorites = current_user.favorites.includes(:meme).order('favorites.created_at DESC')
+      @favorites = current_user.favorites
     end
+
+    if params[:search].present?
+      @favorites = @favorites.joins(:meme).merge(Meme.search_by_title_and_tag(params[:search]))
+    end
+
+    @favorites = @favorites.order(created_at: :desc)
   end
 
   def create

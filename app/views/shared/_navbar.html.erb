@@ -11,14 +11,20 @@
     <%= form_tag favorites_path, method: :get, class: "search-form" do %>
       <div class="search-form-control input-group">
         <i class="fas fa-search search-icon"></i>
-        <%= text_field_tag :search, params[:search], placeholder: 'Rechercher un mème dans les favoris', class: 'form-control', autofocus: true %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Rechercher un mème dans les favoris', class: 'form-control' %>
+        <%= link_to favorites_path, class: "clear-search", title: "Effacer la recherche" do %>
+          <i class="fas fa-times"></i>
+        <% end %>
       </div>
     <% end %>
   <% else %>
     <%= form_tag root_path, method: :get, class: "search-form" do %>
       <div class="search-form-control input-group">
         <i class="fas fa-search search-icon"></i>
-        <%= text_field_tag :search, params[:search], placeholder: 'Rechercher un mème', class: 'form-control', autofocus: true %>
+        <%= text_field_tag :search, params[:search], placeholder: 'Rechercher un mème', class: 'form-control' %>
+        <%= link_to root_path, class: "clear-search", title: "Effacer la recherche" do %>
+          <i class="fas fa-times"></i>
+        <% end %>
       </div>
     <% end %>
   <% end %>

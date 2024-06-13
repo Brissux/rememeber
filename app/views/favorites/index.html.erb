@@ -1,6 +1,7 @@
-<h1>Ma galerie</h1>
 <% if @favorites.any? %>
   <div class="container-fluid">
+    <h1>Ma galerie</h1>
+    <%= render partial: "favorites/menu_favorites", locals: { search: params[:search] } %>
     <div class="row">
       <div class="col-6">
         <% @favorites.each_with_index do |favorite, index| %>

@@ -50,3 +50,14 @@
   box-shadow: none;
   background-color: white
 }
+
+.clear-search {
+  color: #6c757d; /* Gris Bootstrap par défaut */
+  background-color: transparent;
+  border: none;
+}
+
+.clear-search:hover {
+  color: #5a6268; /* Un peu plus foncé au survol */
+  text-decoration: none;
+}

@@ -1,5 +1,6 @@
+<% if @meme.user == current_user %>
 <%= render "form", meme: @meme %>
-
+<% end %>
 <div class="d-flex justify-content-evenly flex-wrap row-gap-2">
   <%= render partial: "shared/card2", locals: { meme: @meme } %>
 </div>
@@ -8,7 +9,7 @@
   <div class="d-flex flex-wrap mb-4 gap-2">
     <% @tags.each do |tag| %>
       <div>
-        <%= link_to tag.name, root_path(search: tag.name), class: "btn button-tag", style: "text-decoration: none; color: black;" %>
+        <%= link_to tag.name, root_path(search: tag.name), class: "btn button-tag", style: "text-decoration: none;" %>
       </div>
     <% end %>
   </div>

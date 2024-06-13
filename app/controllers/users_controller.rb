@@ -3,4 +3,5 @@ class UsersController < ApplicationController
     @user = current_user
     @liked_memes = @user.liked_memes
   end
+
 end

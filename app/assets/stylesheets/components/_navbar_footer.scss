@@ -23,7 +23,6 @@
   flex-shrink: 0;
 }
 
-/* Styles par défaut pour les icônes de profil */
 .profile-icon {
   width: 35px; /* Ajustez selon la taille désirée */
   height: 35px; /* Ajustez selon la taille désirée */
@@ -32,8 +31,6 @@
   object-fit: cover; /* Pour s'assurer que l'image ne se déforme pas */
   box-sizing: border-box; /* Inclure la bordure dans la taille totale de l'élément */
 }
-
-/* Styles pour l'icône de profil active */
 .profile-icon.active-profile {
   border: 2px solid black; /* Bordure noire de 2px quand actif */
 }

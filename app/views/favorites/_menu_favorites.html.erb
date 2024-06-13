@@ -1,0 +1,6 @@
+<nav>
+  <ul class="menu">
+    <li><%= link_to "Tous", favorites_path(search: params[:search], filter: nil), class: "menu-item #{params[:filter].nil? ? 'active' : ''}" %></li>
+    <li><%= link_to "Mes mèmes", favorites_path(search: params[:search], filter: 'my_memes'), class: "menu-item #{params[:filter] == 'my_memes' ? 'active' : ''}" %></li>
+  </ul>
+</nav>
