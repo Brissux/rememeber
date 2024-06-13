@@ -31,12 +31,15 @@ class MemesController < ApplicationController
         @meme.video_url, @meme.thumbnail_url = upload_result["secure_url"], upload_result["eager"].first["secure_url"]
       end
       @meme.file.attach(file)
+    elsif params[:meme][:image_url].present?
+      file = URI.open(params[:meme][:image_url])
+      @meme.file.attach(io: file, filename: "toto.png", content_type: "image/png")
     end
+
     if @meme.save
-      redirect_to @meme, notice: 'Mème créé avec succès !'
       current_user.favorites.create(meme: @meme)
       respond_to do |format|
-        format.html { redirect_to memes_path }
+        format.html { redirect_to @meme, notice: 'Mème créé avec succès !' }
         format.text { render partial: "shared/card2", locals: { meme: @meme }, formats: [:html] }
       end
     else
@@ -83,19 +86,20 @@ class MemesController < ApplicationController
     end
   end
 
-  # def edit_meme
-  #   @meme = current_user.memes.build(meme_params)
-  #   if @meme.save
-  #     # redirect_to @meme, notice: 'Mème créé avec succès !'
-  #     current_user.favorites.create(meme: @meme)
-  #     respond_to do |format|
-  #       format.html { redirect_to memes_path }
-  #       format.text { render partial: "shared/card2", locals: { meme: @meme }, formats: [:html] }
-  #     end
-  #   else
-  #     render :new, status: :unprocessable_entity
-  #   end
-  # end
+  def clone
+    data_uri = params[:meme][:file]
+    file_path = "image.png"
+    base64_data = data_uri.split(',')[1]
+    binary_data = Base64.decode64(base64_data)
+
+    File.open(file_path, 'wb') do |file|
+      file.write(binary_data)
+    end
+    @meme = Meme.new()
+    @meme_tag = @meme.meme_tags.new(tag: Tag.new)
+    @image_url = Cloudinary::Uploader.upload(file_path)["secure_url"]
+    render :new, status: :unprocessable_entity
+  end
 
   private
 

@@ -59,31 +59,10 @@ export default class extends Controller {
   // }
 
   save(event) {
-    event.preventDefault()
-    let postURL = this.formTarget.action.split('/')
-    const id = postURL.pop()
-    const url = postURL.join('/')
-
-    // const url = this.formTarget.action
-    // console.log(url)
-
     const dataURL = this.canvas.toDataURL('image/png')
-    // console.log(`dataURL : ${dataURL}`)
-
-    const formData = new FormData();
-    formData.append('file', dataURL);
-    // console.log(formData);
-
-    event.preventDefault()
-    fetch(url, {
-      method: "POST",
-      headers: { "Accept": "text/plain" },
-      body: new FormData(this.formTarget)
-    })
-      .then(response => response.text())
-      .then((data) => {
-        console.log(data)
-      })
+    console.log(`dataURL : ${dataURL}`)
+    this.inputTarget.value = dataURL
+    this.formTarget.submit()
   }
 
 
