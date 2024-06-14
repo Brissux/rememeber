@@ -16,12 +16,13 @@
     <%= render "shared/button_like", meme: @meme %>
   </div>
 
+
   <%= simple_form_for :meme, url: clone_meme_path, method: "POST", html: { data: { texteditor_target: "form", action: "texteditor#save:prevent" }}  do |f| %>
   <div class="d-none">
     <%= f.input :file, input_html: {data: { texteditor_target: "input"}, class: "d-none", label: false} %>
     </div>
       <div class="d-flex justify-content-center">
-        <%= f.button :submit, "EDITER LE MEME", class: "btn button-create padding d-none", data: { texteditor_target: "editButton" } %>      </div>
+        <%= f.button :submit, "MODIFIER LE MEME", class: "btn button-create padding d-none", data: { texteditor_target: "editButton" } %>      </div>
   <% end %>
 </div> <!-- Fermeture de balise ajoutée ici -->
 
