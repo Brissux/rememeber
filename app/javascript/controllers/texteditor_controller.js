@@ -12,7 +12,6 @@ export default class extends Controller {
         window.location.reload();
       }
     }
-
     if (this.hasCanvasTarget) {
       window.onload()
       this.canvas = new Canvas(this.canvasTarget, { preserveObjectStacking: true })
