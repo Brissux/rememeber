@@ -15,7 +15,11 @@ export default class extends Controller {
 
     if (this.hasCanvasTarget) {
       window.onload()
-      this.canvas = new Canvas(this.canvasTarget, { preserveObjectStacking: true })
+      this.canvas = new Canvas(this.canvasTarget, {
+        preserveObjectStacking: true,
+        allowTouchScrolling: true, // Désactiver le défilement
+        selection: false
+      })
 
       const imgInstance = new FabricImage(this.imageTarget, {
         left: 0,
@@ -27,8 +31,8 @@ export default class extends Controller {
         lockScalingX: true,
         lockScalingY: true,
         lockRotation: true,
-        selectable: false, // Ensure the background image is not selectable
-        evented: false // Ensure no events are fired for the background image
+        selectable: false,
+        evented: false
       })
 
       this.canvas.add(imgInstance)
@@ -37,7 +41,7 @@ export default class extends Controller {
   }
 
   addText() {
-    let text = new IText('okkkkay', {
+    let text = new IText('Votre texte', {
       left: 180,
       top: 100,
       fill: '#e0f7fa',
@@ -50,6 +54,9 @@ export default class extends Controller {
     })
     text.set('backgroundColor', "rgba(0,0,0,0.5)")
     this.canvas.add(text)
+    this.canvas.setActiveObject(text); // Définir le texte comme l'objet actif
+    text.enterEditing(); // Entrer en mode d'édition
+    text.selectAll(); // Sélectionner tout le texte
   }
 
   save(event) {
@@ -62,6 +69,5 @@ export default class extends Controller {
   hideButton() {
     this.editButtonTarget.classList.remove('d-none');
   }
-
 
 }
