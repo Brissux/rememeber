@@ -1,3 +1,5 @@
+<div class="tperso">
+
 <%= simple_form_for meme, html: { multipart: true } do |f| %>
   <div class="toggle-switch-container custom-toggle">
     <%= f.check_box :public, id: 'meme_public', class: 'toggle-switch toggle-switch-wide custom-toggle-input' %>
@@ -14,6 +16,10 @@
       <div data-tag-input-target="tags" class="d-flex flex-wrap mb-2 gap-2"></div>
     <% end %>
   </div>
+
+
+
+
 
   <div data-controller="upload">
     <div class="my-2 preview mt-3">
@@ -34,3 +40,6 @@
 
   </div>
 <% end %>
+
+
+</div>
