@@ -6,37 +6,44 @@ export default class extends Controller {
   static targets = ["canvas", "image", "input", "form", "editButton"]
 
   connect() {
-    window.onload = function() {
-      if (!window.location.hash) {
-        window.location = window.location + '#loaded';
-        window.location.reload();
-      }
+    this.waitForImage(this.imageTarget)
+  }
+
+  waitForImage(img) {
+    if(img.height) {
+      setTimeout(() => {
+        this.setCanvas()
+      }, 100);
+    } else {
+      setTimeout(() => {
+        this.waitForImage(img);
+      }, 100);
     }
+  }
+
+  setCanvas() {
+    this.canvas = new Canvas(this.canvasTarget, {
+      preserveObjectStacking: true,
+      allowTouchScrolling: true, // Désactiver le défilement
+      selection: false
+    })
+
+    const imgInstance = new FabricImage(this.imageTarget, {
+      left: 0,
+      top: 0,
+      scaleX: this.canvas.width / this.imageTarget.width,
+      scaleY: this.canvas.width / this.imageTarget.width,
+      lockMovementX: true,
+      lockMovementY: true,
+      lockScalingX: true,
+      lockScalingY: true,
+      lockRotation: true,
+      selectable: false,
+      evented: false
+    })
     if (this.hasCanvasTarget) {
-      window.onload()
-      this.canvas = new Canvas(this.canvasTarget, {
-        preserveObjectStacking: true,
-        allowTouchScrolling: true, // Désactiver le défilement
-        selection: false
-      })
-
-      const imgInstance = new FabricImage(this.imageTarget, {
-        left: 0,
-        top: 0,
-        scaleX: this.canvas.width / this.imageTarget.width,
-        scaleY: this.canvas.width / this.imageTarget.width,
-        lockMovementX: true,
-        lockMovementY: true,
-        lockScalingX: true,
-        lockScalingY: true,
-        lockRotation: true,
-        selectable: false,
-        evented: false
-      })
-
       this.canvas.add(imgInstance)
       this.canvas.setDimensions({ height: this.imageTarget.height * (this.canvas.width / this.imageTarget.width) })
-      // this.canvas.renderAll();
     }
   }
 
