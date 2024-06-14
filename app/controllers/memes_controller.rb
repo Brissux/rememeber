@@ -3,17 +3,20 @@ class MemesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @memes = Meme.where(public: true)
-    @memes = @memes.search_by_title_and_tag(params[:search]) if params[:search].present?
-
-    case params[:filter]
-    when "recent"
-      @memes = @memes.order(created_at: :desc)
-    when "popular"
-      @memes = @memes.sort_by(&:like_counter).reverse
+    if params[:filter] == "my_memes"
+      @memes = current_user.memes
+      @favorites = current_user.favorites.joins(:meme).where(memes: { id: @memes })
+    elsif params[:filter] == "favorites_only"
+      @favorites = current_user.favorites.joins(:meme).where.not(memes: { user_id: current_user.id })
     else
-      @memes = @memes.shuffle
+      @favorites = current_user.favorites
     end
+
+    if params[:search].present?
+      @favorites = @favorites.joins(:meme).merge(Meme.search_by_title_and_tag(params[:search]))
+    end
+
+    @favorites = @favorites.order(created_at: :desc)
   end
 
   def new
