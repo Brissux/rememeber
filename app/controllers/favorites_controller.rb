@@ -4,9 +4,9 @@ class FavoritesController < ApplicationController
   def index
     if params[:filter] == "my_memes"
       @memes = current_user.memes
-      @favorites = current_user.favorites.joins(:meme).where(memes: { id: @memes })
+      @favorites = current_user.favorites.joins(:meme).where(memes: { id: @memes, public: true })
     else
-      @favorites = current_user.favorites
+      @favorites = current_user.favorites.joins(:meme).where(memes: { public: true })
     end
 
     if params[:search].present?

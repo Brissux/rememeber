@@ -87,18 +87,22 @@ class MemesController < ApplicationController
   end
 
   def clone
-    data_uri = params[:meme][:file]
-    file_path = "image.png"
-    base64_data = data_uri.split(',')[1]
-    binary_data = Base64.decode64(base64_data)
+    data_uri = params.dig(:meme,:file)
+    if data_uri.present?
+      file_path = "image.png"
+      base64_data = data_uri.split(',')[1]
+      binary_data = Base64.decode64(base64_data)
 
-    File.open(file_path, 'wb') do |file|
-      file.write(binary_data)
+      File.open(file_path, 'wb') do |file|
+        file.write(binary_data)
+      end
+      @meme = Meme.new()
+      @meme_tag = @meme.meme_tags.new(tag: Tag.new)
+      @image_url = Cloudinary::Uploader.upload(file_path)["secure_url"]
+      render :new, status: :unprocessable_entity
+    else
+      redirect_to root_path
     end
-    @meme = Meme.new()
-    @meme_tag = @meme.meme_tags.new(tag: Tag.new)
-    @image_url = Cloudinary::Uploader.upload(file_path)["secure_url"]
-    render :new, status: :unprocessable_entity
   end
 
   private

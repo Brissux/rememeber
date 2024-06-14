@@ -9,7 +9,7 @@
         </video>
       <% elsif meme.file.attached? %>
         <%= cl_image_tag meme.file.key, alt: meme.title, data: { texteditor_target: "image"}, class: "d-none", crossorigin: "anonymous"  %>
-        <canvas id="imageCanvas" width="360" data-texteditor-target="canvas">
+        <canvas id="imageCanvas" width="300" data-texteditor-target="canvas">
         </canvas>
       <% end %>
     </div>

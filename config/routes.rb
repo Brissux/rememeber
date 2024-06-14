@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get 'memes/:id/preview_text', to: 'memes#preview_text', as: :preview_text
   # post 'edit_meme/:id', to: 'memes#edit_meme', as: :edit_meme_test
   post 'clone', to: "memes#clone", as: :clone_meme
+  get 'clone', to: "memes#clone", as: :clone_meme_get
 end

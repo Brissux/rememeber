@@ -36,6 +36,7 @@ export default class extends Controller {
 
       this.canvas.add(imgInstance)
       this.canvas.setDimensions({ height: this.imageTarget.height * (this.canvas.width / this.imageTarget.width) })
+      // this.canvas.renderAll();
     }
   }
 

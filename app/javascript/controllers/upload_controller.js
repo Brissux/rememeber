@@ -7,14 +7,12 @@ export default class extends Controller {
     const input = this.inputTarget
     const output = this.outputTarget
 
-    console.log('readURL called', input, output)
 
     if (input.files && input.files[0]) {
       const file = input.files[0];
       const reader = new FileReader();
 
       reader.onload = function (e) {
-        console.log('File loaded', e.target.result)
         output.style.display = "block";
         if (file.type.startsWith("video/")) {
           output.innerHTML = `<video controls><source src="${e.target.result}" type="${file.type}">Your browser does not support the video tag.</video>`;
