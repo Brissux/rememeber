@@ -15,18 +15,18 @@
     <% end %>
   </div>
 
-<div data-controller="upload">
-  <div class="my-2 preview mt-3">
-    <div data-upload-target="output">
+  <div data-controller="upload">
+    <div class="my-2 preview mt-3">
+      <div data-upload-target="output">
+      </div>
+      <% if image_url.present? %>
+        <%= image_tag image_url %>
+        <%= f.input :image_url, label: false, input_html: { value: image_url, class: "d-none"} %>
+      <% else %>
+        <%= f.input :file, label: "Fichier (PHOTO, VIDEO, GIF)", as: :file, label_html: { data: { upload_target: "label" } }, input_html: { data: { upload_target: "input", action: "change->upload#readURL" } } %>  </div>
+      <% end %>
     </div>
-    <% if image_url.present? %>
-      <%= image_tag image_url %>
-      <%= f.input :image_url, input_html: { value: image_url, class: "d-none"} %>
-    <% else %>
-      <%= f.input :file, label: "Fichier (PHOTO, VIDEO, GIF)", as: :file, label_html: { data: { upload_target: "label" } }, input_html: { data: { upload_target: "input", action: "change->upload#readURL" } } %>  </div>
-    <% end %>
-
-</div>
+  </div>
 
   <div class="text-center">
     <%= f.button :submit, "ENREGISTRER", class: "btn button-create" %>
