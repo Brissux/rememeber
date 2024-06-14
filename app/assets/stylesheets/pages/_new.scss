@@ -173,6 +173,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  width: 320px;
 }
 
 .form-check > label {
@@ -216,7 +217,7 @@
 
 
 .form-control[type="file"]:not(:disabled):not([readonly]) {
-  width: 346.5px;
+  width: 300px;
   margin-top: 10px;
   border-radius: 5px;
 }
